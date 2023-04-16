@@ -1,13 +1,13 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import { Inter } from "next/font/google";
+const inter = Inter({ subsets: ["latin"] });
+import Link from "next/link";
+import Mangas from "./components/Mangas";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-     <h1>Hi</h1>
+    <main>
+      <h1>HomePage</h1>
+      <Mangas />
     </main>
-  )
+  );
 }
