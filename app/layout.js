@@ -1,4 +1,3 @@
-import { CountContextProvider } from './context/count'
 import './globals.css'
 
 export const metadata = {
@@ -10,10 +9,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <CountContextProvider>
         {children}
 
-        </CountContextProvider>
         </body>
     </html>
   )
