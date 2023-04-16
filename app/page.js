@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main>
-      hi
+      <Link href="/mangas">Go to all mangas</Link>
     </main>
   );
 }

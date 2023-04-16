@@ -2,8 +2,8 @@ import Link from "next/link";
 const Header = () => {
     return ( 
         <div>
-            <h1>Mang App</h1>
-            <Link href="/login">Login</Link>
+            <Link href="/"><h1>Mang App</h1></Link>
+            <Link href="/auth/login">Login</Link>
 
         </div>
      );
