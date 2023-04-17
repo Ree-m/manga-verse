@@ -1,7 +1,7 @@
 import { Schema, model, models } from "mongoose";
 
 const BookmarkSchema = new Schema({
-    nameOfManga:{
+    nameOfBookmark:{
         type:String,
         required:true,
        
