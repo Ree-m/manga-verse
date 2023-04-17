@@ -12,6 +12,7 @@ const MangaPage = async ({ params: { id } }) => {
     <div>
       <h1>{manga.title}</h1>
       <p>{manga.synopsis}</p>
+      <button>Bookmark</button>
     </div>
   );
 };
