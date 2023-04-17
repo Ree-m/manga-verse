@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.3",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.3",
