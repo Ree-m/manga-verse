@@ -7,6 +7,14 @@ const LoginPage = () => {
   async function onSubmit(e) {
     e.preventDefault();
     console.log("submit");
+    const response = await fetch(`http://localhost:3000/api/auth/login`, {
+      method: "POST",
+      body: JSON.stringify({}),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
   }
 
   return (

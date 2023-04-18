@@ -9,6 +9,10 @@ export async function POST(request) {
   console.log("username", username, "email", email, "password", password);
 
   try {
+    const userExists=await User.findOne({$or:[{username,email}]})
+    if (userExists){
+      return NextResponse.json("User already exists")
+    }
     const user = await User.create({
       username,
       email,
@@ -18,13 +22,7 @@ export async function POST(request) {
     console.log("user added");
     return NextResponse.json(user);
   } catch (error) {
-    if (error.code === 11000) {
-      //duplicate key error
-      // if user already exists
-      return NextResponse.json("User already exists");
-    } else {
-      console.log("post register error", error);
-      return NextResponse.json(error);
-    }
+    console.log("post register error", error);
+    return NextResponse.json(error);
   }
 }

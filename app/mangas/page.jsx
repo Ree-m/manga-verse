@@ -1,6 +1,5 @@
 import Link from "next/link";
 async function fetchMangas() {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
 
   const response = await fetch(`https://api.jikan.moe/v4/manga`);
   const mangas = await response.json();

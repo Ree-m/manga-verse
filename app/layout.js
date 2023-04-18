@@ -1,5 +1,6 @@
 import "./globals.css";
 import Header from "./components/Header";
+import { UserContextProvider } from "./context/user";
 
 export const metadata = {
   title: "Create Next App",
@@ -10,8 +11,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Header />
-        <main>{children}</main>
+        <UserContextProvider>
+          <Header />
+          <main>{children}</main>
+        </UserContextProvider>
       </body>
     </html>
   );

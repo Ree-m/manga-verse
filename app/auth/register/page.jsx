@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 
 const RegisterPage = () => {
   const [username, setUsername] = useState("");
@@ -17,7 +18,17 @@ const RegisterPage = () => {
       },
       credentials: "include",
     });
-    console.log(response);
+    const responseData = await response.json();
+    console.log(responseData);
+    console.log(response)
+
+    if (responseData == "User already exists") {
+      alert(`User already exists`);
+    } else if (response.ok) {
+      alert("Registeration successful.You can login now");
+    } else {
+      alert("Registeration failed.Try again later.");
+    }
   }
   return (
     <form onSubmit={onSubmit}>

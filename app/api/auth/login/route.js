@@ -18,10 +18,11 @@ export async function POST(request) {
   // logged in
   jwt.sign({ email, id: user._id }, privateKey, {}, (err, token) => {
     if (err) throw err;
+    console.log("token", token);
+
     return NextResponse.cookie("token", token).json({
       id: user._id,
       email,
     });
-    console.log("token", token);
   });
 }
