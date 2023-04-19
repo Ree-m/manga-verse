@@ -1,4 +1,5 @@
 import { Schema, model, models } from "mongoose";
+import mongoose from "mongoose";
 
 const CommentSchema = new Schema(
   {
@@ -7,9 +8,9 @@ const CommentSchema = new Schema(
       ref: "User",
       required: true,
     },
-    comment: {
+    commentText: {
       type: String,
-      required: true,
+      // required: true,
     },
     likes: {
       type: Number,
