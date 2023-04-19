@@ -7,13 +7,12 @@ async function fetchMangas() {
 }
 const Mangas = async () => {
   const mangas = await fetchMangas();
-  console.log(mangas);
+  console.log("mangas length",mangas.length)
   return (
     <>
       {mangas &&
         mangas.map((manga) => (
           <div key={manga.mal_id}>
-            <p>{console.log("this is manga", manga)}</p>
             <Link href={`/mangas/${manga.mal_id}`}><h1>{manga.title}</h1></Link>
             <p>{manga.synopsis}</p>
           </div>

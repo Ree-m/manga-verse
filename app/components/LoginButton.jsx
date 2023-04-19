@@ -6,6 +6,7 @@ const LoginButton = () => {
     return (
       <>
         Signed in as {session.user.email} <br />
+        {session.user.name}
         <button onClick={() => signOut()}>Sign out</button>
       </>
     );

@@ -4,7 +4,6 @@ import GoogleProvider from "next-auth/providers/google";
 import dotenv from "dotenv";
 dotenv.config();
 
-console.log("this is client_id",process.env.GOOGLE_CLIENT_ID,process.env.GOOGLE_CLIENT_SECRET)
 
 const handler = NextAuth({
   providers: [
