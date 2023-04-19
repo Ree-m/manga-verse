@@ -4,8 +4,8 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main>
-      <Link href="/mangas">Go to all mangas</Link>
-    </main>
+      <main>
+        <Link href="/mangas">Go to all mangas</Link>
+      </main>
   );
 }

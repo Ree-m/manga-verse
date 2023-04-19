@@ -4,6 +4,7 @@ const Header = () => {
         <div>
             <Link href="/"><h1>Mang App</h1></Link>
             <Link href="/auth/login">Login</Link>
+            
 
         </div>
      );

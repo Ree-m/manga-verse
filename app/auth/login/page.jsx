@@ -1,6 +1,9 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import { signIn } from "next-auth/react";
+import LoginButton from "@/app/components/LoginButton";
+
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -39,6 +42,7 @@ const LoginPage = () => {
           <Link href="/auth/register">Create one</Link>
         </button>
       </p>
+      <LoginButton />
     </form>
   );
 };
