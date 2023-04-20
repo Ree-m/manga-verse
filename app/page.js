@@ -6,7 +6,7 @@ export default function Home() {
   return (
       <main>
         <Link href="/mangas">Go to all mangas</Link>
-        <Link href="/allManga">Go to all mangas</Link>
+        <Link href="/allManga/:page">Go to all mangas</Link>
 
         
       </main>
