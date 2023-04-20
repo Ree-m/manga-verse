@@ -1,33 +1,55 @@
-// import Link from "next/link";
+import Link from "next/link";
+import ReactPaginate from "react-paginate";
 
-// async function fetchMangas(page = 1) {
-//   const response = await fetch(`https://api.jikan.moe/v4/manga?page=${page}`);
-//   const data = await response.json();
-//   const mangas = data.data;
+async function fetchMangasData(page) {
+  const response = await fetch(`https://api.jikan.moe/v4/manga?page=${page}`);
+  const mangas = await response.json();
+  return mangas.data;
+}
 
-//   if (data.pagination.has_next_page) {
-//     const nextMangas = await fetchMangas(page + 1);
-//     return [...mangas, ...nextMangas];
-//   }
+async function fetchAll(){
+  const response = await fetch(`https://api.jikan.moe/v4/manga?page=${page}`);
+  const allData = await response.json();
+  console.log("pages", allData.pagination.last_visible_page);
+  return allData
+}
 
-//   return mangas;
-// }
-// const Mangas = async () => {
-//   const mangas = await fetchMangas();
-//   console.log("mangas length", mangas.length);
-//   return (
-//     <>
-//       {mangas &&
-//         mangas.map((manga) => (
-//           <div key={manga.mal_id}>
-//             <Link href={`/mangas/${manga.mal_id}`}>
-//               <h1>{manga.title}</h1>
-//             </Link>
-//             <p>{manga.synopsis}</p>
-//           </div>
-//         ))}
-//     </>
-//   );
-// };
+const Mangas = async ({page}) => {
+  const mangas = await fetchMangasData(page);
+  console.log("mangas length", mangas.length);
 
-// export default Mangas;
+  const allData=await fetchAll()
+  const pageCount=allData.pagination.last_visible_page
+  
+  async function handlePageClick(e) {
+    e.preventDefault();
+    console.log("page click")
+    // here i want the page to increase or decrease one
+  }
+
+  return (
+    <>
+      {mangas &&
+        mangas.map((manga) => (
+          <div key={manga.mal_id}>
+            <Link href={`/mangas/${manga.mal_id}`}>
+              <h1>{manga.title}</h1>
+            </Link>
+            <p>{manga.synopsis}</p>
+          </div>
+        ))}
+
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel="next >"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        pageCount={pageCount}
+        previousLabel="< previous"
+        renderOnZeroPageCount={null}
+      />
+    </>
+  );
+};
+
+export default Mangas;
