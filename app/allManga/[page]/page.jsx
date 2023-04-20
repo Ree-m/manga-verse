@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-
+import Loading from "@/app/components/Loading";
 const Mangas = () => {
   const router = useRouter();
   const [mangas, setMangas] = useState([]);
@@ -33,11 +33,7 @@ const Mangas = () => {
   }
 
   if (loading) {
-    return (
-      <div className="loader">
-        <div className="spinner"></div>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (
