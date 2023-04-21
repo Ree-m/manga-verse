@@ -11,17 +11,21 @@ const LoginPage = () => {
 
   
   async function onSubmit(e) {
+  
     e.preventDefault();
-    console.log("submit");
-    const response = await fetch(`${API_URL}/api/auth/login`, {
-      method: "POST",
-      body: JSON.stringify({email,password}),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    });
-    console.log("loggin in end")
+
+    try {
+      console.log("login page start login credientials")
+      const data = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+      });
+
+      console.log("user",data);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
