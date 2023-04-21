@@ -5,10 +5,11 @@ import { useUserContext } from "../context/user";
 const Header = () => {
   const { user, setUser } = useUserContext();
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const API_URL = process.env.API_URL;
 
   useEffect(() => {
     console.log("starting to fetch profile");
-    fetch(`http://localhost:3001/auth/login`, {
+    fetch(`${API_URL}/auth/login`, {
       credentials: "include",
     })
       .then((response) => {
@@ -29,7 +30,7 @@ const Header = () => {
   }, []);
 
   async function logout() {
-    const response = await fetch(`http://localhost:3001/auth/logout`, {
+    const response = await fetch(`${API_URL}/auth/logout`, {
       method: "POST",
       credentials: "include",
     });

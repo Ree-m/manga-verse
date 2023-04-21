@@ -8,6 +8,8 @@ const MangaPage = ({ params: { id } }) => {
   // const manga = await fetchManga(id);
   const [bookmark, setBookmark] = useState("");
   const [manga,setManga]=useState([])
+  const API_URL = process.env.API_URL;
+
 
   useEffect(()=>{
     async function fetchManga() {
@@ -26,7 +28,7 @@ const MangaPage = ({ params: { id } }) => {
   // add manga to bookmark
   async function addToBookmark(nameOfBookmark) {
     console.log("start bookmark");
-    const response = await fetch(`http://localhost:3001/api/bookmark`, {
+    const response = await fetch(`${API_URL}/api/bookmark`, {
       method: "POST",
 
       body: JSON.stringify({ nameOfBookmark }),
