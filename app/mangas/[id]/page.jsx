@@ -26,7 +26,7 @@ const MangaPage = ({ params: { id } }) => {
   // add manga to bookmark
   async function addToBookmark(nameOfBookmark) {
     console.log("start bookmark");
-    const response = await fetch(`http://localhost:3000/api/bookmark`, {
+    const response = await fetch(`http://localhost:3001/api/bookmark`, {
       method: "POST",
 
       body: JSON.stringify({ nameOfBookmark }),

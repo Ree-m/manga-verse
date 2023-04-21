@@ -12,6 +12,7 @@ export async function POST(request) {
   connectMongo();
   const { email, password } = await request.json();
   const user = await User.findOne({ email, password }).exec();
+  console.log("logging in start");
   if (!user) {
     return NextResponse.json("Invalid login credentials");
   }
@@ -24,5 +25,18 @@ export async function POST(request) {
       id: user._id,
       email,
     });
+  });
+}
+
+export async function GET(request) {
+  console.log("token profile", request.cokkies.token);
+
+  jwt.verify(request.cookies.token, privateKey, {}, (error, user) => {
+    if (error) {
+      console.log("error while getting profile", error);
+      return NextResponse.json({ message: "Invalid token" });
+    }
+    console.log("this is the user", user);
+    return NextResponse.json(user);
   });
 }

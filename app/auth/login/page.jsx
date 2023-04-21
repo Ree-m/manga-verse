@@ -7,17 +7,19 @@ import LoginButton from "@/app/components/LoginButton";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
   async function onSubmit(e) {
     e.preventDefault();
     console.log("submit");
-    const response = await fetch(`http://localhost:3000/api/auth/login`, {
+    const response = await fetch(`http://localhost:3001/api/auth/login`, {
       method: "POST",
-      body: JSON.stringify({}),
+      body: JSON.stringify({email,password}),
       headers: {
         "Content-Type": "application/json",
       },
       credentials: "include",
     });
+    console.log("loggin in end")
   }
 
   return (
