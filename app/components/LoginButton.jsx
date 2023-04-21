@@ -13,7 +13,7 @@ const LoginButton = () => {
   }
   return (
     <>
-      Not signed in with google <br />
+      Sign in with google <br />
       <button onClick={() => signIn()}>Sign in</button>
     </>
   );

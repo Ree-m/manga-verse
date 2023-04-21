@@ -8,16 +8,21 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   async function onSubmit(e) {
+  
     e.preventDefault();
-    console.log("submit");
-    const response = await fetch(`http://localhost:3000/api/auth/login`, {
-      method: "POST",
-      body: JSON.stringify({}),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    });
+
+    try {
+      console.log("login page start login credientials")
+      const data = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+      });
+
+      console.log("user",data);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
