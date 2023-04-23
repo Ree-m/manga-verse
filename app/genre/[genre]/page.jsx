@@ -1,11 +1,7 @@
-import { useEffect } from "react";
+
 
 const GenrePage = () => {
-    return ( 
-        <div>
-            
-        </div>
-     );
-}
- 
+  return <div></div>;
+};
+
 export default GenrePage;
