@@ -3,12 +3,14 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/components/Loading";
-const Mangas = () => {
+import { usePageContext } from "@/app/context/page";
+const Mangas = ({ params }) => {
   const router = useRouter();
   const [mangas, setMangas] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(1);
-
+  const {page, setPage} = usePageContext()
+  console.log("params.page", params.page);
+  console.log("page contex",page)
 
   useEffect(() => {
     const fetchMangas = async () => {
@@ -25,12 +27,14 @@ const Mangas = () => {
 
   async function handleNextPage(e) {
     e.preventDefault();
-
+    console.log("page", page);
     setPage(page + 1);
+    
   }
   async function handleBackPage(e) {
     e.preventDefault();
     setPage(page - 1);
+    
   }
 
   if (loading) {
@@ -42,7 +46,7 @@ const Mangas = () => {
       {mangas &&
         mangas.map((manga) => (
           <div key={manga.mal_id}>
-            <Link href={`/allMangas/${manga.mal_id}`}>
+            <Link href={`/mangas/${manga.mal_id}`}>
               <h1>{manga.title}</h1>
             </Link>
             <p>{manga.synopsis}</p>

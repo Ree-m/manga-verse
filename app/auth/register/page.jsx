@@ -7,12 +7,12 @@ const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const API_URL = process.env.API_URL;
-
+console.log("api url",API_URL)
 
   async function onSubmit(e) {
     e.preventDefault();
     console.log("register");
-    const response = await fetch(`${API_URL}/api/auth/register`, {
+    const response = await fetch(`http://localhost:3000/api/auth/register`, {
       method: "POST",
       body: JSON.stringify({ username, email, password }),
       headers: {

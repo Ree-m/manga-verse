@@ -5,6 +5,7 @@ import connectMongo from "@/utils/connectMongo";
 import dotenv from "dotenv";
 import User from "@/models/User";
 import bcrypt from "bcryptjs";
+import { useSession } from "next-auth/react";
 
 dotenv.config();
 
@@ -14,14 +15,15 @@ const handler = NextAuth({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
+
     CredentialsProvider({
       async authorize(credentials, req) {
         connectMongo();
         console.log("starting credientials login");
-        const { email,password } = credentials;
-
-        const user = await User.findOne({ email});
-        console.log("crediential login", user.email,user.username);
+        const { email, password, name} = credentials;
+        console.log("credientials backend ", credentials);
+        const user = await User.findOne({ email });
+        console.log("crediential login", user.email, user.username);
 
         if (!user) {
           throw new Error("Invalid Email or Password");
@@ -37,9 +39,6 @@ const handler = NextAuth({
       },
     }),
   ],
-  pages: {
-    signIn: "/login",
-  },
   secret: process.env.PRIVATE_KEY,
 });
 

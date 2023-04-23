@@ -1,9 +1,11 @@
 "use client";
 import Link from "next/link";
+import { useUserContext } from "../context/user";
 import { useSession, signOut } from "next-auth/react";
+
 const Header = () => {
   const { data } = useSession();
-  console.log("session", data);
+  console.log("session",data)
   return (
     <nav>
       <div>
@@ -13,8 +15,9 @@ const Header = () => {
       </div>
       {data?.user ? (
         <>
-          <span>Hi,{data?.user?.username}</span>
+          <span>Hi,{data.user.name}</span>
           <span onClick={() => signOut()}>logout</span>
+          <Link href="/bookmark/:userId">Bookmarks</Link>
         </>
       ) : (
         <>
