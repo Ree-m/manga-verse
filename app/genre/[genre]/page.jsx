@@ -18,11 +18,15 @@ const GenrePage = ({ params }) => {
       console.log(
         "data",
         data.data.filter((manga) =>
-          manga.genres.map((selectedGenre) => selectedGenre.name).includes(genre)
+          manga.genres
+            .map((selectedGenre) => selectedGenre.name)
+            .includes(genre)
         )
       );
       const filteredMangas = data.data.filter((manga) => {
-         return manga.genres.map((selectedGenre) => selectedGenre.name).includes(genre);
+        return manga.genres
+          .map((selectedGenre) => selectedGenre.name)
+          .includes(genre);
       });
       console.log(filteredMangas);
       setMangas(filteredMangas);

@@ -16,11 +16,38 @@ const Genres = () => {
         <Link href={`/allManga/1`}>
           <li>All</li>
         </Link>
+        <Link href={`/genre/Action`}>
+          <li>Action</li>
+        </Link>
+        <Link href={`/genre/Adaptation`}>
+          <li>Adaptation</li>
+        </Link>
         <Link href={`/genre/Adventure`}>
           <li>Adventure</li>
         </Link>
-        <Link href={`/genre/drama`}>
+        <Link href={`/genre/Comedy`}>
+          <li>Comedy</li>
+        </Link>
+        <Link href={`/genre/Cooking`}>
+          <li>Cooking</li>
+        </Link>
+        <Link href={`/genre/Crime`}>
+          <li>Crime</li>
+        </Link>
+        <Link href={`/genre/Crossdressing`}>
+          <li>Crossdressing</li>
+        </Link>
+        <Link href={`/genre/Drama`}>
           <li>Drama</li>
+        </Link>
+        <Link href={`/genre/Fantasy`}>
+          <li>Fantasy</li>
+        </Link>
+        <Link href={`/genre/Historical`}>
+          <li>Historical</li>
+        </Link>
+        <Link href={`/genre/Sci-Fi`}>
+          <li>Sci-Fi</li>
         </Link>
         
       </ul>
