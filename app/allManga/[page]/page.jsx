@@ -32,6 +32,7 @@ const Mangas = ({ params }) => {
     e.preventDefault();
     router.push(`/allManga/${+page - 1}`);
   }
+  
 
   if (loading) {
     return <Loading />;
@@ -39,7 +40,9 @@ const Mangas = ({ params }) => {
 
   return (
     <>
-      {mangas &&
+
+      {
+      mangas &&
         mangas.map((manga) => (
           <div key={manga.mal_id}>
             <Link href={`/mangas/${manga.mal_id}`}>
@@ -51,6 +54,8 @@ const Mangas = ({ params }) => {
       <button onClick={handleBackPage}>back page</button>
 
       <button onClick={handleNextPage}>next page</button>
+
+      
     </>
   );
 };
