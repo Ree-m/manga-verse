@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-const GenrePage = ({ params }) => {
+const Genre = ({ params }) => {
   const [mangas, setMangas] = useState([]);
   const genre = params.genre;
   console.log("genre", genre);
@@ -49,4 +49,4 @@ const GenrePage = ({ params }) => {
   );
 };
 
-export default GenrePage;
+export default Genre;
