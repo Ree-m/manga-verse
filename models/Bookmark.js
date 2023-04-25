@@ -1,4 +1,5 @@
 import { Schema, model, models } from "mongoose";
+import mongoose from 'mongoose';
 
 const BookmarkSchema = new Schema({
     nameOfBookmark:{
@@ -6,6 +7,12 @@ const BookmarkSchema = new Schema({
         required:true,
        
     },
+    userId:{
+        
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required:true
+    }
    
 },{
     timestamps:true

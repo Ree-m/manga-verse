@@ -24,7 +24,7 @@ const MangaPage = ({ params: { id } }) => {
   // add manga to bookmark
   async function addToBookmark(nameOfBookmark) {
     console.log("start bookmark");
-    const response = await fetch(`${API_URL}/api/bookmark`, {
+    const response = await fetch(`http://localhost:3000/api/bookmark`, {
       method: "POST",
 
       body: JSON.stringify({ nameOfBookmark }),
@@ -33,9 +33,13 @@ const MangaPage = ({ params: { id } }) => {
       },
     });
     const bookmark = await response.json();
-    setBookmark(bookmark);
-    console.log("finish bookmark", bookmark);
-    alert("bookmark added");
+    if (bookmark === "Bookmark already exists") {
+      alert("Bookmark already exists");
+    } else {
+      setBookmark(bookmark);
+      console.log("finish bookmark", bookmark);
+      alert("bookmark added");
+    }
   }
 
   return (

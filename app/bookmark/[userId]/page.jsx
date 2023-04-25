@@ -7,7 +7,7 @@ const BookmarkPage = () => {
 
   useEffect(() => {
     async function fetchBookmark() {
-      const response = await fetch(`${API_URL}/api/bookmark`);
+      const response = await fetch(`http://localhost:3000/api/bookmark`);
       const data = await response.json();
       console.log("bookmark data", data);
       setBookmarkItems(data);
