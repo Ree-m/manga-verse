@@ -1,11 +1,12 @@
 "use client";
 import Link from "next/link";
 import { useUserContext } from "../context/user";
-import { useSession, signOut } from "next-auth/react";
+// import { useSession, signOut } from "next-auth/react";
 
 const Header = () => {
-  const { data } = useSession();
-  console.log("session",data)
+  // const { data } = useSession();
+  // console.log("session",data)
+  // console.log("user",data?.user)
   return (
     <nav>
       <div>

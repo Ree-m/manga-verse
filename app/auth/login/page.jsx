@@ -7,7 +7,7 @@ import { useUserContext } from "@/app/context/user";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [username, setUserName] = useState("");
   const { setUser } = useUserContext();
 
   const API_URL = process.env.API_URL;
@@ -17,14 +17,16 @@ const LoginPage = () => {
 
     try {
       const data = await signIn("credentials", {
+
         redirect: false,
         email,
         password,
-        name
+        username
         
       });
+      console.log("data after signIn" ,data);
 
-      console.log("after", data.user);
+
     } catch (error) {
       console.log(error);
     }
@@ -34,9 +36,9 @@ const LoginPage = () => {
     <form onSubmit={onSubmit}>
       <input
         type="text"
-        value={name}
+        value={username}
         placeholder="username"
-        onChange={(e) => setName(e.target.value)}
+        onChange={(e) => setUserName(e.target.value)}
       />
 
       <input

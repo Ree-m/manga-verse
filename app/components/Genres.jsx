@@ -16,37 +16,35 @@ const Genres = () => {
         <Link href={`/allManga/1`}>
           <li>All</li>
         </Link>
-        <Link href={`/genre/Action`}>
+        <Link href={`/genre/Action/1`}>
           <li>Action</li>
         </Link>
-        <Link href={`/genre/Adaptation`}>
+        <Link href={`/genre/Adaptation/1`}>
           <li>Adaptation</li>
         </Link>
-        <Link href={`/genre/Adventure`}>
+        <Link href={`/genre/Adventure/1`}>
           <li>Adventure</li>
         </Link>
-        <Link href={`/genre/Comedy`}>
+        <Link href={`/genre/Comedy/1`}>
           <li>Comedy</li>
         </Link>
-        <Link href={`/genre/Cooking`}>
+        <Link href={`/genre/Cooking/1`}>
           <li>Cooking</li>
         </Link>
-        <Link href={`/genre/Crime`}>
+        <Link href={`/genre/Crime/1`}>
           <li>Crime</li>
         </Link>
-        <Link href={`/genre/Crossdressing`}>
-          <li>Crossdressing</li>
-        </Link>
-        <Link href={`/genre/Drama`}>
+        
+        <Link href={`/genre/Drama/1`}>
           <li>Drama</li>
         </Link>
-        <Link href={`/genre/Fantasy`}>
+        <Link href={`/genre/Fantasy/1`}>
           <li>Fantasy</li>
         </Link>
-        <Link href={`/genre/Historical`}>
+        <Link href={`/genre/Historical/1`}>
           <li>Historical</li>
         </Link>
-        <Link href={`/genre/Sci-Fi`}>
+        <Link href={`/genre/Sci-Fi/1`}>
           <li>Sci-Fi</li>
         </Link>
         
