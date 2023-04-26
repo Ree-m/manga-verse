@@ -1,12 +1,14 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Suspense } from "react";
+import { useUserContext } from "@/app/context/user";
 
 const MangaPage = ({ params: { id } }) => {
   // const manga = await fetchManga(id);
   const [bookmark, setBookmark] = useState("");
   const [manga, setManga] = useState([]);
-  const API_URL = process.env.API_URL;
+  const {user,setUser}=useUserContext()
+  
 
   useEffect(() => {
     async function fetchManga() {
@@ -22,12 +24,12 @@ const MangaPage = ({ params: { id } }) => {
   }, [id]);
 
   // add manga to bookmark
-  async function addToBookmark(nameOfBookmark) {
+  async function addToBookmark(nameOfBookmark,userId) {
     console.log("start bookmark");
-    const response = await fetch(`http://localhost:3000/api/bookmark`, {
+    const response = await fetch(`http://localhost:3000/api/bookmark/${user.id}`, {
       method: "POST",
 
-      body: JSON.stringify({ nameOfBookmark }),
+      body: JSON.stringify({ nameOfBookmark,userId}),
       headers: {
         "Content-Type": "application/json",
       },
@@ -41,6 +43,8 @@ const MangaPage = ({ params: { id } }) => {
       alert("bookmark added");
     }
   }
+console.log("manga page",user)
+const userId=user.id
 
   return (
     <div>
@@ -55,7 +59,7 @@ const MangaPage = ({ params: { id } }) => {
           </div>
         ))}
 
-      <button onClick={() => addToBookmark(manga.title)}>Bookmark</button>
+      <button onClick={() => addToBookmark(manga.title,userId)}>Bookmark</button>
     </div>
   );
 };

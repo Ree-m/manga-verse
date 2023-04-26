@@ -43,14 +43,14 @@ const Header = () => {
     <nav>
       <div>
         <Link href="/">
-          <h1>Mang App</h1>
+          <h1>Manga App</h1>
         </Link>
       </div>
       {user ? (
         <>
           <span>Hi,{user.username}</span>
           <span onClick={logout}>logout</span>
-          <Link href="/bookmark/:userId">Bookmarks</Link>
+          <Link href={`/bookmark/${user.id}`}>Bookmarks</Link>
         </>
       ) : (
         <>

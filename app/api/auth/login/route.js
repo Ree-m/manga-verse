@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 // import cookieParser from "cookie-parser";
-import { setCookie } from 'cookies-next';
+import { setCookie } from "cookies-next";
 
 import User from "@/models/User";
 import connectMongo from "@/utils/connectMongo";
@@ -10,7 +10,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const privateKey = process.env.PRIVATE_KEY;
 
-export async function POST(request,response) {
+export async function POST(request, response) {
   connectMongo();
   console.log("login backend start");
   const { username, email, password } = await request.json();
@@ -19,31 +19,25 @@ export async function POST(request,response) {
   if (!user) {
     return NextResponse.json("Invalid login credentials");
   }
-  
+
   const token = await new Promise((resolve, reject) => {
-    jwt.sign({ username, email, id: user._id }, privateKey, {}, (err, token) => {
-      if (err) reject(err);
-      resolve(token);
-    });
+    jwt.sign(
+      { username, email, id: user._id },
+      privateKey,
+      {},
+      (err, token) => {
+        if (err) reject(err);
+        resolve(token);
+      }
+    );
   });
 
   console.log("token", token);
-  setCookie(request.res, 'token', token, {
-    httpOnly: true,
-    maxAge: 60 * 60 * 24, // 24 hours
-  });
+  setCookie(request.res, "token", token);
 
-return NextResponse.json({
+  return NextResponse.json({
     id: user._id,
     username,
-    email
-})
+    email,
+  });
 }
-
-
-
-
-
-
-
-
