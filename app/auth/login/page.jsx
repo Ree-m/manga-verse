@@ -8,24 +8,30 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUserName] = useState("");
-  const { setUser } = useUserContext();
+  const { user,setUser } = useUserContext();
 
-  const API_URL = process.env.API_URL;
 
   async function onSubmit(e) {
     e.preventDefault();
 
     try {
-      const data = await signIn("credentials", {
-
-        redirect: false,
-        email,
-        password,
-        username
-        
+      
+      e.preventDefault();
+      const response = await fetch(`http://localhost:3000/api/auth/login`, {
+        method: "POST",
+        body: JSON.stringify({ username, password, email }),
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
       });
-      console.log("data after signIn" ,data);
-
+  
+      if (response.ok) {
+        response.json().then((user) => {
+          console.log("this is login page",user);
+          setUser(user);
+        });
+      } else {
+        alert("Wrong credentials");
+      }
 
     } catch (error) {
       console.log(error);
