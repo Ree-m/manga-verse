@@ -2,6 +2,11 @@ import connectMongo from "@/utils/connectMongo";
 import Comment from "@/models/Comment";
 import { NextResponse } from "next/server";
 
+export async function GET(request){
+  connectMongo()
+  const comments =await Comment.find()
+  return NextResponse.json(comments)
+}
 export async function POST(request) {
   connectMongo();
   const { userId, commentText, likes, commentIn } = await request.json();

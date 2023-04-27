@@ -28,7 +28,6 @@ export async function POST(request) {
 
 export async function GET(request){
   connectMongo()
-  // const userId="644298470cf6aecdb5f5a594"
   const {url}= request
   const userId=url?.split("/").pop()
 
