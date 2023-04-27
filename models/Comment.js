@@ -15,11 +15,7 @@ const CommentSchema = new Schema(
     likes: {
       type: Number,
       required: true,
-    },
-    commentIn: {
-      type: String,
-      required: true,
-    },
+    }
   },
   {
     timestamps: true,

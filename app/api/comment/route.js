@@ -11,9 +11,7 @@ export async function POST(request) {
     "comment",
     commentText,
     "likes",
-    likes,
-    "commentIn",
-    commentIn
+    likes
   );
 
   try {
@@ -21,7 +19,6 @@ export async function POST(request) {
       userId,
       commentText,
       likes,
-      commentIn,
     });
     await newComment.save();
     return NextResponse.json(newComment);

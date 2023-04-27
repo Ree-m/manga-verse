@@ -2,13 +2,14 @@
 import { useEffect, useState } from "react";
 import { Suspense } from "react";
 import { useUserContext } from "@/app/context/user";
+// import Image from "next/image";
+import Comments from "@/app/components/Comments";
 
 const MangaPage = ({ params: { id } }) => {
   // const manga = await fetchManga(id);
   const [bookmark, setBookmark] = useState("");
   const [manga, setManga] = useState([]);
-  const {user,setUser}=useUserContext()
-  
+  const { user, setUser } = useUserContext();
 
   useEffect(() => {
     async function fetchManga() {
@@ -24,16 +25,19 @@ const MangaPage = ({ params: { id } }) => {
   }, [id]);
 
   // add manga to bookmark
-  async function addToBookmark(nameOfBookmark,userId) {
+  async function addToBookmark(nameOfBookmark, userId) {
     console.log("start bookmark");
-    const response = await fetch(`http://localhost:3000/api/bookmark/${user.id}`, {
-      method: "POST",
+    const response = await fetch(
+      `http://localhost:3000/api/bookmark/${user.id}`,
+      {
+        method: "POST",
 
-      body: JSON.stringify({ nameOfBookmark,userId}),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+        body: JSON.stringify({ nameOfBookmark, userId }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const bookmark = await response.json();
     if (bookmark === "Bookmark already exists") {
       alert("Bookmark already exists");
@@ -43,13 +47,21 @@ const MangaPage = ({ params: { id } }) => {
       alert("bookmark added");
     }
   }
-console.log("manga page",user)
-const userId=user.id
-
+  console.log("manga page", user);
+  const userId = user?.id;
+  // console.log("manga page", ...manga?.images);
+  // const image_url=manga?.images?.jpg?.images_url
+  // console.log(image_url)
   return (
     <div>
       <h1>{manga.title}</h1>
       <p>{manga.synopsis}</p>
+      {/* <Image
+        width={500}
+        height={500}
+        src={`https://cdn.myanimelist.net/images/manga/3/258224.jpg`}
+        {...manga.title}
+      /> */}
 
       {manga &&
         manga.genres &&
@@ -59,7 +71,11 @@ const userId=user.id
           </div>
         ))}
 
-      <button onClick={() => addToBookmark(manga.title,userId)}>Bookmark</button>
+      <button onClick={() => addToBookmark(manga.title, userId)}>
+        Bookmark
+      </button>
+
+      <Comments />
     </div>
   );
 };

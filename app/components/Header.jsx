@@ -46,7 +46,7 @@ const Header = () => {
           <h1>Manga App</h1>
         </Link>
       </div>
-      {user ? (
+      {user && user.username ? (
         <>
           <span>Hi,{user.username}</span>
           <span onClick={logout}>logout</span>

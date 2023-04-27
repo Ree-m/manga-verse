@@ -3,6 +3,10 @@ const nextConfig = {
   experimental: {
     appDir: true,
     serverComponentsExternalPackages: ["mongoose"],
+    images:{
+      loader:'cloudinary',
+      path:"cdn.myanimelist.net"
+    }
 
     
   },
