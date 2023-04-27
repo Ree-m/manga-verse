@@ -31,8 +31,22 @@ export async function GET(request){
   const {url}= request
   const userId=url?.split("/").pop()
 
-
   console.log("request.params.userId",userId,request)
   const bookmark=await Bookmark.find({userId})
   return NextResponse.json(bookmark)
+}
+
+export async function DELETE(request){
+connectMongo()
+const {url}= request
+
+const userId=url?.split("/").pop()
+console.log("delete bookmark userId",userId)
+const bookmark=await Bookmark.findOneAndDelete({userId})
+
+if(!bookmark){
+  return NextResponse.json("Bookmark not found")
+}
+return NextResponse.json("Bookmark deleted")
+
 }

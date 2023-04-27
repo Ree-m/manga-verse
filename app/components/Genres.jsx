@@ -28,9 +28,7 @@ const Genres = () => {
         <Link href={`/genre/Comedy/1`}>
           <li>Comedy</li>
         </Link>
-        <Link href={`/genre/Cooking/1`}>
-          <li>Cooking</li>
-        </Link>
+        
         <Link href={`/genre/Crime/1`}>
           <li>Crime</li>
         </Link>

@@ -2,42 +2,49 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import { useUserContext } from "../context/user";
-// import { useSession, signOut } from "next-auth/react";
+import { useBookmarkContext } from "../context/bookmark";
 
 const Header = () => {
   const { user, setUser } = useUserContext();
-  // const { data } = useSession();
-  // console.log("session",data)
-  // console.log("user",data?.user)
+  const { bookmarkItems, setBookmarkItems } = useBookmarkContext();
 
-  useEffect(() => {
+  console.log("user first beofre fetching profile", user);
 
-    fetch(`http://localhost:3000/api/auth/profile`, {
-      credentials: "include",
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Failed to fetch user profile.");
-        }
-      })
-      .then((user) => {
-        setUser(user);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [setUser, user]);
+  
+  console.log("bookamrk context header", bookmarkItems);
+
+  // useEffect(() => {
+  //   console.log("fetch profile start");
+  //   fetch(`http://localhost:3000/api/auth/profile`, {
+  //     credentials: "include",
+  //   })
+  //     .then((response) => {
+  //       if (response.ok) {
+  //         console.log("fetch profile ,resposne ok");
+
+  //         return response.json();
+  //       } else {
+  //         throw new Error("Failed to fetch user profile.");
+  //       }
+  //     })
+  //     .then((user) => {
+  //       console.log("fetch profile ,setting user");
+
+  //       setUser(user);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, [setUser, user]);
 
   console.log("header", user);
 
-  async function logout(){
-    const repsonse =fetch(`http://localhost:3000/api/auth/logout`,{
-      method:"POST",
-      credentials:"include"
-    })
-    setUser(null)
+  async function logout() {
+    fetch(`http://localhost:3000/api/auth/logout`, {
+      method: "POST",
+      credentials: "include",
+    });
+    setUser(null);
   }
   return (
     <nav>
