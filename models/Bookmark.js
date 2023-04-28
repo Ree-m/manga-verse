@@ -11,11 +11,7 @@ const BookmarkSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
-    },
-    itemId: {
-      type: Number,
-      required: true,
-    },
+    }
   },
   {
     timestamps: true,

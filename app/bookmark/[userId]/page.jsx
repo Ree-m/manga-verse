@@ -5,10 +5,11 @@ import Loading from "@/app/components/Loading";
 import { useBookmarkContext } from "@/app/context/bookmark";
 
 const BookmarkPage = () => {
-  const [bookmarkItems, setBookmarkItems]= useBookmarkContext();
+  const [bookmarkItems, setBookmarkItems] = useBookmarkContext();
   const { user, setUser } = useUserContext();
   const [loading, setLoading] = useState(false);
   console.log("bookmark page", user);
+
   useEffect(() => {
     async function fetchBookmark() {
       setLoading(true);
@@ -23,18 +24,34 @@ const BookmarkPage = () => {
     fetchBookmark();
   }, []);
 
+  async function deleteBookmark(userId, itemId) {
+    const response = await fetch(
+      `http://localhost:3000/api/bookmark/${userId}/${itemId}`,
+      {
+        method: "DELETE",
+      }
+    )
+
+    
+  }
+
   if (loading) {
     return <Loading />;
   }
-console.log("bookmark items",bookmarkItems)
+  console.log("bookmark items", bookmarkItems);
   return (
     <div>
-      {bookmarkItems===[] | !bookmarkItems  ? "Bookmarks is empty" : bookmarkItems &&
-        bookmarkItems.map((item) => (
-          <div key={item._id}>
-            <p>{item.nameOfBookmark}</p>
-          </div>
-        ))}
+      {(bookmarkItems === []) | !bookmarkItems
+        ? "Bookmarks is empty"
+        : bookmarkItems &&
+          bookmarkItems.map((item) => (
+            <div key={item._id}>
+              <p>{item.nameOfBookmark}</p>
+              <button onClick={() => deleteBookmark(user.id, item._id)}>
+                delete
+              </button>
+            </div>
+          ))}
     </div>
   );
 };

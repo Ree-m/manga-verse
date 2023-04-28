@@ -29,26 +29,29 @@ setLoading(true)
   }, [id]);
 
   // add manga to bookmark
-  async function addToBookmark(nameOfBookmark, userId,itemId) {
+  async function addToBookmark(nameOfBookmark, userId) {
     console.log("start bookmark");
     const response = await fetch(
       `http://localhost:3000/api/bookmark/${user.id}`,
       {
         method: "POST",
 
-        body: JSON.stringify({ nameOfBookmark, userId ,itemId}),
+        body: JSON.stringify({ nameOfBookmark, userId }),
         headers: {
           "Content-Type": "application/json",
         },
       }
     );
+    console.log("bookmark repsonse",response)
     const bookmark = await response.json();
-    if (bookmark === "Bookmark already exists") {
+    if (response.ok && bookmark === "Bookmark already exists") {
       alert("Bookmark already exists");
-    } else {
+    } else if(response.ok) {
       setBookmark(bookmark);
       console.log("finish bookmark", bookmark);
       alert("bookmark added");
+    }else{
+      alert("Adding tobookmark failed.Try again later.")
     }
   }
   console.log("manga page", user);
@@ -79,11 +82,11 @@ setLoading(true)
           </div>
         ))}
 
-      <button onClick={() => addToBookmark(manga.title, userId,manga.mal_id)}>
+      <button onClick={() => addToBookmark(manga.title, userId)}>
         Bookmark
       </button>
 
-     
+     <Comments/>
 
     </div>
   );
