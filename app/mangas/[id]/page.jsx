@@ -5,23 +5,27 @@ import { useUserContext } from "@/app/context/user";
 // import Image from "next/image";
 import Comments from "@/app/components/Comments";
 import Loading from "@/app/components/Loading";
+import { useCommentContext } from "@/app/context/comment";
 
 const MangaPage = ({ params: { id } }) => {
   // const manga = await fetchManga(id);
   const [bookmark, setBookmark] = useState("");
   const [manga, setManga] = useState([]);
   const { user, setUser } = useUserContext();
-  const [loading,setLoading]=useState(false)
+  const [loading, setLoading] = useState(false);
+  const [commentText, setCommentText] = useState("");
+  const [comments, setComments] = useCommentContext();
+  const userId = user?.id;
 
   useEffect(() => {
     async function fetchManga() {
-setLoading(true)
+      setLoading(true);
       console.log("this is id", id);
 
       const response = await fetch(`https://api.jikan.moe/v4/manga/${id}`);
       const manga = await response.json();
       setManga(manga.data);
-      setLoading(false)
+      setLoading(false);
       console.log("finished fetching");
       console.log("manga", manga);
     }
@@ -42,26 +46,41 @@ setLoading(true)
         },
       }
     );
-    console.log("bookmark repsonse",response)
+    console.log("bookmark repsonse", response);
     const bookmark = await response.json();
     if (response.ok && bookmark === "Bookmark already exists") {
       alert("Bookmark already exists");
-    } else if(response.ok) {
+    } else if (response.ok) {
       setBookmark(bookmark);
       console.log("finish bookmark", bookmark);
       alert("bookmark added");
-    }else{
-      alert("Adding tobookmark failed.Try again later.")
+    } else {
+      alert("Adding tobookmark failed.Try again later.");
     }
   }
+
+  async function addComment(e, userId, commentText, likes) {
+    e.preventDefault();
+    console.log("start adding comment");
+    const response = await fetch(`http://localhost:3000/api/comment`, {
+      method: "POST",
+      body: JSON.stringify({ userId, commentText, likes }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    console.log("comments adding data", data);
+    setComments(data);
+    console.log("finsih adding comment");
+  }
   console.log("manga page", user);
-  const userId = user?.id;
   // console.log("manga page", ...manga?.images);
   // const image_url=manga?.images?.jpg?.images_url
   // console.log(image_url)
 
-  if(loading){
-    return <Loading/>
+  if (loading) {
+    return <Loading />;
   }
   return (
     <div>
@@ -85,9 +104,16 @@ setLoading(true)
       <button onClick={() => addToBookmark(manga.title, userId)}>
         Bookmark
       </button>
-
-     <Comments/>
-
+      <form onSubmit={(e) => addComment(e,user.id, commentText, 0)}>
+        <input
+          type="text"
+          value={commentText}
+          placeholder="comment"
+          onChange={(e) => setCommentText(e.target.value)}
+        />
+        <button type="submit">Add comment</button>
+      </form>
+      <Comments />
     </div>
   );
 };

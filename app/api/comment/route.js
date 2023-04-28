@@ -9,7 +9,7 @@ export async function GET(request){
 }
 export async function POST(request) {
   connectMongo();
-  const { userId, commentText, likes, commentIn } = await request.json();
+  const { userId, commentText, likes } = await request.json();
   console.log(
     "userId",
     userId,
@@ -24,6 +24,7 @@ export async function POST(request) {
       userId,
       commentText,
       likes,
+
     });
     await newComment.save();
     return NextResponse.json(newComment);

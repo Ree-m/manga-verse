@@ -1,8 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
+import { useCommentContext } from "../context/comment";
 const Comments = () => {
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useCommentContext();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
