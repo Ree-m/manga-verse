@@ -18,6 +18,8 @@ console.log("this is comments component",comments)
           <div key={comment._id}>
             <p>{comment.commentText}</p>
             <span>{comment.likes}</span>
+            <span>MangaId:{comment.mangaId}</span>
+
             <br />
             <span>{comment.userId}</span>
             <button>delete</button>

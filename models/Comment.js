@@ -15,6 +15,10 @@ const CommentSchema = new Schema(
     likes: {
       type: Number,
       required: true,
+    },
+    mangaId: {
+      type: Number,
+      required: true,
     }
   },
   {

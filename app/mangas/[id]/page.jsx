@@ -71,27 +71,24 @@ const MangaPage = ({ params: { id } }) => {
     fetchComments();
   }, []);
 
-  async function addComment(e, userId, commentText, likes) {
+  async function addComment(e, userId, commentText, likes, mangaId) {
     e.preventDefault();
     console.log("start adding comment");
     const response = await fetch(`http://localhost:3000/api/comment`, {
       method: "POST",
-      body: JSON.stringify({ userId, commentText, likes }),
+      body: JSON.stringify({ userId, commentText, likes, mangaId }),
       headers: {
         "Content-Type": "application/json",
       },
     });
     const newComment = await response.json();
-    const updatedComments = [...comments]
-    updatedComments.push(newComment)
-    setComments(updatedComments)
-    setCommentText("")
-    console.log("addComment has access",comments)
+    const updatedComments = [...comments];
+    updatedComments.push(newComment);
+    setComments(updatedComments);
+    setCommentText("");
+    console.log("addComment has access", comments);
     console.log("comments adding data", newComment);
     console.log("finsih adding comment");
-
-    
-    
   }
   // console.log("manga page", ...manga?.images);
   // const image_url=manga?.images?.jpg?.images_url
@@ -125,7 +122,7 @@ const MangaPage = ({ params: { id } }) => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          addComment(e, user.id, commentText, 0);
+          addComment(e, user.id, commentText, 0, manga.mal_id);
         }}
       >
         <input
@@ -136,7 +133,9 @@ const MangaPage = ({ params: { id } }) => {
         />
         <button type="submit">Add comment</button>
       </form>
-      <Comments comments={comments} setComments={setComments} />
+      <Comments comments={comments.filter(comment => comment.mangaId === manga.mal_id)}
+        setComments={setComments}
+      />
     </div>
   );
 };
