@@ -2,24 +2,14 @@
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
 import { useCommentContext } from "../context/comment";
-const Comments = () => {
-  const [comments, setComments] = useCommentContext();
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    async function fetchComments() {
-      setLoading(true);
-      const response = await fetch(`http://localhost:3000/api/comment`);
-      const data = await response.json();
-      console.log("comments data", data);
-      setComments(data);
-      setLoading(false);
-    }
-    fetchComments();
-  }, []);
-  if (loading) {
-    return <Loading />;
-  }
+const Comments = ({comments,setComments}) => {
+  // const [comments, setComments] = useCommentContext();
+  // const [loading, setLoading] = useState(false);
+console.log("this is comments component",comments)
+  
+  // if (loading) {
+  //   return <Loading />;
+  // }
 
   return (
     <div>
@@ -30,7 +20,7 @@ const Comments = () => {
             <span>{comment.likes}</span>
             <br />
             <span>{comment.userId}</span>
-            <button onClick={() => deleteComment()}>delete</button>
+            <button>delete</button>
           </div>
         ))}
     </div>

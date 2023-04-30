@@ -59,6 +59,18 @@ const MangaPage = ({ params: { id } }) => {
     }
   }
 
+  useEffect(() => {
+    async function fetchComments() {
+      setLoading(true);
+      const response = await fetch(`http://localhost:3000/api/comment`);
+      const data = await response.json();
+      console.log("comments data", data);
+      setComments(data);
+      setLoading(false);
+    }
+    fetchComments();
+  }, []);
+
   async function addComment(e, userId, commentText, likes) {
     e.preventDefault();
     console.log("start adding comment");
@@ -69,12 +81,18 @@ const MangaPage = ({ params: { id } }) => {
         "Content-Type": "application/json",
       },
     });
-    const data = await response.json();
-    console.log("comments adding data", data);
-    setComments(data);
+    const newComment = await response.json();
+    const updatedComments = [...comments]
+    updatedComments.push(newComment)
+    setComments(updatedComments)
+    setCommentText("")
+    console.log("addComment has access",comments)
+    console.log("comments adding data", newComment);
     console.log("finsih adding comment");
+
+    
+    
   }
-  console.log("manga page", user);
   // console.log("manga page", ...manga?.images);
   // const image_url=manga?.images?.jpg?.images_url
   // console.log(image_url)
@@ -104,7 +122,12 @@ const MangaPage = ({ params: { id } }) => {
       <button onClick={() => addToBookmark(manga.title, userId)}>
         Bookmark
       </button>
-      <form onSubmit={(e) => addComment(e,user.id, commentText, 0)}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          addComment(e, user.id, commentText, 0);
+        }}
+      >
         <input
           type="text"
           value={commentText}
@@ -113,7 +136,7 @@ const MangaPage = ({ params: { id } }) => {
         />
         <button type="submit">Add comment</button>
       </form>
-      <Comments />
+      <Comments comments={comments} setComments={setComments} />
     </div>
   );
 };
