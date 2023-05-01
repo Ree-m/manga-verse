@@ -43,15 +43,17 @@ const Comments = ({ comments, setComments, mangaId }) => {
       {comments &&
         comments.map((comment) => (
           <div key={comment._id}>
-            <p>{comment.commentText}</p>
-            <span>{comment.likes}</span>
-            <span>MangaId:{comment.mangaId}</span>
+            <h4>{comment.userId}</h4>
 
-            <br />
-            <span>{comment.userId}</span>
-            <button onClick={() => deleteComment(comment._id, user?.id)}>
-              delete
-            </button>
+            <p>{comment.commentText}</p>
+            {/* <span>{comment.likes}</span> */}
+            {user && user.id === comment.userId ? (
+              <button onClick={() => deleteComment(comment._id, user?.id)}>
+                delete
+              </button>
+            ) : (
+              ""
+            )}
           </div>
         ))}
     </div>
