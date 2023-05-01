@@ -6,9 +6,9 @@ export async function GET(request) {
   connectMongo();
   const { url } = request;
   const mangaId = url.split("/").pop();
-  console.log("new comment route", request,mangaId);
+  console.log("new comment route", request, mangaId);
 
-  const comments = await Comment.find({mangaId});
+  const comments = await Comment.find({ mangaId });
   return NextResponse.json(comments);
 }
 export async function POST(request) {
@@ -39,3 +39,4 @@ export async function POST(request) {
     return NextResponse.json(error);
   }
 }
+
