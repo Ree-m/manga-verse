@@ -133,7 +133,7 @@ const MangaPage = ({ params: { id } }) => {
         />
         <button type="submit">Add comment</button>
       </form>
-      <Comments comments={comments.filter(comment => comment.mangaId === manga.mal_id)}
+      <Comments comments={comments}
         setComments={setComments} mangaId={manga.mal_id}
       />
     </div>

@@ -18,14 +18,14 @@ export async function DELETE(request) {
       return NextResponse.json({ error: "Comment not found" });
     }
 
-    if (comment.userId .toString() !== userId.toString()) {
+    if (comment.userId.toString() !== userId.toString()) {
       return NextResponse.json({ error: "Unauthorized to delete" });
+    } else if (comment.userId.toString() === userId.toString()) {
+      await Comment.findByIdAndDelete(commentId);
+      return NextResponse.json("comment deleted");
     }
-
-    await Comment.findByIdAndDelete(commentId);
-    return NextResponse.json("comment deleted");
   } catch (error) {
-    console.log("delete error",error);
-    return NextResponse.json({message:error});
+    console.log("delete error", error);
+    return NextResponse.json({ message: error });
   }
 }
