@@ -7,7 +7,7 @@ export async function DELETE(request) {
   const { url } = request;
   const userId = url.split("/").pop();
   const commentId = url.split("/").slice(-2, -1)[0];
-  console.log("delete", request, userId, "this is commentId", commentId);
+  console.log("delete", userId, "this is commentId", commentId);
 
   try {
     const comment = await Comment.findById(commentId);

@@ -2,10 +2,11 @@
 import { useEffect, useState } from "react";
 import { Suspense } from "react";
 import { useUserContext } from "@/app/context/user";
-// import Image from "next/image";
+import Image from "next/image";
 import Comments from "@/app/components/Comments";
 import Loading from "@/app/components/Loading";
 import { useCommentContext } from "@/app/context/comment";
+import MangaCover from "@/app/components/MangaCover";
 
 const MangaPage = ({ params: { id } }) => {
   // const manga = await fetchManga(id);
@@ -90,23 +91,23 @@ const MangaPage = ({ params: { id } }) => {
     console.log("comments adding data", newComment);
     console.log("finsih adding comment");
   }
-  // console.log("manga page", ...manga?.images);
-  // const image_url=manga?.images?.jpg?.images_url
-  // console.log(image_url)
+  
 
   if (loading) {
     return <Loading />;
   }
   return (
     <div>
+
       <h1>{manga.title}</h1>
       <p>{manga.synopsis}</p>
       {/* <Image
         width={500}
         height={500}
-        src={`https://cdn.myanimelist.net/images/manga/3/258224.jpg`}
-        {...manga.title}
+        src={manga?.images?.jpg.image_url}
+        alt = {`Image of ${manga.title}`}
       /> */}
+      <MangaCover manga={manga} />
 
       {manga &&
         manga.genres &&

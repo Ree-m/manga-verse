@@ -52,7 +52,7 @@ const Comments = ({ comments, setComments, mangaId }) => {
                 delete
               </button>
             ) : (
-              ""
+              null
             )}
           </div>
         ))}
