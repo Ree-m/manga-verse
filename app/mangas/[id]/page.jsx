@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { Suspense } from "react";
 import { useUserContext } from "@/app/context/user";
-import Image from "next/image";
 import Comments from "@/app/components/Comments";
 import Loading from "@/app/components/Loading";
 import { useCommentContext } from "@/app/context/comment";
@@ -33,6 +32,15 @@ const MangaPage = ({ params: { id } }) => {
     fetchManga();
   }, [id]);
 
+  useEffect(()=>{
+    async function scarpe(){
+      console.log("scrape started")
+      const response = await fetch(`http://localhost:3000/api/scraper`);
+      const courses= await response.json();
+      console.log("courses",courses)
+    }
+    scarpe()
+  },[])
   // add manga to bookmark
   async function addToBookmark(nameOfBookmark, userId) {
     console.log("start bookmark");

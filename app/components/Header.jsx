@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useUserContext } from "../context/user";
 import { useBookmarkContext } from "../context/bookmark";
+// import SearchBar from "./SearchBar";
 
 const Header = () => {
   const { user, setUser } = useUserContext();
@@ -63,6 +64,7 @@ const Header = () => {
         <>
           <Link href="/auth/login">Login</Link>
           <Link href="/">Bookmarks</Link>
+
         </>
       )}
     </nav>

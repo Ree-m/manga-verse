@@ -1,15 +1,15 @@
-import { Schema, model, models } from "mongoose";
-import mongoose from "mongoose";
+// import { Schema, model, models } from "mongoose";
+// import mongoose from "mongoose";
 
-const CommentSchema = new Schema(
-  {
-   
-  },
-  {
-    timestamps: true,
-  }
-);
+// const MangaChaptersSchema = new Schema(
+//   {
+    
+//   },
+//   {
+//     timestamps: true,
+//   }
+// );
 
-const Comment = models.Comment || model("Comment", CommentSchema);
+// const MangaChapters = models.MangaChapters || model("MangaChapters", MangaChaptersSchema);
 
-export default Comment;
+// export default MangaChapters;
