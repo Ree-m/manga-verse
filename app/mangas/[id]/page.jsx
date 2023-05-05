@@ -35,7 +35,9 @@ const MangaPage = ({ params: { id } }) => {
   useEffect(()=>{
     async function scarpe(){
       console.log("scrape started")
-      const response = await fetch(`http://localhost:3000/api/scraper`);
+      const response = await fetch(`http://localhost:8000`);
+      console.log("scarpe",response)
+
       const courses= await response.json();
       console.log("courses",courses)
     }
