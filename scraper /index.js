@@ -10,23 +10,26 @@ async function run(url) {
   const page = await browser.newPage();
   await page.goto(url);
 
-  const courses = await page.$$eval("#cscourses .card", (elements) =>
-    elements.map((e) => ({
-      title: e.querySelector(".card-body h3").innerText,
-      level: e.querySelector(".card-body .level").innerText,
-      link: e.querySelector(".card-footer a").href,
-      img: e.querySelector("img").src,
-    }))
+  const mangas = await page.$$eval(
+    ".body-site .container-chapter-reader",
+    (elements) => {
+      const images = elements[0].querySelectorAll("img"); //nodelist
+      return Array.from(images).map((img) => ({
+        img: img.src || img.getAttribute("data-src"),
+      })); //make array and map
+    }
   );
-
+  console.log(mangas);
   await browser.close();
-  return courses;
+  return mangas;
 }
 
 app.get("/", async (req, res) => {
   try {
-    const courses = await run("https://www.traversymedia.com/");
-    res.json(courses);
+    const mangas = await run(
+      "https://ww5.manganelo.tv/chapter/manga-ng952689/chapter-1"
+    );
+    res.json(mangas);
   } catch (error) {
     console.error(error);
     res.status(500).send("Server Error");
