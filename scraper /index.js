@@ -1,35 +1,73 @@
 const express = require("express");
+const app = express();
 const puppeteer = require("puppeteer");
 const cors = require("cors");
-const app = express();
+const bodyParser = require("body-parser");
+const fs = require('fs');
+
 
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(bodyParser.json()); // for parsing application/json
 
-async function run(url) {
-  const browser = await puppeteer.launch();
+
+
+async function scrapeChapter(url) {
+  const browser = await puppeteer.launch({ headless: "new" });
   const page = await browser.newPage();
   await page.goto(url);
 
-  const mangas = await page.$$eval(
-    ".body-site .container-chapter-reader",
-    (elements) => {
-      const images = elements[0].querySelectorAll("img"); //nodelist
-      return Array.from(images).map((img) => ({
+  const images = await page.$$eval(
+    ".body-site .container-chapter-reader img",
+    (imgs) => {
+      return Array.from(imgs).map((img) => ({
         img: img.src || img.getAttribute("data-src"),
-      })); //make array and map
+      }));
     }
   );
-  console.log(mangas);
+
   await browser.close();
-  return mangas;
+  return images;
 }
 
-app.get("/", async (req, res) => {
+async function scrapeManga(mangaUrl) {
+  const browser = await puppeteer.launch({ headless: "new" });
+  const page = await browser.newPage();
+  await page.goto(mangaUrl);
+
+  const chapterLinks = await page.$$eval(
+    ".panel-story-chapter-list .row-content-chapter li a",
+    (links) => {
+      return Array.from(links).map((link) => link.href);
+    }
+  );
+
+  // console.log(chapterLinks, "chapterLinks");
+
+  const images = [];
+  for (const chapterLink of chapterLinks) {
+    const chapterImages = await scrapeChapter(chapterLink);
+    // console.log(chapterImages, "chapterImages");
+
+    images.push(chapterImages);
+  }
+  console.log("images",images);
+
+  fs.writeFile("images.json", JSON.stringify(images), (err) => {
+    if (err) throw err;
+    console.log("File saved");
+  });
+
+  await browser.close();
+  return images;
+}
+
+
+app.post("/", async (req, res) => {
   try {
-    const mangas = await run(
-      "https://ww5.manganelo.tv/chapter/manga-ng952689/chapter-1"
-    );
-    res.json(mangas);
+    const mangaUrl = req.body.url;
+    const images = await scrapeManga(mangaUrl);
+    console.log("images2",images)
+    res.json(images);
   } catch (error) {
     console.error(error);
     res.status(500).send("Server Error");

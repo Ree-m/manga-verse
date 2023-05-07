@@ -35,7 +35,13 @@ const MangaPage = ({ params: { id } }) => {
   useEffect(()=>{
     async function scarpe(){
       console.log("scrape started")
-      const response = await fetch(`http://localhost:8000`);
+      const response = await fetch(`http://localhost:8000`,{
+        method:"POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body:JSON.stringify({ url:"https://ww5.manganelo.tv/manga/manga-ng952689"})
+      });
       console.log("scarpe",response)
 
       const courses= await response.json();
