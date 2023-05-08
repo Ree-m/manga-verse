@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/components/Loading";
+import mapping from "mapping.json"
 
 const Chapter = ({ params }) => {
   const [chapterImages, setChapterImages] = useState([]);
@@ -22,7 +23,7 @@ const Chapter = ({ params }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          chapterUrl: `https://ww5.manganelo.tv/chapter/manga-hu985203/${params.chapter}`,
+          chapterUrl: `https://ww5.manganelo.tv/chapter/manga-${mapping[id]}/${params.chapter}`,
         }),
       });
       console.log("new page", response);
@@ -36,12 +37,12 @@ const Chapter = ({ params }) => {
   }, []);
   async function handlePreviousClick(e) {
     e.preventDefault();
-    console.log("chapter previous", +chapter.split("-").pop() - +1);
+    console.log("chapter previous", +chapter.split("-").pop() - +1); // get chapter number and minus one
     router.push(`/mangas/${id}/chapter-${+chapter.split("-").pop() - 1}`);
   }
   async function handleNextClick(e) {
     e.preventDefault();
-    console.log("chapter next", +chapter.split("-").pop() + +1);
+    console.log("chapter next", +chapter.split("-").pop() + +1); //get chapter number and add one
     router.push(`/mangas/${id}/chapter-${+chapter.split("-").pop() + 1}`);
   }
 
