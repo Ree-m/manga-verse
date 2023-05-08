@@ -9,7 +9,6 @@ import MangaCover from "@/app/components/MangaCover";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-
 const MangaPage = ({ params: { id } }) => {
   // const manga = await fetchManga(id);
   const [bookmark, setBookmark] = useState("");
@@ -41,7 +40,7 @@ const MangaPage = ({ params: { id } }) => {
   useEffect(() => {
     async function fetchChapters() {
       console.log("scrape started");
-      const response = await fetch(`http://localhost:8000/chapters`, {
+      const response = await fetch(`http://localhost:9000/chapters`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -183,7 +182,10 @@ const MangaPage = ({ params: { id } }) => {
         {chapters &&
           chapters.map((chapter) => (
             <div>
-              <Link  href={`/mangas/${id}/${chapter.split("/").pop()}`}>
+              <Link
+                href={`/mangas/${id}/${chapter.split("/").pop()}`}
+                
+              >
                 {chapter.split("/").pop()}
               </Link>
             </div>
