@@ -59,28 +59,28 @@ const MangaPage = ({ params: { id } }) => {
     fetchChapters();
   }, []);
 
-  async function fetchChapterImages(chapterUrl) {
-    console.log("scrape started");
-    const response = await fetch(`http://localhost:8000/chapterImages`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        chapterUrl,
-      }),
-    });
-    console.log("this is frontend",chapterUrl)
-    console.log("chapeter Images", response);
+  // async function fetchChapterImages(chapterUrl) {
+  //   console.log("scrape started");
+  //   const response = await fetch(`http://localhost:8000/chapterImages`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       chapterUrl,
+  //     }),
+  //   });
+  //   console.log("this is frontend",chapterUrl)
+  //   console.log("chapeter Images", response);
 
-    const data = await response.json();
-    setChapterImages(data);
-    const chapter=chapterUrl.split("/").pop()
-    router.push(
-      `/mangas/${id}/${chapter}`,
-    )
-    console.log("chapters images", data);
-  }
+  //   const data = await response.json();
+  //   setChapterImages(data);
+  //   const chapter=chapterUrl.split("/").pop()
+  //   router.push(
+  //     `/mangas/${id}/${chapter}`,
+  //   )
+  //   console.log("chapters images", data);
+  // }
   // add manga to bookmark
   async function addToBookmark(nameOfBookmark, userId) {
     console.log("start bookmark");
@@ -183,9 +183,9 @@ const MangaPage = ({ params: { id } }) => {
         {chapters &&
           chapters.map((chapter) => (
             <div>
-              <button onClick={() => fetchChapterImages(chapter)}>
+              <Link  href={`/mangas/${id}/${chapter.split("/").pop()}`}>
                 {chapter.split("/").pop()}
-              </button>
+              </Link>
             </div>
           ))}
       </div>

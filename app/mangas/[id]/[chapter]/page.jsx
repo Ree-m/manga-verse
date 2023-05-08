@@ -1,11 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
-const Chapter = ({params}) => {
+const Chapter = ({ params }) => {
   const [chapterImages, setChapterImages] = useState([]);
-console.log("new page",params.chapter)
+  console.log("new page", params.chapter);
   useEffect(() => {
-    async function fetchChapterImages(chapterUrl) {
+    async function fetchChapterImages() {
       console.log("new page");
       const response = await fetch(`http://localhost:8000/chapterImages`, {
         method: "POST",
@@ -13,7 +14,8 @@ console.log("new page",params.chapter)
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          chapterUrl,
+          chapterUrl:
+            `https://ww5.manganelo.tv/chapter/manga-hu985203/${params.chapter}`,
         }),
       });
       console.log("new page", response);
@@ -25,7 +27,14 @@ console.log("new page",params.chapter)
     fetchChapterImages();
   }, []);
 
-  return <div>hi</div>;
+  return (
+    <div>
+      {chapterImages &&
+        chapterImages.map((chapterImage) => (
+          <Image src={chapterImage?.img} alt={'Image of manga'}width={500} height={500} />
+        ))}
+    </div>
+  );
 };
 
 export default Chapter;

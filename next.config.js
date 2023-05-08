@@ -14,7 +14,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "cdn.myanimelist.net",
+        hostname: "cm.blazefast.co"
       },
     ],
   },
