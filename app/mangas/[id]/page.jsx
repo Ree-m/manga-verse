@@ -6,6 +6,9 @@ import Comments from "@/app/components/Comments";
 import Loading from "@/app/components/Loading";
 import { useCommentContext } from "@/app/context/comment";
 import MangaCover from "@/app/components/MangaCover";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 
 const MangaPage = ({ params: { id } }) => {
   // const manga = await fetchManga(id);
@@ -15,6 +18,9 @@ const MangaPage = ({ params: { id } }) => {
   const [loading, setLoading] = useState(false);
   const [commentText, setCommentText] = useState("");
   const [comments, setComments] = useCommentContext();
+  const [chapters, setChapters] = useState([]);
+  const [chapterImages, setChapterImages] = useState([]);
+  const router = useRouter();
   const userId = user?.id;
 
   useEffect(() => {
@@ -32,23 +38,49 @@ const MangaPage = ({ params: { id } }) => {
     fetchManga();
   }, [id]);
 
-  useEffect(()=>{
-    async function scarpe(){
-      console.log("scrape started")
-      const response = await fetch(`http://localhost:8000`,{
-        method:"POST",
+  useEffect(() => {
+    async function fetchChapters() {
+      console.log("scrape started");
+      const response = await fetch(`http://localhost:8000/chapters`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body:JSON.stringify({ url:"https://ww5.manganelo.tv/manga/manga-ng952689"})
+        body: JSON.stringify({
+          url: "https://ww5.manganelo.tv/manga/manga-hu985203",
+        }),
       });
-      console.log("scarpe",response)
+      console.log("scarpe", response);
 
-      const courses= await response.json();
-      console.log("courses",courses)
+      const data = await response.json();
+      setChapters(data);
+      console.log("chapters", data);
     }
-    scarpe()
-  },[])
+    fetchChapters();
+  }, []);
+
+  async function fetchChapterImages(chapterUrl) {
+    console.log("scrape started");
+    const response = await fetch(`http://localhost:8000/chapterImages`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        chapterUrl,
+      }),
+    });
+    console.log("this is frontend",chapterUrl)
+    console.log("chapeter Images", response);
+
+    const data = await response.json();
+    setChapterImages(data);
+    const chapter=chapterUrl.split("/").pop()
+    router.push(
+      `/mangas/${id}/${chapter}`,
+    )
+    console.log("chapters images", data);
+  }
   // add manga to bookmark
   async function addToBookmark(nameOfBookmark, userId) {
     console.log("start bookmark");
@@ -91,13 +123,16 @@ const MangaPage = ({ params: { id } }) => {
   async function addComment(e, userId, commentText, likes, mangaId) {
     e.preventDefault();
     console.log("start adding comment");
-    const response = await fetch(`http://localhost:3000/api/comment/${mangaId}`, {
-      method: "POST",
-      body: JSON.stringify({ userId, commentText, likes, mangaId }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `http://localhost:3000/api/comment/${mangaId}`,
+      {
+        method: "POST",
+        body: JSON.stringify({ userId, commentText, likes, mangaId }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const newComment = await response.json();
     const updatedComments = [...comments];
     updatedComments.push(newComment);
@@ -107,22 +142,15 @@ const MangaPage = ({ params: { id } }) => {
     console.log("comments adding data", newComment);
     console.log("finsih adding comment");
   }
-  
 
   if (loading) {
     return <Loading />;
   }
   return (
     <div>
-
       <h1>{manga.title}</h1>
       <p>{manga.synopsis}</p>
-      {/* <Image
-        width={500}
-        height={500}
-        src={manga?.images?.jpg.image_url}
-        alt = {`Image of ${manga.title}`}
-      /> */}
+
       <MangaCover manga={manga} />
 
       {manga &&
@@ -150,8 +178,21 @@ const MangaPage = ({ params: { id } }) => {
         />
         <button type="submit">Add comment</button>
       </form>
-      <Comments comments={comments}
-        setComments={setComments} mangaId={manga.mal_id}
+
+      <div className="chapters">
+        {chapters &&
+          chapters.map((chapter) => (
+            <div>
+              <button onClick={() => fetchChapterImages(chapter)}>
+                {chapter.split("/").pop()}
+              </button>
+            </div>
+          ))}
+      </div>
+      <Comments
+        comments={comments}
+        setComments={setComments}
+        mangaId={manga.mal_id}
       />
     </div>
   );
