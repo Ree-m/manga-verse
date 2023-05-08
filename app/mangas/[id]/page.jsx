@@ -47,7 +47,8 @@ const MangaPage = ({ params: { id } }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          url: `https://ww5.manganelo.tv/manga/manga-${mapping[id]}`,
+          url: `https://ww5.manganelo.tv/manga/manga-kr961526}`,
+          // url:`https://readmangabat.com/read-${mapping[id]}`
         }),
       });
       console.log("scarpe", response);
