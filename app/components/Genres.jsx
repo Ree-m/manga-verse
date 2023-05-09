@@ -1,18 +1,33 @@
 "use client";
-
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-// import { usePathname, useSearchParams } from 'next/navigation';
 
 const Genres = () => {
   const router = useRouter();
-  const [genre, setGenre] = useState([]);
-  
+  const [genres, setGenres] = useState([]);
+
+  useEffect(() => {
+    async function fetchGenres() {
+      const response = await fetch(`https://api.jikan.moe/v4/genres/manga`);
+      const data = await response.json();
+      console.log("genres", data);
+      setGenres(data.data);
+    }
+    fetchGenres();
+  }, []);
+
   return (
     <div>
       <h3>Genres</h3>
-      <ul>
+      {genres &&
+        genres.map((genre) => (
+          <div key={genre.mal_id}>
+            <Link href={`/genre/${genre.name}/1?genreId=${genre.mal_id}`}> {genre.name} </Link>
+          </div>
+        ))}
+
+      {/* <ul>
         <Link href={`/allManga/1`}>
           <li>All</li>
         </Link>
@@ -46,7 +61,7 @@ const Genres = () => {
           <li>Sci-Fi</li>
         </Link>
         
-      </ul>
+      </ul> */}
     </div>
   );
 };

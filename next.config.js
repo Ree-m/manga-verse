@@ -17,9 +17,10 @@ const nextConfig = {
         hostname: "cm.blazefast.co"
       },
       {
-        protocol: 'https',
-        hostname: 'cdn.myanimelist.net'
+        protocol: "https",
+        hostname: "cdn.myanimelist.net"
       },
+      
     ],
   },
 };

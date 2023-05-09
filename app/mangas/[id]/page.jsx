@@ -7,7 +7,7 @@ import Loading from "@/app/components/Loading";
 import { useCommentContext } from "@/app/context/comment";
 import MangaCover from "@/app/components/MangaCover";
 import Link from "next/link";
-import { useRouter } from "next/navigation"
+import { useRouter } from "next/navigation";
 import mapping from "mapping.json"
 
 const MangaPage = ({ params: { id } }) => {
@@ -47,8 +47,8 @@ const MangaPage = ({ params: { id } }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          url: `https://ww5.manganelo.tv/manga/manga-kr961526}`,
-          // url:`https://readmangabat.com/read-${mapping[id]}`
+          url: `https://ww5.manganelo.tv/manga/manga-${mapping[id]}`,
+          apiMangaId:id
         }),
       });
       console.log("scarpe", response);
@@ -60,7 +60,28 @@ const MangaPage = ({ params: { id } }) => {
     fetchChapters();
   }, []);
 
-  
+  // async function fetchChapterImages(chapterUrl) {
+  //   console.log("scrape started");
+  //   const response = await fetch(`http://localhost:8000/chapterImages`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       chapterUrl,
+  //     }),
+  //   });
+  //   console.log("this is frontend",chapterUrl)
+  //   console.log("chapeter Images", response);
+
+  //   const data = await response.json();
+  //   setChapterImages(data);
+  //   const chapter=chapterUrl.split("/").pop()
+  //   router.push(
+  //     `/mangas/${id}/${chapter}`,
+  //   )
+  //   console.log("chapters images", data);
+  // }
   // add manga to bookmark
   async function addToBookmark(nameOfBookmark, userId) {
     console.log("start bookmark");
