@@ -6,11 +6,7 @@ import { useUserContext } from "../context/user";
 import { Suspense } from "react";
 const Comments = ({ comments, setComments, mangaId }) => {
   const { user, setUser } = useUserContext();
-  // const [comments, setComments] = useCommentContext();
-  // const [loading, setLoading] = useState(false);
-  // if (loading) {
-  //   return <Loading />;
-  // }
+
   async function deleteComment(commentId, userId) {
     try {
       const response = await fetch(

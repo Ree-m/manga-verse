@@ -10,7 +10,7 @@ const CommentSchema = new Schema(
     },
     commentText: {
       type: String,
-      // required: true,
+      required: true,
     },
     likes: {
       type: Number,
@@ -19,7 +19,33 @@ const CommentSchema = new Schema(
     mangaId: {
       type: Number,
       required: true,
-    }
+    },
+    replies: [
+      {
+        userId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+          required: true,
+        },
+        commentText: {
+          type: String,
+          required: true,
+        },
+        likes: {
+          type: Number,
+          required: true,
+        },
+        mangaId: {
+          type: Number,
+          required: true,
+        },
+        parentCommentId: {
+          type: String,
+          required: true,
+        },
+      },
+      { timestamps: true },
+    ],
   },
   {
     timestamps: true,

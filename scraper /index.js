@@ -66,30 +66,30 @@ async function scrapeManga(mangaUrl) {
 //   };
 // }
 
-async function getMangaAppMangaIds() {
-  const browser = await puppeteer.launch({headless:"new"});
-  const page = await browser.newPage();
+// async function getMangaAppMangaIds() {
+//   const browser = await puppeteer.launch({headless:"new"});
+//   const page = await browser.newPage();
 
-  await page.goto("https://ww5.manganelo.tv/genre");
+//   await page.goto("https://ww5.manganelo.tv/genre");
 
   // TODO: Use Puppeteer or Cheerio to scrape the manganelo website and retrieve the mangaIds
-const mangaAppId =await page.$$eval(".panel-content-genres genres-item-info h3 a",(ids)=>{
-  return Array.from(ids).map((id)=>id.href)
-})
-console.log("mangaAppId",mangaAppId)
-  await browser.close();
+// const mangaAppId =await page.$$eval(".panel-content-genres genres-item-info h3 a",(ids)=>{
+//   return Array.from(ids).map((id)=>id.href)
+// })
+// console.log("mangaAppId",mangaAppId)
+//   await browser.close();
 
-  // Return an object with the manga titles as keys and the mangaIds as values
-  return {
-    mangaAppId  };
-}
+//   // Return an object with the manga titles as keys and the mangaIds as values
+//   return {
+//     mangaAppId  };
+// }
 
 
-// Call the function to generate the mapping file before starting the server
-(async () => {
-  const mapping = await getMangaAppMangaIds();
-  fs.writeFileSync("mapping.json", JSON.stringify(mapping, null, 2));
-})();
+// // Call the function to generate the mapping file before starting the server
+// (async () => {
+//   const mapping = await getMangaAppMangaIds();
+//   fs.writeFileSync("mapping.json", JSON.stringify(mapping, null, 2));
+// })();
 
 app.post("/chapters", async (req, res) => {
   try {
