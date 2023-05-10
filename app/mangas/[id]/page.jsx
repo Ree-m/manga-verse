@@ -40,15 +40,14 @@ const MangaPage = ({ params: { id } }) => {
 
   useEffect(() => {
     async function fetchChapters() {
-      console.log("scrape started");
+      console.log("scrape started",manga.data?.title,manga.title,manga.data);
       const response = await fetch(`http://localhost:9000/chapters`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          url: `https://ww5.manganelo.tv/manga/manga-${mapping[id]}`,
-          apiMangaId:id
+          title:manga.title
         }),
       });
       console.log("scarpe", response);
@@ -58,7 +57,7 @@ const MangaPage = ({ params: { id } }) => {
       console.log("chapters", data);
     }
     fetchChapters();
-  }, []);
+  }, [manga]);
 
   // async function fetchChapterImages(chapterUrl) {
   //   console.log("scrape started");

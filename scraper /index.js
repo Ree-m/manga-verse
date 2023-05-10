@@ -3,12 +3,48 @@ const app = express();
 const puppeteer = require("puppeteer");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const fs = require("fs");
 
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
-app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.json());
 
-async function scrapeChapter(chapterUrl) {
+async function scrapeMangaLink(mangaTitle) {
+  const browser = await puppeteer.launch({ headless: "new" });
+  const page = await browser.newPage();
+  await page.goto(`https://ww5.manganelo.tv/search/${mangaTitle}`);
+
+  const mangaLink = await page.$$eval(
+    ".panel-search-story .search-story-item a",
+    (links) => {
+      console.log("links", links);
+      const firstLink = links[0];
+      console.log(firstLink, "firstLink");
+      return firstLink.href;
+    }
+  );
+
+  console.log("mangaLink line 20", mangaLink);
+  await browser.close();
+  return mangaLink;
+}
+
+async function scrapeChapters(mangaTitle) {
+  const browser = await puppeteer.launch({ headless: "new" });
+  const page = await browser.newPage();
+  const mangaLink = await scrapeMangaLink(mangaTitle);
+  await page.goto(mangaLink);
+
+  const chapterLinks = await page.$$eval(
+    ".panel-story-chapter-list .row-content-chapter li a",
+    (links) => {
+      return Array.from(links).map((link) => link.href);
+    }
+  );
+  console.log("chapterLinks line 37", chapterLinks);
+  await browser.close();
+  return chapterLinks;
+}
+
+async function scrapeChapterImages(chapterUrl) {
   const browser = await puppeteer.launch({ headless: "new" });
   const page = await browser.newPage();
   await page.goto(chapterUrl);
@@ -21,80 +57,17 @@ async function scrapeChapter(chapterUrl) {
       }));
     }
   );
-console.log("in pupeteer",images)
+  console.log("in pupeteer", images);
   await browser.close();
   return images;
 }
 
-async function scrapeManga(mangaUrl) {
-  const browser = await puppeteer.launch({ headless: "new" });
-  const page = await browser.newPage();
-  await page.goto(mangaUrl);
-
-  const chapterLinks = await page.$$eval(
-    ".panel-story-chapter-list .row-content-chapter li a",
-    (links) => {
-      return Array.from(links).map((link) => link.href);
-    }
-  );
-
-
-
-  console.log(chapterLinks, "chapterLinks");
-
-  await browser.close();
-  return chapterLinks;
-}
-
-// async function getMangaAppMangaIds() {
-//   const browser = await puppeteer.launch();
-//   const page = await browser.newPage();
-
-//   await page.goto(mangaAppUrl);
-
-//   // TODO: Use Puppeteer or Cheerio to scrape the manganelo website and retrieve the mangaIds
-// const mangaAppId =await page.$$eval(".panel-content-genres genres-item-info h3 a",(ids)=>{
-//   return Array.from(ids).map((id)=>id.href)
-// })
-// console.log("mangaAppId",mangaAppId)
-//   await browser.close();
-
-//   // Return an object with the manga titles as keys and the mangaIds as values
-//   return {
-//     mangaAppId,
-//     apiId
-//   };
-// }
-
-// async function getMangaAppMangaIds() {
-//   const browser = await puppeteer.launch({headless:"new"});
-//   const page = await browser.newPage();
-
-//   await page.goto("https://ww5.manganelo.tv/genre");
-
-  // TODO: Use Puppeteer or Cheerio to scrape the manganelo website and retrieve the mangaIds
-// const mangaAppId =await page.$$eval(".panel-content-genres genres-item-info h3 a",(ids)=>{
-//   return Array.from(ids).map((id)=>id.href)
-// })
-// console.log("mangaAppId",mangaAppId)
-//   await browser.close();
-
-//   // Return an object with the manga titles as keys and the mangaIds as values
-//   return {
-//     mangaAppId  };
-// }
-
-
-// // Call the function to generate the mapping file before starting the server
-// (async () => {
-//   const mapping = await getMangaAppMangaIds();
-//   fs.writeFileSync("mapping.json", JSON.stringify(mapping, null, 2));
-// })();
-
 app.post("/chapters", async (req, res) => {
   try {
-    const mangaUrl = req.body.url;
-    const chapterLinks = await scrapeManga(mangaUrl);
+    const mangaTitle = req.body.title;
+    // const mangaLink = await scrapeMangaLink(mangaTitle);
+    console.log("mangaTitle line 64", mangaTitle, req.body);
+    const chapterLinks = await scrapeChapters(mangaTitle);
     res.json(chapterLinks);
   } catch (error) {
     console.error(error);
@@ -104,9 +77,14 @@ app.post("/chapters", async (req, res) => {
 
 app.post("/chapterImages", async (req, res) => {
   try {
-    console.log("chapterUrl", req.body.chapterUrl);
-    const chapterUrl = req.body.chapterUrl;
-    const chapterImages = await scrapeChapter(chapterUrl);
+    const chapter = req.body.chapter;
+    const mangaTitle = req.body?.title;
+    const mangaLink = await scrapeMangaLink(mangaTitle);
+    const mangaId = mangaLink.split("-").pop();
+    console.log("mangaId images line 79", mangaId);
+    const chapterImages = await scrapeChapterImages(
+      `https://ww5.manganelo.tv/chapter/manga-${mangaId}/${chapter}`
+    );
     res.json(chapterImages);
   } catch (error) {
     console.error(error);

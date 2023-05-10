@@ -40,8 +40,9 @@ const CommentSchema = new Schema(
           required: true,
         },
         parentCommentId: {
-          type: String,
-          required: true,
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Comment",
+          default: null,
         },
       },
       { timestamps: true },
