@@ -12,13 +12,11 @@ async function scrapeMangaLink(mangaTitle) {
   const page = await browser.newPage();
   await page.goto(`https://ww5.manganelo.tv/search/${mangaTitle}`);
 
-  const mangaLink = await page.$$eval(
+  const mangaLink = await page.$eval(
     ".panel-search-story .search-story-item a",
     (links) => {
-      console.log("links", links);
-      const firstLink = links[0];
-      console.log(firstLink, "firstLink");
-      return firstLink.href;
+      console.log("links.href", links.href);
+      return links.href;
     }
   );
 
@@ -39,7 +37,7 @@ async function scrapeChapters(mangaTitle) {
       return Array.from(links).map((link) => link.href);
     }
   );
-  console.log("chapterLinks line 37", chapterLinks);
+  // console.log("chapterLinks line 37", chapterLinks);
   await browser.close();
   return chapterLinks;
 }

@@ -8,10 +8,12 @@ const Chapter = ({ params }) => {
   const [manga, setManga] = useState([]);
   const [chapterImages, setChapterImages] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [chapters, setChapters] = useState([]);
+  const [mangaLink, setMangaLink] = useState(""); // add state for mangaLink
+
   const router = useRouter();
   const chapter = params.chapter;
   const id = params.id;
-
 
   useEffect(() => {
     async function fetchManga() {
@@ -28,12 +30,41 @@ const Chapter = ({ params }) => {
     fetchManga();
   }, [id]);
 
+  useEffect(() => {
+    async function fetchChapters() {
+      console.log("scrape started", manga.data?.title, manga.title, manga.data);
+      const response = await fetch(`http://localhost:9000/chapters`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: manga.title,
+        }),
+      });
+      console.log("scarpe", response);
+
+      const data = await response.json();
+
+      setChapters(data);
+      setMangaLink(response.data.mangaLink);
+
+      console.log("mangaLink", response.data);
+    }
+    fetchChapters();
+  }, [manga.title]);
+
   console.log("new page", params.chapter);
   useEffect(() => {
     async function fetchChapterImages() {
       setLoading(true);
       console.log("new page");
-      console.log("scrape started chapter page",manga.data?.title,manga.title,manga.data);
+      console.log(
+        "scrape started chapter page",
+        manga.data?.title,
+        manga.title,
+        manga.data
+      );
 
       const response = await fetch(`http://localhost:9000/chapterImages`, {
         method: "POST",
@@ -42,7 +73,8 @@ const Chapter = ({ params }) => {
         },
         body: JSON.stringify({
           chapter,
-          title:manga.title
+          title: manga.title,
+          mangaLink,
         }),
       });
       console.log("new page", response);
@@ -54,6 +86,7 @@ const Chapter = ({ params }) => {
     }
     fetchChapterImages();
   }, [manga]);
+
   async function handlePreviousClick(e) {
     e.preventDefault();
     console.log("chapter previous", +chapter.split("-").pop() - +1);

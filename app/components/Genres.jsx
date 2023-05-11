@@ -33,10 +33,10 @@ const Genres = () => {
         <Link href={`/order_by/popularity/1`}>
           <li>Popular</li>
         </Link>
-        <Link href={"/start_date/2023/1"}>
+        <Link href={`/order_by/start_date/1/sort/desc`}> 
           <li>Newest</li>
         </Link>
-      </ul>
+      </ul> 
       <h3>Genres</h3>
       <Link href={`/allManga/1`}>
         <li>All</li>

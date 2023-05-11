@@ -2,26 +2,31 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Loading from "@/app/components/Loading";
-const OrderBy = ({ params }) => {
+const SecondOrderBy = ({ params }) => {
+  const searchQuery = params.search_query;
+  const searchQuery2 = params.second_query;
   const category = params.category;
+  const category2 = params.second_category;
   const page = params.page;
-  const searchQuery=params.search_query
   const [orderedManga, setOrderedManga] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  console.log("order", page, category,searchQuery);
- 
+  console.log("order", page, category, searchQuery, category2, searchQuery2);
+
   useEffect(() => {
     async function fetchOrderedManga() {
-      setLoading(true);
-      const response = await fetch(
-        `https://api.jikan.moe/v4/manga?${searchQuery}=${category}?&page=${page}`
-        
-      );
-      const data = await response.json();
-      console.log("order", data);
-      setOrderedManga(data.data);
-      setLoading(false);
+     try{
+        setLoading(true);
+        const response = await fetch(
+          `https://api.jikan.moe/v4/manga?${searchQuery}=${category}&page=${page}&${searchQuery2}=${category2}`
+        );
+        const data = await response.json();
+        console.log("order", data);
+        setOrderedManga(data.data);
+        setLoading(false);
+     }catch(error){
+        console.log(error)
+     }
     }
     fetchOrderedManga();
   }, []);
@@ -44,4 +49,4 @@ const OrderBy = ({ params }) => {
   );
 };
 
-export default OrderBy;
+export default SecondOrderBy;

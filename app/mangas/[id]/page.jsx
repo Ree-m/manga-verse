@@ -57,30 +57,9 @@ const MangaPage = ({ params: { id } }) => {
       console.log("chapters", data);
     }
     fetchChapters();
-  }, [manga]);
+  }, [manga.title]);
 
-  // async function fetchChapterImages(chapterUrl) {
-  //   console.log("scrape started");
-  //   const response = await fetch(`http://localhost:8000/chapterImages`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       chapterUrl,
-  //     }),
-  //   });
-  //   console.log("this is frontend",chapterUrl)
-  //   console.log("chapeter Images", response);
-
-  //   const data = await response.json();
-  //   setChapterImages(data);
-  //   const chapter=chapterUrl.split("/").pop()
-  //   router.push(
-  //     `/mangas/${id}/${chapter}`,
-  //   )
-  //   console.log("chapters images", data);
-  // }
+  
   // add manga to bookmark
   async function addToBookmark(nameOfBookmark, userId) {
     console.log("start bookmark");
