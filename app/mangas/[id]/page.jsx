@@ -8,7 +8,6 @@ import { useCommentContext } from "@/app/context/comment";
 import MangaCover from "@/app/components/MangaCover";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import mapping from "mapping.json"
 
 const MangaPage = ({ params: { id } }) => {
   // const manga = await fetchManga(id);

@@ -27,9 +27,7 @@ const Genres = () => {
   return (
     <div>
       <ul>
-        <Link href={`/order_by/popularity/1`}>
-          <li>Latest</li>
-        </Link>
+       
         <Link href={`/order_by/popularity/1`}>
           <li>Popular</li>
         </Link>

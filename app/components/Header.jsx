@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useUserContext } from "../context/user";
 import { useBookmarkContext } from "../context/bookmark";
-// import SearchBar from "./SearchBar";
+import SearchBar from "./SearchBar";
 
 const Header = () => {
   const { user, setUser } = useUserContext();
@@ -59,11 +59,14 @@ const Header = () => {
           <span>Hi,{user.username}</span>
           <span onClick={logout}>logout</span>
           <Link href={`/bookmark/${user.id}`}>Bookmarks</Link>
+          <SearchBar/>
         </>
       ) : (
         <>
           <Link href="/auth/login">Login</Link>
           <Link href="/">Bookmarks</Link>
+          <SearchBar/>
+
 
         </>
       )}
