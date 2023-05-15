@@ -21,7 +21,7 @@ const MangaPage = ({ params: { id } }) => {
   const [chapterImages, setChapterImages] = useState([]);
   const router = useRouter();
   const userId = user?.id;
-
+console.log("manga page amxiwujduj",user)
   useEffect(() => {
     async function fetchManga() {
       setLoading(true);
@@ -98,14 +98,14 @@ const MangaPage = ({ params: { id } }) => {
     fetchComments();
   }, []);
 
-  async function addComment(e, userId, commentText, likes, mangaId) {
+  async function addComment(e, userId, username,commentText, likes,dislikes, mangaId) {
     e.preventDefault();
     console.log("start adding comment");
     const response = await fetch(
       `http://localhost:3000/api/comment/${mangaId}`,
       {
         method: "POST",
-        body: JSON.stringify({ userId, commentText, likes, mangaId }),
+        body: JSON.stringify({ userId,username, commentText, likes,dislikes, mangaId }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -145,7 +145,7 @@ const MangaPage = ({ params: { id } }) => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          addComment(e, user.id, commentText, 0, manga.mal_id);
+          addComment(e, user.id,user.username, commentText, 0,0, manga.mal_id);
         }}
       >
         <input

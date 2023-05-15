@@ -1,6 +1,7 @@
 import connectMongo from "@/utils/connectMongo";
 import Comment from "@/models/Comment";
 import { NextResponse } from "next/server";
+import User from "@/models/User";
 
 export async function GET(request) {
   connectMongo();
@@ -9,27 +10,39 @@ export async function GET(request) {
   console.log("new comment route", mangaId);
 
   const comments = await Comment.find({ mangaId });
+  console.log('logged comments',comments)
   return NextResponse.json(comments);
 }
 export async function POST(request) {
   connectMongo();
-  const { userId, commentText, likes, mangaId } = await request.json();
+  const { userId,username, commentText, likes,dislikes, mangaId } = await request.json();
   console.log(
     "userId",
     userId,
+    "username",
+    username,
+    
     "comment",
     commentText,
     "likes",
     likes,
+    "dislikes",
+    dislikes,
     "mangaId",
-    mangaId
+    mangaId,
+    
+
   );
 
   try {
+    
+    
     const newComment = await Comment.create({
       userId,
+      username,
       commentText,
       likes,
+      dislikes,
       mangaId,
     });
     await newComment.save();
@@ -39,4 +52,5 @@ export async function POST(request) {
     return NextResponse.json(error);
   }
 }
+
 

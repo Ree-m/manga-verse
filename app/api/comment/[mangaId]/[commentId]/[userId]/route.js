@@ -30,3 +30,27 @@ export async function DELETE(request) {
   }
 }
 
+export async function PUT(request) {
+  connectMongo();
+const {likes,dislikes}=await request.json()
+  const { url } = request;
+  const userId = url.split("/").pop();
+  const commentId = url.split("/").slice(-2, -1)[0];
+  console.log("like/dislike", userId, "this is commentId", commentId);
+
+  try {
+    const comment = await Comment.findByIdAndUpdate(commentId,{likes:likes,dislikes:dislikes});
+
+    console.log("comment found", comment);
+
+    if (!comment) {
+      return NextResponse.json({ error: "Comment not found" });
+    }
+    return NextResponse.json({success:"true"})
+
+
+  } catch (error) {
+    console.log("like/dislike error", error);
+    return NextResponse.json({ message: error });
+  }
+}
