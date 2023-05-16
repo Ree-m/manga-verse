@@ -1,11 +1,13 @@
 "use client";
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Loading from "./Loading";
-import { useCommentContext } from "../context/comment";
 import { useUserContext } from "../context/user";
 import { Suspense } from "react";
 const Comments = ({ comments, setComments, mangaId }) => {
   const { user, setUser } = useUserContext();
+  // const [likes,setLikes]=useState(0)
+  // const [dislikes,setDislikes]=useState(0)
+
 
   async function deleteComment(commentId, userId) {
     try {
@@ -34,45 +36,37 @@ const Comments = ({ comments, setComments, mangaId }) => {
     }
   }
 
-  async function likeDislikeComment(commentId, userId) {
+  async function likeDislikeComment(commentId, userId,action) {
     try {
       const response = await fetch(
         `http://localhost:3000/api/comment/${mangaId}/${commentId}/${userId}`,
         {
           method: "PUT",
+          body: JSON.stringify({ action }),
+          headers: {
+            "Content-Type": "application/json",
+          },
           credentials: "include",
         }
       );
-
-      if (response.ok) {
-        // Get the updated comment and like/dislike counts from the response
-        const { comment, likeCount, dislikeCount } = await response.json();
-        console.log(
-          "comment",
-          comment,
-          "likesCount",
-          likeCount,
-          "dislikeCount",
-          dislikeCount
-        );
-        // Find the index of the updated comment in the comments array
-        const commentIndex = comments.findIndex((c) => c._id === comment._id);
-        console.log("commentIndex", commentIndex);
-        if (commentIndex !== -1) {
-          // Create a new copy of the comments array to update the specific comment
-          const updatedComments = [...comments];
-
-          // Update the comment with the new like and dislike counts
-          updatedComments[commentIndex] = {
+      const data =await response.json()
+      console.log("like/dislike frontend",data)
+      // Find the comment in the comments array and update its likes and dislikes counts
+      const updatedComments = comments.map((comment) => {
+        if (comment._id === commentId) {
+          return {
             ...comment,
-            likesCount: likeCount,
-            dislikesCount: dislikeCount,
+            likes: data.likes,
+            dislikes: data.dislikes,
           };
-
-          // Update the state with the updated comments
-          setComments(updatedComments);
         }
-      }
+        return comment;
+      });
+
+      // Update the comments state with the updated comments array
+      setComments(updatedComments);
+
+
     } catch (error) {
       console.log(error);
     }
@@ -86,13 +80,14 @@ const Comments = ({ comments, setComments, mangaId }) => {
             <h4>{comment.username}</h4>
 
             <p>{comment.commentText}</p>
-            <button onClick={() => likeDislikeComment(comment._id, user?._id)}>
-              +
+            <button onClick={() => likeDislikeComment(comment._id, user?.id,"like")}>
+              like
             </button>
             <span>{comment.likes}</span>
-            <button onClick={() => likeDislikeComment(comment._id, user?._id)}>
-              -
+            <button onClick={() => likeDislikeComment(comment._id, user?.id,"dislike")}>
+              dislike
             </button>
+            <span>{comment.dislikes}</span>
 
             {user && user.id === comment.userId ? (
               <button onClick={() => deleteComment(comment._id, user?.id)}>

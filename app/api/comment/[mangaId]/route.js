@@ -36,7 +36,6 @@ export async function POST(request) {
 
   try {
     
-    
     const newComment = await Comment.create({
       userId,
       username,

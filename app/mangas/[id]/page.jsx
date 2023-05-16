@@ -145,7 +145,7 @@ console.log("manga page amxiwujduj",user)
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          addComment(e, user.id,user.username, commentText, 0,0, manga.mal_id);
+          addComment(e, user.id,user.username, commentText,0,0, manga.mal_id);
         }}
       >
         <input

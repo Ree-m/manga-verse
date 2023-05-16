@@ -32,21 +32,29 @@ export async function DELETE(request) {
 
 export async function PUT(request) {
   connectMongo();
-const {likes,dislikes}=await request.json()
   const { url } = request;
   const userId = url.split("/").pop();
   const commentId = url.split("/").slice(-2, -1)[0];
   console.log("like/dislike", userId, "this is commentId", commentId);
 
   try {
-    const comment = await Comment.findByIdAndUpdate(commentId,{likes:likes,dislikes:dislikes});
 
-    console.log("comment found", comment);
-
+    const comment= await Comment.findById(commentId).populate("likes dislikes")
     if (!comment) {
       return NextResponse.json({ error: "Comment not found" });
     }
-    return NextResponse.json({success:"true"})
+
+    const { action } = await request.json();
+
+    if (action === "like") {
+      comment.likes = +comment.likes +1; // Increment likes count
+    } else if (action === "dislike") {
+      comment.dislikes = +comment.dislikes+1; // Increment dislikes count
+    }
+    const updatedComment = await comment.save(); // Save the updated comment
+
+    
+    return NextResponse.json(updatedComment);
 
 
   } catch (error) {
