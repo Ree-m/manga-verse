@@ -18,7 +18,7 @@ export async function POST(request, response) {
   console.log("login backend found user", user, privateKey);
   if (!user) {
     return NextResponse.json("Invalid login credentials");
-  }
+  } 
 
   const token = await new Promise((resolve, reject) => {
     jwt.sign(

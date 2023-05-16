@@ -9,7 +9,6 @@ const Chapter = ({ params }) => {
   const [chapterImages, setChapterImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [chapters, setChapters] = useState([]);
-  const [mangaLink, setMangaLink] = useState(""); // add state for mangaLink
 
   const router = useRouter();
   const chapter = params.chapter;
@@ -47,7 +46,6 @@ const Chapter = ({ params }) => {
       const data = await response.json();
 
       setChapters(data);
-      setMangaLink(response.data.mangaLink);
 
       console.log("mangaLink", response.data);
     }
@@ -74,7 +72,6 @@ const Chapter = ({ params }) => {
         body: JSON.stringify({
           chapter,
           title: manga.title,
-          mangaLink,
         }),
       });
       console.log("new page", response);

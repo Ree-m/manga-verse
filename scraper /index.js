@@ -15,7 +15,7 @@ async function scrapeMangaLink(mangaTitle) {
   const mangaLink = await page.$eval(
     ".panel-search-story .search-story-item a",
     (links) => {
-      console.log("links.href", links.href);
+      console.log("links.href", links);
       return links.href;
     }
   );
@@ -63,7 +63,7 @@ async function scrapeChapterImages(chapterUrl) {
 app.post("/chapters", async (req, res) => {
   try {
     const mangaTitle = req.body.title;
-    // const mangaLink = await scrapeMangaLink(mangaTitle);
+
     console.log("mangaTitle line 64", mangaTitle, req.body);
     const chapterLinks = await scrapeChapters(mangaTitle);
     res.json(chapterLinks);

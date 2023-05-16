@@ -12,25 +12,25 @@ import { useRouter } from "next/navigation";
 const MangaPage = ({ params: { id } }) => {
   // const manga = await fetchManga(id);
   const [bookmark, setBookmark] = useState("");
-  const [manga, setManga] = useState([]);
+  const [manga, setManga] = useState({});
   const { user, setUser } = useUserContext();
   const [loading, setLoading] = useState(false);
   const [commentText, setCommentText] = useState("");
   const [comments, setComments] = useCommentContext();
   const [chapters, setChapters] = useState([]);
   const [chapterImages, setChapterImages] = useState([]);
+  const [isMangaLoading, setIsMangaLoading] = useState(true);
   const router = useRouter();
   const userId = user?.id;
-console.log("manga page amxiwujduj",user)
+console.log("manga page ",user)
   useEffect(() => {
     async function fetchManga() {
-      setLoading(true);
       console.log("this is id", id);
 
       const response = await fetch(`https://api.jikan.moe/v4/manga/${id}`);
       const manga = await response.json();
       setManga(manga.data);
-      setLoading(false);
+      setIsMangaLoading(false);
       console.log("finished fetching");
       console.log("manga", manga);
     }
@@ -39,6 +39,7 @@ console.log("manga page amxiwujduj",user)
 
   useEffect(() => {
     async function fetchChapters() {
+      console.log('reem', 'hi', manga, isMangaLoading)
       console.log("scrape started",manga.data?.title,manga.title,manga.data);
       const response = await fetch(`http://localhost:9000/chapters`, {
         method: "POST",
@@ -55,8 +56,8 @@ console.log("manga page amxiwujduj",user)
       setChapters(data);
       console.log("chapters", data);
     }
-    fetchChapters();
-  }, [manga.title]);
+    if (!isMangaLoading) fetchChapters();
+  }, [manga.title, isMangaLoading]);
 
   
   // add manga to bookmark
