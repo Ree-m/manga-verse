@@ -15,12 +15,12 @@ export async function GET(request) {
 }
 export async function POST(request) {
   connectMongo();
-  const { userId,username, commentText, likes,dislikes, mangaId } = await request.json();
+  const { userId,name, commentText, likes,dislikes, mangaId } = await request.json();
   console.log(
     "userId",
     userId,
-    "username",
-    username,
+    "name",
+    name,
     
     "comment",
     commentText,
@@ -38,7 +38,7 @@ export async function POST(request) {
     
     const newComment = await Comment.create({
       userId,
-      username,
+      name,
       commentText,
       likes,
       dislikes,

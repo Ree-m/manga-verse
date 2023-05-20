@@ -99,14 +99,14 @@ console.log("manga page ",user)
     fetchComments();
   }, []);
 
-  async function addComment(e, userId, username,commentText, likes,dislikes, mangaId) {
+  async function addComment(e, userId, name,commentText, likes,dislikes, mangaId) {
     e.preventDefault();
     console.log("start adding comment");
     const response = await fetch(
       `http://localhost:3000/api/comment/${mangaId}`,
       {
         method: "POST",
-        body: JSON.stringify({ userId,username, commentText, likes,dislikes, mangaId }),
+        body: JSON.stringify({ userId,name, commentText, likes,dislikes, mangaId }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -146,7 +146,7 @@ console.log("manga page ",user)
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          addComment(e, user.id,user.username, commentText,0,0, manga.mal_id);
+          addComment(e, user.id,user.name, commentText,0,0, manga.mal_id);
         }}
       >
         <input
