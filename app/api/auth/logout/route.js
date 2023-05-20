@@ -11,3 +11,4 @@ export async function POST(request) {
   setCookie(request.res, 'token', "", {});
   return NextResponse.json("ok");
 }
+ 

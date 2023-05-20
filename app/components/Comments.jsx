@@ -77,7 +77,7 @@ const Comments = ({ comments, setComments, mangaId }) => {
       {comments &&
         comments.map((comment) => (
           <div key={comment._id}>
-            <h4>{comment.username}</h4>
+            <h4>{comment.name}</h4>
 
             <p>{comment.commentText}</p>
             <button onClick={() => likeDislikeComment(comment._id, user?.id,"like")}>

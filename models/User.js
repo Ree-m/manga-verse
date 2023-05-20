@@ -1,7 +1,7 @@
 import { Schema, model, models } from "mongoose";
 
 const UserSchema = new Schema({
-    username:{
+    name:{
         type:String,
         required:true,
         min:4,
@@ -14,8 +14,6 @@ const UserSchema = new Schema({
     },
     password:{
         type:String,
-        required:true,
-        min:8
     }
 },{
     timestamps:true

@@ -5,16 +5,16 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request) {
   connectMongo();
-  const { username, email, password } = await request.json();
-  console.log("username", username, "email", email, "password", password);
+  const { name, email, password } = await request.json();
+  console.log("name", name, "email", email, "password", password);
 
   try {
-    const userExists=await User.findOne({$or:[{username,email}]})
+    const userExists=await User.findOne({$or:[{name,email}]})
     if (userExists){
       return NextResponse.json("User already exists")
     }
     const user = await User.create({
-      username,
+      name,
       email,
       password,
     });

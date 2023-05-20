@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+// import jwt from "jsonwebtoken";
 // import cookieParser from "cookie-parser";
 import { setCookie } from "cookies-next";
 
@@ -10,34 +10,55 @@ import { NextRequest, NextResponse } from "next/server";
 
 const privateKey = process.env.PRIVATE_KEY;
 
-export async function POST(request, response) {
-  connectMongo();
-  console.log("login backend start");
-  const { username, email, password } = await request.json();
-  const user = await User.findOne({ username, email });
-  console.log("login backend found user", user, privateKey);
-  if (!user) {
-    return NextResponse.json("Invalid login credentials");
-  } 
+// export async function POST(request, response) {
+//   connectMongo();
+//   console.log("login backend start");
+//   const { name, email, password } = await request.json();
+//   const user = await User.findOne({ name, email });
+//   console.log("login backend found user", user, privateKey);
+//   if (!user) {
+//     return NextResponse.json("Invalid login credentials");
+//   }
 
-  const token = await new Promise((resolve, reject) => {
-    jwt.sign(
-      { username, email, id: user._id },
-      privateKey,
-      {},
-      (err, token) => {
-        if (err) reject(err);
-        resolve(token);
+//   const token = await new Promise((resolve, reject) => {
+//     jwt.sign(
+//       { name, email, id: user._id },
+//       privateKey,
+//       {},
+//       (err, token) => {
+//         if (err) reject(err);
+//         resolve(token);
+//       }
+//     );
+//   });
+
+//   console.log("token", token);
+//   setCookie(request.res, "token", token);
+
+//   return NextResponse.json({
+//     id: user._id,
+//     name,
+//     email,
+//   });
+// }
+
+export async function POST(request,response){
+    connectMongo()
+      const { name, email} = await request.json();
+
+    try {
+        const userExists=await User.findOne({$or:[{name,email}]})
+        if (userExists){
+          return NextResponse.json("User already exists")
+        }
+        const user = await User.create({
+          name,
+          email,
+        });
+        await user.save();
+        return NextResponse.json({ message: 'User profile saved successfully.',user });
+      } catch (error) {
+        console.error(error);
+        return NextResponse.json({ message: 'Error saving user profile.' ,error});
       }
-    );
-  });
-
-  console.log("token", token);
-  setCookie(request.res, "token", token);
-
-  return NextResponse.json({
-    id: user._id,
-    username,
-    email,
-  });
 }
