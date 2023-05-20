@@ -3,18 +3,21 @@ import { useState, useEffect } from "react";
 import { useUserContext } from "@/app/context/user";
 import Loading from "@/app/components/Loading";
 import { useBookmarkContext } from "@/app/context/bookmark";
+import { useSession} from "next-auth/react";
 
 const BookmarkPage = () => {
   const [bookmarkItems, setBookmarkItems] = useBookmarkContext();
   const { user, setUser } = useUserContext();
   const [loading, setLoading] = useState(false);
-  console.log("bookmark page", user);
+  const { data} = useSession();
+const userId=data?.user?.id
+  console.log("bookmark page", userId);
 
   useEffect(() => {
     async function fetchBookmark() {
       setLoading(true);
       const response = await fetch(
-        `http://localhost:3000/api/bookmark/${user.id}`
+        `http://localhost:3000/api/bookmark/${userId}`
       );
       const data = await response.json();
       console.log("bookmark data", data);
@@ -47,7 +50,7 @@ const BookmarkPage = () => {
           bookmarkItems.map((item) => (
             <div key={item._id}>
               <p>{item.nameOfBookmark}</p>
-              <button onClick={() => deleteBookmark(user.id, item._id)}>
+              <button onClick={() => deleteBookmark(userId, item._id)}>
                 delete
               </button>
             </div>

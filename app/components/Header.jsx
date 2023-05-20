@@ -11,6 +11,9 @@ const Header = () => {
   const { user, setUser } = useUserContext();
   const { bookmarkItems, setBookmarkItems } = useBookmarkContext();
   const { data, status } = useSession();
+  const userId=data?.user?.id
+  const username=data?.user?.name
+
 console.log("data,status",data ,status)
 
 
@@ -61,11 +64,10 @@ console.log("data,status",data ,status)
       {data?.user? (
         <>
 
-          <span>Hi,{data.user.name}</span>
-          <span>{data.user.email}</span>
+          <span>Hi,{username}</span>
 
           <span onClick={()=>signOut()}>logout</span>
-          <Link href={`/bookmark/${user.id}`}>Bookmarks</Link>
+          <Link href={`/bookmark/${userId}`}>Bookmarks</Link>
           <SearchBar/>
         </>
       ) : (

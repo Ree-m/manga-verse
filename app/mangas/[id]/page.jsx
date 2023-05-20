@@ -8,6 +8,7 @@ import { useCommentContext } from "@/app/context/comment";
 import MangaCover from "@/app/components/MangaCover";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useSession} from "next-auth/react";
 
 const MangaPage = ({ params: { id } }) => {
   // const manga = await fetchManga(id);
@@ -21,8 +22,11 @@ const MangaPage = ({ params: { id } }) => {
   const [chapterImages, setChapterImages] = useState([]);
   const [isMangaLoading, setIsMangaLoading] = useState(true);
   const router = useRouter();
-  const userId = user?.id;
-console.log("manga page ",user)
+  const { data} = useSession();
+  const userId = data?.user?.id;
+  const username=data?.user?.name
+
+console.log("manga page user info",data,userId)
   useEffect(() => {
     async function fetchManga() {
       console.log("this is id", id);
@@ -64,7 +68,7 @@ console.log("manga page ",user)
   async function addToBookmark(nameOfBookmark, userId) {
     console.log("start bookmark");
     const response = await fetch(
-      `http://localhost:3000/api/bookmark/${user.id}`,
+      `http://localhost:3000/api/bookmark/${userId}`,
       {
         method: "POST",
 
@@ -146,7 +150,7 @@ console.log("manga page ",user)
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          addComment(e, user.id,user.name, commentText,0,0, manga.mal_id);
+          addComment(e, userId,username, commentText,0,0, manga.mal_id);
         }}
       >
         <input
