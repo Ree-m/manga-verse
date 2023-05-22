@@ -49,13 +49,14 @@ const Chapter = ({ params }) => {
       const data = await response.json();
 
       setChapters(data);
-      setIsMangaLoading(false);
+      // setIsMangaLoading(false);
 
       console.log("mangaLink", response.data);
       console.log("chapters length", chapters.length);
     }
-    if (!isMangaLoading) fetchChapters();
-  }, [manga.title, , isMangaLoading]);
+    // if (!isMangaLoading) fetchChapters();
+    fetchChapters()
+  }, [manga.title, ]);
 
   console.log("new page", params.chapter);
   useEffect(() => {
@@ -90,24 +91,7 @@ const Chapter = ({ params }) => {
   }, [manga]);
 
   async function handlePreviousClick(e) {
-    // e.preventDefault();
-    // let previousChapter = null;
-    // console.log("chapters length reem",chapters.length,"chapters[chapter]",chapters[chapter])
-
-    // // Find the previous chapter by iterating through the chapters array
-    // for (let i = chapters.length - 1; i >= 0; i--) {
-    //   const chapterNum = parseFloat(chapters[i].split("-").pop());
-    //   if (chapterNum < chapterNumber) {
-    //     previousChapter = chapterNum;
-    //     break;
-    //   }
-    // }
-    // if (previousChapter !== null) {
-    //   router.push(`/mangas/${id}/chapter-${previousChapter}`);
-    // } else {
-    //   console.log("Previous chapter does not exist.");
-    //   // Handle the case when there is no previous chapter
-    // }
+    
     e.preventDefault();
 
     const chapterIndex = chapters.findIndex((chapter) => {
@@ -117,13 +101,20 @@ const Chapter = ({ params }) => {
     console.log(
       "chapterIndex",
       chapterIndex,
+      "chapterNumber",
       chapterNumber,
-      chapters[chapterIndex]
+      "chapters[chapterIndex]",
+      chapters[chapterIndex],
+      chapters[+chapterIndex+1],
+      "chapters.length",
+      chapters.length,
+      "chapters",
+      chapters
     );
 
-    if (chapterIndex !== -1 && chapterIndex < chapters.length - 1) {
+    if (chapterIndex !== -1 &&  chapterIndex > 0) {
       const previousChapterNum = parseFloat(
-        chapters[chapterIndex - 1].split("-").pop()
+        chapters[chapterIndex + 1].split("-").pop()
       );
       router.push(`/mangas/${id}/chapter-${previousChapterNum}`);
     } else {
@@ -138,17 +129,28 @@ const Chapter = ({ params }) => {
       const chapterNum = parseFloat(chapter.split("-").pop());
       return chapterNum === chapterNumber;
     });
-
-    if (chapterIndex !== -1 && chapterIndex < chapters.length - 1) {
+    console.log(
+      "chapterIndex",
+      chapterIndex,
+      "chapterNumber",
+      chapterNumber,
+      "chapters[chapterIndex]",
+      chapters[chapterIndex],
+      chapters[+chapterIndex+1],
+      "chapters.length",
+      chapters.length,
+      "chapters",
+      chapters
+    );
+    if (chapterIndex !== -1 &&  chapterIndex > 0) {
       const nextChapterNum = parseFloat(
-        chapters[chapterIndex + 1].split("-").pop()
+        chapters[+chapterIndex - 1].split("-").pop()
       );
       router.push(`/mangas/${id}/chapter-${nextChapterNum}`);
     } else {
       console.log("Next chapter does not exist.");
       // Handle the case when there is no next chapter
     }
-    // router.push(`/mangas/${id}/chapter-${chapterNumber + 1}`);
   }
 
   if (loading) {
