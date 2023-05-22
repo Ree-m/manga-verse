@@ -30,11 +30,11 @@ const Comments = ({ comments, setComments, mangaId }) => {
         console.log("after", newComments);
         const data = await response.json();
         console.log("deleted", data);
-      }
+      } 
     } catch (error) {
       console.log(error);
     }
-  }
+  } 
 
   async function likeDislikeComment(commentId, userId, action) {
     try {
@@ -56,8 +56,8 @@ const Comments = ({ comments, setComments, mangaId }) => {
         if (comment._id === commentId) {
           return {
             ...comment,
-            likes: data.likes,
-            dislikes: data.dislikes,
+            likes: data.likesArr?.length,
+            dislikes: data.dislikesArr?.length,
           };
         }
         return comment;

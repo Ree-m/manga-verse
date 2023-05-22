@@ -12,7 +12,7 @@ const SearchBar = () => {
     router.push(`/search/${query}/1`)
     console.log(query);
 
-    setQuery(""); 
+    setQuery("");  
   };
 
   return (

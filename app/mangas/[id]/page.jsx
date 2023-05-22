@@ -8,10 +8,9 @@ import { useCommentContext } from "@/app/context/comment";
 import MangaCover from "@/app/components/MangaCover";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useSession} from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 const MangaPage = ({ params: { id } }) => {
-  // const manga = await fetchManga(id);
   const [bookmark, setBookmark] = useState("");
   const [manga, setManga] = useState({});
   const { user, setUser } = useUserContext();
@@ -19,14 +18,13 @@ const MangaPage = ({ params: { id } }) => {
   const [commentText, setCommentText] = useState("");
   const [comments, setComments] = useCommentContext();
   const [chapters, setChapters] = useState([]);
-  const [chapterImages, setChapterImages] = useState([]);
   const [isMangaLoading, setIsMangaLoading] = useState(true);
   const router = useRouter();
-  const { data} = useSession();
+  const { data } = useSession();
   const userId = data?.user?.id;
-  const username=data?.user?.name
+  const username = data?.user?.name;
 
-console.log("manga page user info",data,userId)
+  console.log("manga page user info", data, userId);
   useEffect(() => {
     async function fetchManga() {
       console.log("this is id", id);
@@ -43,15 +41,15 @@ console.log("manga page user info",data,userId)
 
   useEffect(() => {
     async function fetchChapters() {
-      console.log('reem', 'hi', manga, isMangaLoading)
-      console.log("scrape started",manga.data?.title,manga.title,manga.data);
+      console.log("reem", "hi", manga, isMangaLoading);
+      console.log("scrape started", manga.data?.title, manga.title, manga.data);
       const response = await fetch(`http://localhost:9000/chapters`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          title:manga.title
+          title: manga.title,
         }),
       });
       console.log("scarpe", response);
@@ -63,7 +61,6 @@ console.log("manga page user info",data,userId)
     if (!isMangaLoading) fetchChapters();
   }, [manga.title, isMangaLoading]);
 
-  
   // add manga to bookmark
   async function addToBookmark(nameOfBookmark, userId) {
     console.log("start bookmark");
@@ -103,14 +100,29 @@ console.log("manga page user info",data,userId)
     fetchComments();
   }, []);
 
-  async function addComment(e, userId, name,commentText, likes,dislikes, mangaId) {
+  async function addComment(
+    e,
+    userId,
+    name,
+    commentText,
+    likes,
+    dislikes,
+    mangaId
+  ) {
     e.preventDefault();
     console.log("start adding comment");
     const response = await fetch(
       `http://localhost:3000/api/comment/${mangaId}`,
       {
         method: "POST",
-        body: JSON.stringify({ userId,name, commentText, likes,dislikes, mangaId }),
+        body: JSON.stringify({
+          userId,
+          name,
+          commentText,
+          likes,
+          dislikes,
+          mangaId,
+        }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -147,10 +159,20 @@ console.log("manga page user info",data,userId)
       <button onClick={() => addToBookmark(manga.title, userId)}>
         Bookmark
       </button>
+      <div className="chapters">
+        {chapters &&
+          chapters.map((chapter) => (
+            <div>
+              <Link href={`/mangas/${id}/${chapter.split("/").pop()}`}>
+                {chapter.split("/").pop()}
+              </Link>
+            </div>
+          ))}
+      </div>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          addComment(e, userId,username, commentText,0,0, manga.mal_id);
+          addComment(e, userId, username, commentText, 0, 0, manga.mal_id);
         }}
       >
         <input
@@ -162,19 +184,6 @@ console.log("manga page user info",data,userId)
         <button type="submit">Add comment</button>
       </form>
 
-      <div className="chapters">
-        {chapters &&
-          chapters.map((chapter) => (
-            <div>
-              <Link
-                href={`/mangas/${id}/${chapter.split("/").pop()}`}
-                
-              >
-                {chapter.split("/").pop()}
-              </Link>
-            </div>
-          ))}
-      </div>
       <Comments
         comments={comments}
         setComments={setComments}
