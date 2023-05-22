@@ -6,6 +6,8 @@ import { Suspense } from "react";
 import { useSession } from "next-auth/react";
 
 const Comments = ({ comments, setComments, mangaId }) => {
+  const [likes, setLikes] = useState(0);
+  const [dislikes, setDislikes] = useState(0);
   const { data } = useSession();
   const userId = data?.user?.id;
 
@@ -19,7 +21,7 @@ const Comments = ({ comments, setComments, mangaId }) => {
         }
       );
       console.log(userId), "userId in delete";
-      if (!user) {
+      if (!userId) {
         alert("not logged in");
       } else {
         const newComments = await comments.filter(
@@ -30,11 +32,11 @@ const Comments = ({ comments, setComments, mangaId }) => {
         console.log("after", newComments);
         const data = await response.json();
         console.log("deleted", data);
-      } 
+      }
     } catch (error) {
       console.log(error);
     }
-  } 
+  }
 
   async function likeDislikeComment(commentId, userId, action) {
     try {
@@ -50,14 +52,21 @@ const Comments = ({ comments, setComments, mangaId }) => {
         }
       );
       const data = await response.json();
-      console.log("like/dislike frontend", data);
+      console.log(
+        "like/dislike frontend",
+        data,
+        "likes",
+        data.likesArr?.length,
+        "dislikes",
+        data.dislikesArr?.length
+      );
       // Find the comment in the comments array and update its likes and dislikes counts
       const updatedComments = comments.map((comment) => {
         if (comment._id === commentId) {
           return {
             ...comment,
-            likes: data.likesArr?.length,
-            dislikes: data.dislikesArr?.length,
+            likesArr: data.likesArr,
+            dislikesArr: data.dislikesArr,
           };
         }
         return comment;
@@ -65,6 +74,8 @@ const Comments = ({ comments, setComments, mangaId }) => {
 
       // Update the comments state with the updated comments array
       setComments(updatedComments);
+      setLikes(data.likesArr?.length);
+      setDislikes(data.dislikesArr?.length);
     } catch (error) {
       console.log(error);
     }
@@ -83,13 +94,13 @@ const Comments = ({ comments, setComments, mangaId }) => {
             >
               like
             </button>
-            <span>{comment.likes}</span>
+            <span>{comment.likesArr.length}</span>
             <button
               onClick={() => likeDislikeComment(comment._id, userId, "dislike")}
             >
               dislike
             </button>
-            <span>{comment.dislikes}</span>
+            <span>{comment.dislikesArr.length}</span>
 
             {userId && userId === comment.userId ? (
               <button onClick={() => deleteComment(comment._id, userId)}>
