@@ -24,6 +24,8 @@ const Chapter = ({ params }) => {
       const response = await fetch(`https://api.jikan.moe/v4/manga/${id}`);
       const manga = await response.json();
       setManga(manga.data);
+      setIsMangaLoading(false);
+
       setLoading(false);
 
       console.log("finished fetching");
@@ -34,6 +36,7 @@ const Chapter = ({ params }) => {
 
   useEffect(() => {
     async function fetchChapters() {
+      console.log("reem in chapter",manga,isMangaLoading)
       console.log("scrape started", manga.data?.title, manga.title, manga.data);
       const response = await fetch(`http://localhost:9000/chapters`, {
         method: "POST",
@@ -49,18 +52,17 @@ const Chapter = ({ params }) => {
       const data = await response.json();
 
       setChapters(data);
-      // setIsMangaLoading(false);
 
       console.log("mangaLink", response.data);
       console.log("chapters length", chapters.length);
     }
-    // if (!isMangaLoading) fetchChapters();
-    fetchChapters()
-  }, [manga.title, ]);
+    if (!isMangaLoading) fetchChapters();
+  }, [manga.title,isMangaLoading]);
 
   console.log("new page", params.chapter);
   useEffect(() => {
     async function fetchChapterImages() {
+      console.log("reem in chapter images",manga,isMangaLoading)
       setLoading(true);
       console.log("new page");
       console.log(
@@ -87,11 +89,10 @@ const Chapter = ({ params }) => {
       setLoading(false);
       console.log("new page", data);
     }
-    fetchChapterImages();
-  }, [manga]);
+    if(!isMangaLoading) fetchChapterImages();
+  }, [manga,isMangaLoading]);
 
   async function handlePreviousClick(e) {
-    
     e.preventDefault();
 
     const chapterIndex = chapters.findIndex((chapter) => {
@@ -105,14 +106,14 @@ const Chapter = ({ params }) => {
       chapterNumber,
       "chapters[chapterIndex]",
       chapters[chapterIndex],
-      chapters[+chapterIndex+1],
+      chapters[+chapterIndex + 1],
       "chapters.length",
       chapters.length,
       "chapters",
       chapters
     );
 
-    if (chapterIndex !== -1 &&  chapterIndex > 0) {
+    if (chapterIndex !== -1 && chapterIndex > 0) {
       const previousChapterNum = parseFloat(
         chapters[chapterIndex + 1].split("-").pop()
       );
@@ -136,13 +137,13 @@ const Chapter = ({ params }) => {
       chapterNumber,
       "chapters[chapterIndex]",
       chapters[chapterIndex],
-      chapters[+chapterIndex+1],
+      chapters[+chapterIndex + 1],
       "chapters.length",
       chapters.length,
       "chapters",
       chapters
     );
-    if (chapterIndex !== -1 &&  chapterIndex > 0) {
+    if (chapterIndex !== -1 && chapterIndex > 0) {
       const nextChapterNum = parseFloat(
         chapters[+chapterIndex - 1].split("-").pop()
       );
