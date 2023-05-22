@@ -12,7 +12,7 @@ export async function GET(request) {
   const comments = await Comment.find({ mangaId });
   console.log('logged comments',comments)
   return NextResponse.json(comments);
-}
+} 
 export async function POST(request) {
   connectMongo();
   const { userId,name, commentText, likes,dislikes, mangaId } = await request.json();

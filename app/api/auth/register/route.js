@@ -23,6 +23,13 @@ export async function POST(request) {
     return NextResponse.json(user);
   } catch (error) {
     console.log("post register error", error);
-    return NextResponse.json(error);
+    if (error.code === 11000) {
+      // Duplicate key error
+      return NextResponse.json({ message: "Username or email already exists.",error });
+    } else {
+      console.log(error);
+      return NextResponse.json({ message: error });
+
+    }
   }
 }

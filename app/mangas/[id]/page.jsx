@@ -11,7 +11,6 @@ import { useRouter } from "next/navigation";
 import { useSession} from "next-auth/react";
 
 const MangaPage = ({ params: { id } }) => {
-  // const manga = await fetchManga(id);
   const [bookmark, setBookmark] = useState("");
   const [manga, setManga] = useState({});
   const { user, setUser } = useUserContext();
@@ -19,7 +18,6 @@ const MangaPage = ({ params: { id } }) => {
   const [commentText, setCommentText] = useState("");
   const [comments, setComments] = useCommentContext();
   const [chapters, setChapters] = useState([]);
-  const [chapterImages, setChapterImages] = useState([]);
   const [isMangaLoading, setIsMangaLoading] = useState(true);
   const router = useRouter();
   const { data} = useSession();
@@ -50,7 +48,7 @@ console.log("manga page user info",data,userId)
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
+        body: JSON.stringify({   
           title:manga.title
         }),
       });

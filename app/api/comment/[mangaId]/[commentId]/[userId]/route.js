@@ -38,25 +38,59 @@ export async function PUT(request) {
   console.log("like/dislike", userId, "this is commentId", commentId);
 
   try {
-
-    const comment= await Comment.findById(commentId).populate("likes dislikes")
+    const comment = await Comment.findById(commentId).populate(
+      "likes dislikes"
+    );
     if (!comment) {
       return NextResponse.json({ error: "Comment not found" });
     }
 
     const { action } = await request.json();
 
+    
+    // Check if the user has already liked or disliked the comment
+    const userHasLiked = comment.likesArr.includes(userId);
+    const userHasDisliked = comment.dislikesArr.includes(userId);
+
+    // if (action === "like" && !userHasLiked) {
+    //   comment.likesArr.push(userId); // Add user to likes array
+    //   if (userHasDisliked) {
+    //     comment.dislikesArr.pull(userId); // Remove user from dislikes array,as they already disliked
+    //   }
+    // } else if (action === "dislike" && !userHasDisliked) {
+    //   comment.dislikesArr.push(userId); // Add user to dislikes array
+    //   if (userHasLiked) {
+    //     comment.likesArr.pull(userId); // Remove user from likes array
+    //   }
+    // }
+
     if (action === "like") {
-      comment.likes = +comment.likes +1; // Increment likes count
+      if (userHasLiked) {
+        // User has already liked the comment, so remove their like
+        comment.likesArr.pull(userId);
+      } else {
+        // User hasn't liked the comment, so add their like and remove dislike if present
+        comment.likesArr.push(userId);
+        if (userHasDisliked) {
+          comment.dislikesArr.pull(userId);
+        }
+      }
     } else if (action === "dislike") {
-      comment.dislikes = +comment.dislikes+1; // Increment dislikes count
+      if (userHasDisliked) {
+        // User has already disliked the comment, so remove their dislike
+        comment.dislikesArr.pull(userId);
+      } else {
+        // User hasn't disliked the comment, so add their dislike and remove like if present
+        comment.dislikesArr.push(userId);
+        if (userHasLiked) {
+          comment.likesArr.pull(userId);
+        }
+      }
     }
+    
     const updatedComment = await comment.save(); // Save the updated comment
 
-    
     return NextResponse.json(updatedComment);
-
-
   } catch (error) {
     console.log("like/dislike error", error);
     return NextResponse.json({ message: error });

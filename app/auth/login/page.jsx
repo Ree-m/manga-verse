@@ -55,25 +55,25 @@ const LoginPage = () => {
     }
   }
 
-  async function handleGoogleSignIn() {
-    try {
-      const response = await fetch(`http://localhost:3000/api/auth/register`, {
-        method: "POST",
-        body: JSON.stringify({ name, email }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+  // async function handleGoogleSignIn() {
+  //   try {
+  //     const response = await fetch(`http://localhost:3000/api/auth/register`, {
+  //       method: "POST",
+  //       body: JSON.stringify({ name, email }),
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
 
-      const data = await response.json();
-      console.log("sign in with google", data);
-      setUser(data); // Save the user object in the user context
+  //     const data = await response.json();
+  //     console.log("sign in with google", data);
+  //     setUser(data); // Save the user object in the user context
 
-      await signIn("google");
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  //     await signIn("google");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   return (
     <form onSubmit={onSubmit}>
@@ -103,9 +103,9 @@ const LoginPage = () => {
           Not a member? <Link href="/auth/register">Register</Link>
         </p>
         <p>Or sign up with</p>
-        <button type="button" onClick={handleGoogleSignIn}>
+        {/* <button type="button" onClick={handleGoogleSignIn}>
           google
-        </button>
+        </button> */}
       </div>
     </form>
   );
