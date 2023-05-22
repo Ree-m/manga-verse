@@ -31,6 +31,9 @@ console.log("api url",API_URL)
     } else {
       alert("Registeration failed.Try again later.");
     }
+    setName("")
+    setEmail("")
+    setPassword("")
   }
   return (
     <form onSubmit={onSubmit}>
