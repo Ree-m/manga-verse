@@ -12,7 +12,7 @@ const BookmarkPage = () => {
   const { data} = useSession();
 const userId=data?.user?.id
   console.log("bookmark page", userId);
-
+ 
   useEffect(() => {
     async function fetchBookmark() {
       setLoading(true);

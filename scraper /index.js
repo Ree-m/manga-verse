@@ -3,6 +3,8 @@ const app = express();
 const puppeteer = require("puppeteer");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const connectMongo = require("../utils/connectMongo.js");
+const MangaChapters = require("../models/MangaChapters.js");
 
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(bodyParser.json());
@@ -26,6 +28,15 @@ async function scrapeMangaLink(mangaTitle) {
 }
 
 async function scrapeChapters(mangaTitle) {
+  connectMongo();
+
+  const mangaExists = await MangaChapters.findOne({ mangaTitle });
+
+  if (mangaExists && mangaExists.chapterLinks.length > 0) {
+    console.log("get chapterLinks from db");
+    return mangaExists.chapterLinks;
+  }
+
   const browser = await puppeteer.launch({ headless: "new" });
   const page = await browser.newPage();
   const mangaLink = await scrapeMangaLink(mangaTitle);
@@ -37,7 +48,11 @@ async function scrapeChapters(mangaTitle) {
       return Array.from(links).map((link) => link.href);
     }
   );
-  // console.log("chapterLinks line 37", chapterLinks);
+  await MangaChapters.create({
+    mangaTitle,
+    chapterLinks,
+  });
+  console.log("added to db");
   await browser.close();
   return chapterLinks;
 }
@@ -61,12 +76,19 @@ async function scrapeChapterImages(chapterUrl) {
 }
 
 app.post("/chapters", async (req, res) => {
+  connectMongo()
   try {
     const mangaTitle = req.body.title;
 
     console.log("mangaTitle line 64", mangaTitle, req.body);
-    const chapterLinks = await scrapeChapters(mangaTitle);
-    res.json(chapterLinks);
+    const manga = await MangaChapters.findOne({ mangaTitle });
+    if (manga && manga.chapterLinks.length > 0) {
+      console.log("get chapter links from the database");
+      res.json(manga.chapterLinks);
+    } else {
+      const chapterLinks = await scrapeChapters(mangaTitle);
+      res.json(chapterLinks);
+    }
   } catch (error) {
     console.error(error);
     res.status(500).send("Server Error");

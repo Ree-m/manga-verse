@@ -1,6 +1,9 @@
-import mongoose from "mongoose";
-import dotenv from "dotenv";
-dotenv.config();
+const mongoose=require("mongoose")
+require("dotenv").config({ path: "../.env" });
+
+// import dotenv from "dotenv";
+// import { mongoose } from 'mongoose';
+// dotenv.config();
 
 const connectMongo = () => {
   try {
@@ -13,4 +16,4 @@ const connectMongo = () => {
   }
 };
 
-export default connectMongo;
+module.exports = connectMongo;
