@@ -5,6 +5,8 @@ import { useUserContext } from "../context/user";
 import { useBookmarkContext } from "../context/bookmark";
 import SearchBar from "./SearchBar";
 import { useSession,signOut} from "next-auth/react";
+import styles from "../styles/header.module.css"
+
 
 
 const Header = () => {
@@ -56,11 +58,12 @@ console.log("data,status",data ,status)
   
   return (
     <nav>
-      <div>
+      <div  >
         <Link href="/">
           <h1>Manga App</h1>
         </Link>
       </div>
+      <div>
       {data?.user? (
         <>
 
@@ -73,12 +76,13 @@ console.log("data,status",data ,status)
       ) : (
         <>
 
-          <Link href="/auth/login">Login</Link>
-          <Link href="/">Bookmarks</Link>
+          <Link href="/auth/login">Login/Register</Link>
           <SearchBar/>
 
         </>
       )}
+      </div>
+      
     </nav>
   );
 };

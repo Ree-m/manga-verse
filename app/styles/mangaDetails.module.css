@@ -1,0 +1,16 @@
+
+div.mangaDetails{
+    display: flex;
+    gap:25px;
+    justify-content: center;
+    align-items: center;
+} 
+
+.mangaDetails h1{
+    color:var(--blue)
+}
+
+.mangaDetails p{
+    color: var(--text-grey);
+    font-size: 1.2rem;
+}
