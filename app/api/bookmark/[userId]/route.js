@@ -4,8 +4,8 @@ import Bookmark from "@/models/Bookmark";
 
 export async function POST(request) {
   connectMongo();
-  const { nameOfBookmark,userId} = await request.json();
-  console.log("nameOfBookmark",nameOfBookmark,"userId",userId);
+  const { nameOfBookmark,userId,mangaId,imageUrl,synopsis} = await request.json();
+  console.log("nameOfBookmark",nameOfBookmark,"userId",userId,"mangaId",mangaId,"imageUrl",imageUrl,"synopsis",synopsis);
 
   try {
     const bookmarkExists=await Bookmark.findOne({nameOfBookmark})
@@ -14,7 +14,10 @@ export async function POST(request) {
     }
     const bookmark = await Bookmark.create({
       nameOfBookmark,
-      userId
+      userId,
+      mangaId,
+      imageUrl,
+      synopsis
     });
     await bookmark.save();
     console.log("bookmark added");

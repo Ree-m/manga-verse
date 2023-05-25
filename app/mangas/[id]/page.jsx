@@ -9,6 +9,7 @@ import MangaCover from "@/app/components/MangaCover";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import Recommandations from "@/app/components/Recommandations";
 
 const MangaPage = ({ params: { id } }) => {
   const [bookmark, setBookmark] = useState("");
@@ -62,14 +63,14 @@ const MangaPage = ({ params: { id } }) => {
   }, [manga.title, isMangaLoading]);
 
   // add manga to bookmark
-  async function addToBookmark(nameOfBookmark, userId) {
+  async function addToBookmark(nameOfBookmark, userId,mangaId,imageUrl,synopsis) {
     console.log("start bookmark");
     const response = await fetch(
       `http://localhost:3000/api/bookmark/${userId}`,
       {
         method: "POST",
 
-        body: JSON.stringify({ nameOfBookmark, userId }),
+        body: JSON.stringify({ nameOfBookmark, userId ,mangaId,imageUrl,synopsis}),
         headers: {
           "Content-Type": "application/json",
         },
@@ -156,7 +157,7 @@ const MangaPage = ({ params: { id } }) => {
           </div>
         ))}
 
-      <button onClick={() => addToBookmark(manga.title, userId)}>
+      <button onClick={() => addToBookmark(manga.title, userId,manga.mal_id,manga.images.jpg.image_url,manga.synopsis)}>
         Bookmark
       </button>
       <div className="chapters">
@@ -183,12 +184,14 @@ const MangaPage = ({ params: { id } }) => {
         />
         <button type="submit">Add comment</button>
       </form>
+      <Recommandations manga={manga}/>
 
       <Comments
         comments={comments}
         setComments={setComments}
         mangaId={manga.mal_id}
       />
+
     </div>
   );
 };
