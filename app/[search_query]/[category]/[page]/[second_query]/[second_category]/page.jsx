@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Loading from "@/app/components/Loading";
+import MangaDetails from "@/app/components/MangaDetails";
 const SecondOrderBy = ({ params }) => {
   const searchQuery = params.search_query;
   const searchQuery2 = params.second_query;
@@ -36,15 +37,8 @@ const SecondOrderBy = ({ params }) => {
   }
   return (
     <div>
-      {orderedManga &&
-        orderedManga.map((manga) => (
-          <div key={manga.mal_id}>
-            <Link href={`/mangas/${manga.mal_id}`}>
-              <h1>{manga.title}</h1>
-            </Link>
-            <p>{manga.synopsis}</p>
-          </div>
-        ))}{" "}
+             <MangaDetails mangas={orderedManga} setMangas={setOrderedManga} />
+
     </div>
   );
 };
