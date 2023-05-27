@@ -16,7 +16,7 @@ const MangaDetails = ({ mangas, setMangas }) => {
                 <h1 className={styles.red}>{manga.title}</h1>
               </Link>
 
-              <p>{manga.synopsis.replace(/\s*\[Written by MAL Rewrite\]$/, '')}</p>
+              <p>{manga?.synopsis?.replace(/\[Written by MAL Rewrite\]/g, '')}</p>
             </div>
           </div>
         ))}

@@ -1,0 +1,12 @@
+.mangaPage .mangaInfo{
+    display: flex;
+    flex-direction: row;
+    gap:25px;
+}
+
+.mangaPage .subInfo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:10px;
+}

@@ -5,7 +5,7 @@ const MangaCover = ({ manga }) => {
     <Image
 
       src={manga?.images?.jpg.image_url}
-      alt={`Image of ${manga.title}`}
+      alt={`Image of ${manga?.title}`}
       height={250}
       width={250}
     /> 

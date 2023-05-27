@@ -10,7 +10,7 @@ const OrderBy = ({ params }) => {
   const [orderedManga, setOrderedManga] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  console.log("order", page, category,searchQuery);
+  console.log("order by", page, category,searchQuery);
  
   useEffect(() => {
     async function fetchOrderedManga() {

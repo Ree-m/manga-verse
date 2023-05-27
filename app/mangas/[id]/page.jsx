@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Recommandations from "@/app/components/Recommandations";
+import styles from "app/styles/mangaPage.module.css";
 
 const MangaPage = ({ params: { id } }) => {
   const [bookmark, setBookmark] = useState("");
@@ -60,17 +61,29 @@ const MangaPage = ({ params: { id } }) => {
       console.log("chapters", data);
     }
     if (!isMangaLoading) fetchChapters();
-  }, [manga.title, isMangaLoading]);
+  }, [manga?.title, isMangaLoading]);
 
   // add manga to bookmark
-  async function addToBookmark(nameOfBookmark, userId,mangaId,imageUrl,synopsis) {
+  async function addToBookmark(
+    nameOfBookmark,
+    userId,
+    mangaId,
+    imageUrl,
+    synopsis
+  ) {
     console.log("start bookmark");
     const response = await fetch(
       `http://localhost:3000/api/bookmark/${userId}`,
       {
         method: "POST",
 
-        body: JSON.stringify({ nameOfBookmark, userId ,mangaId,imageUrl,synopsis}),
+        body: JSON.stringify({
+          nameOfBookmark,
+          userId,
+          mangaId,
+          imageUrl,
+          synopsis,
+        }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -143,23 +156,78 @@ const MangaPage = ({ params: { id } }) => {
     return <Loading />;
   }
   return (
-    <div>
-      <h1>{manga.title}</h1>
-      <p>{manga.synopsis}</p>
+    <div className={styles.mangaPage}>
+      <div className={styles.mangaInfo}>
+        <MangaCover manga={manga} />
+        <div>
+          <div>
+            <h1>{manga?.title}</h1>
+            {/* <p>
+              {manga?.synopsis?.replace(/\s*\[Written by MAL Rewrite\]$/, "")}
+            </p> */}
 
-      <MangaCover manga={manga} />
+            <div className={styles.subInfo}>
+              <h4>Alternative:</h4>
+              {manga &&
+                manga.titles &&
+                manga.titles.map((title) => (
+                  <div>
+                    <p>{title.title},</p>
+                  </div>
+                ))}
+            </div>
+            <div className={styles.subInfo}>
+              <h4>Author(s):</h4>
+              {manga &&
+                manga.authors &&
+                manga.authors.map((author) => (
+                  <div key={author.mal_id}>
+                    <p>{author.name},</p>
+                  </div>
+                ))}
+            </div>
+            <div className={styles.subInfo}>
+              <h4>Genres:</h4>
+              {manga &&
+                manga.genres &&
+                manga.genres.map((genre) => (
+                  <div key={genre.mal_id}>
+                    <p>{genre.name},</p>
+                  </div>
+                ))}
+            </div>
 
-      {manga &&
-        manga.genres &&
-        manga.genres.map((genre) => (
-          <div key={genre.mal_id}>
-            <span>{genre.name}</span>
+            <div className={styles.subInfo}>
+              <h4>Status:</h4>
+              <p>{manga?.status}</p>
+            </div>
+
+            {userId ? (
+              <button
+                onClick={() =>
+                  addToBookmark(
+                    manga?.title,
+                    userId,
+                    manga?.mal_id,
+                    manga?.images.jpg.image_url,
+                    manga?.synopsis
+                  )
+                }
+              >
+                Bookmark
+              </button>
+            ) : (
+              <Link href={`/auth/login`}>
+                <button>Bookmark</button>
+              </Link>
+            )}
           </div>
-        ))}
+        </div>
+      </div>
 
-      <button onClick={() => addToBookmark(manga.title, userId,manga.mal_id,manga.images.jpg.image_url,manga.synopsis)}>
-        Bookmark
-      </button>
+      <div className="mangaDescription">
+        <p> {manga?.synopsis?.replace(/\[Written by MAL Rewrite\]/g, '')}</p>
+      </div>
       <div className="chapters">
         {chapters &&
           chapters.map((chapter) => (
@@ -170,10 +238,11 @@ const MangaPage = ({ params: { id } }) => {
             </div>
           ))}
       </div>
+
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          addComment(e, userId, username, commentText, 0, 0, manga.mal_id);
+          addComment(e, userId, username, commentText, 0, 0, manga?.mal_id);
         }}
       >
         <input
@@ -184,14 +253,13 @@ const MangaPage = ({ params: { id } }) => {
         />
         <button type="submit">Add comment</button>
       </form>
-      <Recommandations manga={manga}/>
+      <Recommandations manga={manga} />
 
       <Comments
         comments={comments}
         setComments={setComments}
-        mangaId={manga.mal_id}
+        mangaId={manga?.mal_id}
       />
-
     </div>
   );
 };

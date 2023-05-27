@@ -2,7 +2,6 @@
 div.mangaDetails{
     display: flex;
     gap:25px;
-    justify-content: center;
     align-items: center;
 } 
 

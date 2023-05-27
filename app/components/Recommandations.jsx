@@ -5,7 +5,7 @@ async function fetchRecommandations(mangaId){
 console.log("this is recomm data",data)
 }
 const Recommandations = async ({manga}) => {
-    const recommendedMangas = await fetchRecommandations(manga.mal_id)
+    const recommendedMangas = await fetchRecommandations(manga?.mal_id)
     console.log("reccommended mangas",recommendedMangas)
   return (
     <div>
