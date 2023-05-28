@@ -171,9 +171,10 @@ const MangaPage = ({ params: { id } }) => {
               <h4>Alternative:</h4>
               {manga &&
                 manga.titles &&
-                manga.titles.map((title) => (
+                manga.titles.map((title,index) => (
                   <div>
-                    <p>{title.title},</p>
+                    <p>{title.title}
+                    {index!==manga.titles.length-1 && ","}</p>
                   </div>
                 ))}
             </div>
@@ -181,9 +182,12 @@ const MangaPage = ({ params: { id } }) => {
               <h4>Author(s):</h4>
               {manga &&
                 manga.authors &&
-                manga.authors.map((author) => (
+                manga.authors.map((author,index) => (
                   <div key={author.mal_id}>
-                    <p>{author.name},</p>
+                    <p>
+                      {author.name}
+                      {index !== manga.authors.length - 1 && ","}
+                    </p>
                   </div>
                 ))}
             </div>
@@ -191,16 +195,18 @@ const MangaPage = ({ params: { id } }) => {
               <h4>Genres:</h4>
               {manga &&
                 manga.genres &&
-                manga.genres.map((genre) => (
+                manga.genres.map((genre,index) => (
                   <div key={genre.mal_id}>
-                    <p>{genre.name},</p>
+                    <Link
+                      href={`/genre/${genre.name}/1?genreId=${genre.mal_id}`}
+                    >{genre.name}{index!==manga.genres.length-1 && ","}</Link>
                   </div>
                 ))}
             </div>
 
             <div className={styles.subInfo}>
               <h4>Status:</h4>
-              <p>{manga?.status}</p>
+              <p>{manga?.status === "Finished" ? "Completed" : "Ongoing"}</p>
             </div>
 
             {userId ? (
@@ -225,14 +231,13 @@ const MangaPage = ({ params: { id } }) => {
           </div>
         </div>
       </div>
- 
+
       {/* <div className="mangaDescription">
         <p> {manga?.synopsis?.replace(/\[Written by MAL Rewrite\]/g, '')}</p>
       </div> */}
       <div className={styles.description}>
-        <h4>Description</h4>
-      <ShowLess   manga={manga}/>
-
+        <h4>Description:</h4>
+        <ShowLess manga={manga} />
       </div>
       <div className={styles.chapters}>
         {chapters &&

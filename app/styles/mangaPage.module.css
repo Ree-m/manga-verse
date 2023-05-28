@@ -1,4 +1,12 @@
-.mangaPage{
+.mangaPage h1{
+    font-size: var(--large);
+}
+.mangaPage h4{
+    font-size: var(--small);
+    color: var(--blue);
+}
+.mangaPage p{
+    color:var(--text-grey)
 }
 .mangaPage .chapters{
     height: 400px; /* Set the desired height for the scrollable section */

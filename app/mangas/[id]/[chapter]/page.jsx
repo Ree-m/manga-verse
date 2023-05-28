@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/components/Loading";
+import ChapterImage from "@/app/components/ChapterImage";
 
 const Chapter = ({ params }) => {
   const [manga, setManga] = useState([]);
@@ -16,6 +17,7 @@ const Chapter = ({ params }) => {
   const chapter = params.chapter;
   const id = params.id;
   const chapterNumber = parseFloat(chapter.split("-").pop());
+  
   useEffect(() => {
     async function fetchManga() {
       setLoading(true);
@@ -162,12 +164,8 @@ const Chapter = ({ params }) => {
     <div>
       {chapterImages &&
         chapterImages.map((chapterImage) => (
-          <Image
-            src={chapterImage?.img}
-            alt={"Image of manga"}
-            width={500}
-            height={500}
-          />
+          <ChapterImage chapterImage={chapterImage} chapterImages={chapterImages} />
+
         ))}
 
       <div>
