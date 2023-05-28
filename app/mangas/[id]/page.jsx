@@ -9,7 +9,8 @@ import MangaCover from "@/app/components/MangaCover";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import Recommandations from "@/app/components/Recommandations";
+// import Recommandations from "@/app/components/Recommandations";
+import ShowLess from "@/app/components/ShowLess";
 import styles from "app/styles/mangaPage.module.css";
 
 const MangaPage = ({ params: { id } }) => {
@@ -224,10 +225,11 @@ const MangaPage = ({ params: { id } }) => {
           </div>
         </div>
       </div>
-
-      <div className="mangaDescription">
+ 
+      {/* <div className="mangaDescription">
         <p> {manga?.synopsis?.replace(/\[Written by MAL Rewrite\]/g, '')}</p>
-      </div>
+      </div> */}
+      <ShowLess manga={manga}/>
       <div className="chapters">
         {chapters &&
           chapters.map((chapter) => (
@@ -253,7 +255,7 @@ const MangaPage = ({ params: { id } }) => {
         />
         <button type="submit">Add comment</button>
       </form>
-      <Recommandations manga={manga} />
+      {/* <Recommandations manga={manga} /> */}
 
       <Comments
         comments={comments}
