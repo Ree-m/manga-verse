@@ -10,6 +10,9 @@ body {
   --bg-grey:#f0f0f0;
   --blue:#0a192f;
   --text-grey:#3d3d3d;
+  --small:1rem;
+  --medium:1.5rem;
+  --large:2.5rem;
 }
 a{
   text-decoration: none;

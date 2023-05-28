@@ -6,10 +6,11 @@ div.mangaDetails{
 } 
 
 .mangaDetails h1{
-    color:var(--blue)
+    color:var(--blue);
+    font-size:var(--large);
 }
 
 .mangaDetails p{
     color: var(--text-grey);
-    font-size: 1.2rem;
+    font-size: var(--medium);
 }
