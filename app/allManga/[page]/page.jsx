@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/components/Loading";
 import ReactPaginate from "react-paginate";
+import MangaDetails from "@/app/components/MangaDetails";
 
 const Mangas = ({ params }) => {
   const router = useRouter();
@@ -43,18 +44,8 @@ const Mangas = ({ params }) => {
 
   return (
     <>
-      {mangas &&
-        mangas.map((manga) => (
-          <div key={manga.mal_id}>
-            <Link href={`/mangas/${manga.mal_id}`}>
-              <h1>{manga.title}</h1>
-            </Link>
-            <p>{manga.synopsis}</p>
-          </div>
-        ))}
-      {/* <button onClick={handleBackPage}>back page</button> */}
-
-      {/* <button onClick={handleNextPage}>next page</button> */}
+    <MangaDetails mangas={mangas} setMangas={setMangas}/>
+     
 
       <ReactPaginate
         pageCount={2545} // Replace 10 with the actual number of pages

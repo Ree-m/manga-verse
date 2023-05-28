@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Loading from "@/app/components/Loading";
+import MangaDetails from "@/app/components/MangaDetails";
 const OrderBy = ({ params }) => {
   const category = params.category;
   const page = params.page;
@@ -9,7 +10,7 @@ const OrderBy = ({ params }) => {
   const [orderedManga, setOrderedManga] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  console.log("order", page, category,searchQuery);
+  console.log("order by", page, category,searchQuery);
  
   useEffect(() => {
     async function fetchOrderedManga() {
@@ -31,15 +32,8 @@ const OrderBy = ({ params }) => {
   }
   return (
     <div>
-      {orderedManga &&
-        orderedManga.map((manga) => (
-          <div key={manga.mal_id}>
-            <Link href={`/mangas/${manga.mal_id}`}>
-              <h1>{manga.title}</h1>
-            </Link>
-            <p>{manga.synopsis}</p>
-          </div>
-        ))}{" "}
+     
+        <MangaDetails mangas={orderedManga} setMangas={setOrderedManga} />
     </div>
   );
 };

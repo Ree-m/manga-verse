@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import MangaDetails from "@/app/components/MangaDetails";
 
 const SearchResults = ({ params }) => {
   const query = params.query;
@@ -21,15 +22,8 @@ const SearchResults = ({ params }) => {
   }, [query]);
   return (
     <div>
-      {results &&
-        results.map((result) => (
-          <div key={result.mal_id}>
-            <Link href={`/mangas/${result.mal_id}`}>
-              <h1>{result.title}</h1>
-            </Link>
-            <p>{result.synopsis}</p>
-          </div>
-        ))}
+      <MangaDetails mangas={results} setMangas={setResults} />
+     
     </div>
   );
 };

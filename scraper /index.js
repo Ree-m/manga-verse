@@ -5,6 +5,8 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const connectMongo = require("../utils/connectMongo.js");
 const MangaChapters = require("../models/MangaChapters.js");
+const MangaChapterImages = require("../models/MangaChapterImages.js");
+
 
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(bodyParser.json());
@@ -57,7 +59,9 @@ async function scrapeChapters(mangaTitle) {
   return chapterLinks;
 }
 
-async function scrapeChapterImages(chapterUrl) {
+async function scrapeChapterImages(chapterUrl, mangaTitle,chapter) {
+  connectMongo();
+
   const browser = await puppeteer.launch({ headless: "new" });
   const page = await browser.newPage();
   await page.goto(chapterUrl);
@@ -70,13 +74,20 @@ async function scrapeChapterImages(chapterUrl) {
       }));
     }
   );
+const manga=await MangaChapters.findOne({mangaTitle})
+manga.number=chapter
+ manga.images=images
+
+
+ await manga.save()
+console.log("saved images to db")
   console.log("in pupeteer", images);
   await browser.close();
   return images;
 }
 
 app.post("/chapters", async (req, res) => {
-  connectMongo()
+  connectMongo();
   try {
     const mangaTitle = req.body.title;
 
@@ -103,7 +114,8 @@ app.post("/chapterImages", async (req, res) => {
     const mangaId = mangaLink.split("-").pop();
     console.log("mangaId images line 79", mangaId);
     const chapterImages = await scrapeChapterImages(
-      `https://ww5.manganelo.tv/chapter/manga-${mangaId}/${chapter}`
+      `https://ww5.manganelo.tv/chapter/manga-${mangaId}/${chapter}`,
+      mangaTitle,chapter
     );
     res.json(chapterImages);
   } catch (error) {

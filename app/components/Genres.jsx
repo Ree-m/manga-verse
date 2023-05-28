@@ -26,30 +26,48 @@ const Genres = () => {
   }
   return (
     <div>
+      <h2>Manga by Genre</h2>
+      <div>
+        <ul>
+          
+          <Link href={`/order_by/start_date/1/sort/desc`}>
+            <li>Newest</li>
+          </Link>
+          <Link href={`/order_by/rank/1`}>
+            <li>Popular</li>
+          </Link>
+        </ul>
+      </div>
+
+      <div>
       <ul>
-       
-        <Link href={`/order_by/popularity/1`}>
-          <li>Popular</li>
-        </Link>
-        <Link href={`/order_by/start_date/1/sort/desc`}> 
-          <li>Newest</li>
-        </Link>
-      </ul> 
-      <h3>Genres</h3>
-      <Link href={`/allManga/1`}>
-        <li>All</li>
-      </Link>
+          <Link href={`/order_by/popularity/1`}>
+            <li>All</li>
+          </Link>
+          <Link href={`/order_by/start_date/1/sort/desc`}>
+            <li>Ongoing</li>
+          </Link>
 
-      {genres &&
-        genres.map((genre) => (
-          <ul key={genre.mal_id}>
-            <Link href={`/genre/${genre.name}/1?genreId=${genre.mal_id}`}>
-              <li>{genre.name} </li>
-            </Link>
-          </ul>
-        ))}
+          <Link href={`/order_by/start_date/1/sort/desc`}>
+            <li>Completed</li>
+          </Link>
+        </ul>
+      </div>
 
-    
+      <div>
+        <Link href={`/allManga/1`}>
+          <li>All</li>
+        </Link>
+
+        {genres &&
+          genres.map((genre) => (
+            <ul key={genre.mal_id}>
+              <Link href={`/genre/${genre.name}/1?genreId=${genre.mal_id}`}>
+                <li>{genre.name} </li>
+              </Link>
+            </ul>
+          ))}
+      </div>
     </div>
   );
 };

@@ -11,6 +11,18 @@ const BookmarkSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
+    },
+    mangaId:{
+      type:Number,
+      required:true
+    },
+    imageUrl:{
+      type:String,
+      required:true
+    },
+    synopsis:{
+      type:String,
+      required:true
     }
   },
   {
