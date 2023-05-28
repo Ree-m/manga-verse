@@ -229,8 +229,12 @@ const MangaPage = ({ params: { id } }) => {
       {/* <div className="mangaDescription">
         <p> {manga?.synopsis?.replace(/\[Written by MAL Rewrite\]/g, '')}</p>
       </div> */}
-      <ShowLess manga={manga}/>
-      <div className="chapters">
+      <div className={styles.description}>
+        <h4>Description</h4>
+      <ShowLess   manga={manga}/>
+
+      </div>
+      <div className={styles.chapters}>
         {chapters &&
           chapters.map((chapter) => (
             <div>

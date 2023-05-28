@@ -1,5 +1,8 @@
 .mangaPage{
-    background-color: white;
+}
+.mangaPage .chapters{
+    height: 400px; /* Set the desired height for the scrollable section */
+  overflow: auto; /* Enable scrolling when content exceeds the height */
 }
 .mangaPage .mangaInfo{
     display: flex;
