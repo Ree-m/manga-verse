@@ -1,3 +1,6 @@
+.mangaPage{
+    background-color: white;
+}
 .mangaPage .mangaInfo{
     display: flex;
     flex-direction: row;
