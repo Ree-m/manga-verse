@@ -1,15 +1,18 @@
+import { useRouter } from "next/navigation";
 import styles from "../styles/chapterImage.module.css";
-const ChapterImage = ({ chapterImage }) => {
-  // const containerStyle = {
-  //     backgroundImage: `url(${chapterImage?.img})`,
-  //   };
+const ChapterImage = ({ chapterImage, chapters }) => {
+  const router = useRouter();
+
   return (
-    <div className={styles.chapterImageContainer} >
-      <img
-        className={styles.chapterImage}
-        src={chapterImage?.img}
-        alt="Manga Image"
-      />
+    <div>
+     
+      <div className={styles.chapterImageContainer}>
+        <img
+          className={styles.chapterImage}
+          src={chapterImage?.img}
+          alt="Manga Image"
+        />
+      </div>
     </div>
   );
 };

@@ -2,8 +2,10 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import Loading from "@/app/components/Loading";
 import ChapterImage from "@/app/components/ChapterImage";
+import DropDown from "@/app/components/DropDown";
 
 const Chapter = ({ params }) => {
   const [manga, setManga] = useState([]);
@@ -17,7 +19,7 @@ const Chapter = ({ params }) => {
   const chapter = params.chapter;
   const id = params.id;
   const chapterNumber = parseFloat(chapter.split("-").pop());
-  
+
   useEffect(() => {
     async function fetchManga() {
       setLoading(true);
@@ -38,7 +40,7 @@ const Chapter = ({ params }) => {
 
   useEffect(() => {
     async function fetchChapters() {
-      console.log("reem in chapter",manga,isMangaLoading)
+      console.log("reem in chapter", manga, isMangaLoading);
       console.log("scrape started", manga.data?.title, manga.title, manga.data);
       const response = await fetch(`http://localhost:9000/chapters`, {
         method: "POST",
@@ -59,12 +61,12 @@ const Chapter = ({ params }) => {
       console.log("chapters length", chapters.length);
     }
     if (!isMangaLoading) fetchChapters();
-  }, [manga.title,isMangaLoading]);
+  }, [manga.title, isMangaLoading]);
 
   console.log("new page", params.chapter);
   useEffect(() => {
     async function fetchChapterImages() {
-      console.log("reem in chapter images",manga,isMangaLoading)
+      console.log("reem in chapter images", manga, isMangaLoading);
       setLoading(true);
       console.log("new page");
       console.log(
@@ -91,8 +93,8 @@ const Chapter = ({ params }) => {
       setLoading(false);
       console.log("new page", data);
     }
-    if(!isMangaLoading) fetchChapterImages();
-  }, [manga,isMangaLoading]);
+    if (!isMangaLoading) fetchChapterImages();
+  }, [manga, isMangaLoading]);
 
   async function handlePreviousClick(e) {
     e.preventDefault();
@@ -162,15 +164,26 @@ const Chapter = ({ params }) => {
 
   return (
     <div>
+
+      <div>
+        <Link href={`/`}>Read Manga Online</Link>
+        <Link href={`/mangas/${id}`}>{manga?.title}</Link>
+        <Link href={`/mangas/${id}/${chapter}`}>{chapter}</Link>
+      </div>
+      <DropDown id={id} chapters={chapters} chapter={chapter} />
+
+      <h2>{manga.title}{chapter}</h2>
+     
       {chapterImages &&
         chapterImages.map((chapterImage) => (
-          <ChapterImage chapterImage={chapterImage} chapterImages={chapterImages} />
-
+          <ChapterImage chapterImage={chapterImage} chapters={chapters} />
         ))}
 
       <div>
+      <DropDown id={id} chapters={chapters} chapter={chapter} />
         <button onClick={handlePreviousClick}>Previous chapter</button>
         <button onClick={handleNextClick}>Next chapter</button>
+
       </div>
     </div>
   );
