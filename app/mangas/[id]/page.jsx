@@ -9,7 +9,7 @@ import MangaCover from "@/app/components/MangaCover";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-// import Recommandations from "@/app/components/Recommandations";
+import Recommendations from "@/app/components/Recommendations";
 import ShowLess from "@/app/components/ShowLess";
 import styles from "app/styles/mangaPage.module.css";
 
@@ -264,7 +264,7 @@ const MangaPage = ({ params: { id } }) => {
         />
         <button type="submit">Add comment</button>
       </form>
-      {/* <Recommandations manga={manga} /> */}
+      <Recommendations manga={manga} />
 
       <Comments
         comments={comments}
