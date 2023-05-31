@@ -16,8 +16,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+      <SessionProvider>
         <UserContextProvider>
-          <SessionProvider>
             <BookmarkContextProvider>
               <CommentContextProvider>
                 <Header />
@@ -26,8 +26,9 @@ export default function RootLayout({ children }) {
                 {/* <Footer/> */}
               </CommentContextProvider>
             </BookmarkContextProvider>
-          </SessionProvider>
         </UserContextProvider>
+        </SessionProvider>
+
       </body>
     </html>
   );

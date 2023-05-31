@@ -10,7 +10,7 @@ const MangaDetails = ({ mangas, setMangas }) => {
           <div className={styles.mangaDetails} key={manga.mal_id}>
             <Link href={`/mangas/${manga.mal_id}`}>
               
-              <MangaCover manga={manga} />
+              <MangaCover manga={manga} height={250}/>
             </Link>
             <div>
               <Link href={`/mangas/${manga.mal_id}`}>

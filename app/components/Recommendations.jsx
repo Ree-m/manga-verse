@@ -5,9 +5,9 @@ async function fetchRecommendations(mangaId) {
     `https://api.jikan.moe/v4/manga/${mangaId}/recommendations`
   );
   const data = await response.json();
-  console.log("this is recomm data", data);
+  console.log("this is reem  recomm data", data);
   return data;
-}
+} 
 const Recommendations = async ({ manga }) => {
   
   let recommendedMangas = await fetchRecommendations(manga?.mal_id);

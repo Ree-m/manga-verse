@@ -9,9 +9,12 @@ import MangaCover from "@/app/components/MangaCover";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import Recommendations from "@/app/components/Recommendations";
 import ShowLess from "@/app/components/ShowLess";
+import Recommendations from "@/app/components/Recommendations";
 import styles from "app/styles/mangaPage.module.css";
+
+// icons
+import { MdOutlineBookmarkAdd } from "react-icons/md";
 
 const MangaPage = ({ params: { id } }) => {
   const [bookmark, setBookmark] = useState("");
@@ -27,7 +30,6 @@ const MangaPage = ({ params: { id } }) => {
   const userId = data?.user?.id;
   const username = data?.user?.name;
 
-  console.log("manga page user info", data, userId);
   useEffect(() => {
     async function fetchManga() {
       console.log("this is id", id);
@@ -99,7 +101,7 @@ const MangaPage = ({ params: { id } }) => {
       console.log("finish bookmark", bookmark);
       alert("bookmark added");
     } else {
-      alert("Adding tobookmark failed.Try again later.");
+      alert("Adding to bookmark failed.Try again later.");
     }
   }
 
@@ -158,119 +160,136 @@ const MangaPage = ({ params: { id } }) => {
   }
   return (
     <div className={styles.mangaPage}>
-      <div className={styles.mangaInfo}>
-        <MangaCover manga={manga} />
-        <div>
-          <div>
-            <h1>{manga?.title}</h1>
-            {/* <p>
-              {manga?.synopsis?.replace(/\s*\[Written by MAL Rewrite\]$/, "")}
-            </p> */}
+      <section className={styles.mangaPageContainer}>
+        <section className={styles.firstSection}>
+          <div className={styles.mangaInfo}>
+            <MangaCover manga={manga} height={300}/>
 
-            <div className={styles.subInfo}>
-              <h4>Alternative:</h4>
-              {manga &&
-                manga.titles &&
-                manga.titles.map((title,index) => (
-                  <div>
-                    <p>{title.title}
-                    {index!==manga.titles.length-1 && ","}</p>
-                  </div>
-                ))}
-            </div>
-            <div className={styles.subInfo}>
-              <h4>Author(s):</h4>
-              {manga &&
-                manga.authors &&
-                manga.authors.map((author,index) => (
-                  <div key={author.mal_id}>
-                    <p>
-                      {author.name}
-                      {index !== manga.authors.length - 1 && ","}
-                    </p>
-                  </div>
-                ))}
-            </div>
-            <div className={styles.subInfo}>
-              <h4>Genres:</h4>
-              {manga &&
-                manga.genres &&
-                manga.genres.map((genre,index) => (
-                  <div key={genre.mal_id}>
-                    <Link
-                      href={`/genre/${genre.name}/1?genreId=${genre.mal_id}`}
-                    >{genre.name}{index!==manga.genres.length-1 && ","}</Link>
-                  </div>
-                ))}
-            </div>
-
-            <div className={styles.subInfo}>
-              <h4>Status:</h4>
-              <p>{manga?.status === "Finished" ? "Completed" : "Ongoing"}</p>
-            </div>
-
-            {userId ? (
-              <button
-                onClick={() =>
-                  addToBookmark(
-                    manga?.title,
-                    userId,
-                    manga?.mal_id,
-                    manga?.images.jpg.image_url,
-                    manga?.synopsis
-                  )
-                }
-              >
-                Bookmark
-              </button>
-            ) : (
-              <Link href={`/auth/login`}>
-                <button>Bookmark</button>
-              </Link>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* <div className="mangaDescription">
-        <p> {manga?.synopsis?.replace(/\[Written by MAL Rewrite\]/g, '')}</p>
-      </div> */}
-      <div className={styles.description}>
-        <h4>Description:</h4>
-        <ShowLess manga={manga} />
-      </div>
-      <div className={styles.chapters}>
-        {chapters &&
-          chapters.map((chapter) => (
             <div>
-              <Link href={`/mangas/${id}/${chapter.split("/").pop()}`}>
-                {chapter.split("/").pop()}
-              </Link>
+              <div>
+                <h1>{manga?.title}</h1>
+
+                <div className={styles.subInfo}>
+                  <h4>Alternative:</h4>
+                  {manga &&
+                    manga.titles &&
+                    manga.titles.map((title, index) => (
+                      <div>
+                        <p>
+                          {title.title}
+                          {index !== manga.titles.length - 1 && ","}
+                        </p>
+                      </div>
+                    ))}
+                </div>
+                <div className={styles.subInfo}>
+                  <h4>Author(s):</h4>
+                  {manga &&
+                    manga.authors &&
+                    manga.authors.map((author, index) => (
+                      <div key={author.mal_id}>
+                        <p>
+                          {author.name}
+                          {index !== manga.authors.length - 1 && ","}
+                        </p>
+                      </div>
+                    ))}
+                </div>
+                <div className={styles.subInfo}>
+                  <h4>Genres:</h4>
+                  {manga &&
+                    manga.genres &&
+                    manga.genres.map((genre, index) => (
+                      <div key={genre.mal_id}>
+                        <Link
+                          href={`/genre/${genre.name}/1?genreId=${genre.mal_id}`}
+                        >
+                          {genre.name}
+                          {index !== manga.genres.length - 1 && ","}
+                        </Link>
+                      </div>
+                    ))}
+                </div>
+
+                <div className={styles.subInfo}>
+                  <h4>Date published:</h4>
+                 {manga && manga.published?.string}
+                </div>
+
+                <div className={styles.subInfo}>
+                  <h4>Status:</h4>
+                  <p>
+                    {manga?.status === "Finished" ? "Completed" : "Ongoing"}
+                  </p>
+                </div>
+                <div className={styles.bookmarkBtn}>
+                  {userId ? (
+                    <button
+                      className={styles.letterBtn}
+                      onClick={() =>
+                        addToBookmark(
+                          manga?.title,
+                          userId,
+                          manga?.mal_id,
+                          manga?.images.jpg.image_url,
+                          manga?.synopsis
+                        )
+                      }
+                    >
+                      <MdOutlineBookmarkAdd className={styles.bookmarkIcon} />
+                      <span>Bookmark</span>
+                    </button>
+                  ) : (
+                      <button onClick={()=>router.push(`/auth/login`)}className={styles.letterBtn}>
+                        <MdOutlineBookmarkAdd className={styles.bookmarkIcon} />
+                       <span>Bookmark</span> 
+                      </button>
+                  )}
+                </div>
+              </div>
             </div>
-          ))}
-      </div>
+          </div>
 
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          addComment(e, userId, username, commentText, 0, 0, manga?.mal_id);
-        }}
-      >
-        <input
-          type="text"
-          value={commentText}
-          placeholder="comment"
-          onChange={(e) => setCommentText(e.target.value)}
-        />
-        <button type="submit">Add comment</button>
-      </form>
-      <Recommendations manga={manga} />
+          <div className={styles.description}>
+            <h4>{manga.title} Summary:</h4>
+            <ShowLess manga={manga} />
+          </div>
+        </section>
 
-      <Comments
-        comments={comments}
-        setComments={setComments}
-        mangaId={manga?.mal_id}
-      />
+        {/* <Recommendations manga={manga} /> */}
+        <div className={styles.chapters}>
+          {chapters &&
+            chapters.map((chapter) => (
+              <div>
+                <Link href={`/mangas/${id}/${chapter.split("/").pop()}`}>
+                  {chapter.split("/").pop()}
+                </Link>
+              </div>
+            ))}
+        </div>
+        <section className={styles.commentsSection}>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              addComment(e, userId, username, commentText, 0, 0, manga?.mal_id);
+            }}
+          >
+            <input
+              type="text"
+              value={commentText}
+              placeholder="comment"
+              onChange={(e) => setCommentText(e.target.value)}
+            />
+            <button type="submit">Add comment</button>
+          </form>
+
+          <Comments
+            comments={comments}
+            setComments={setComments}
+            mangaId={manga?.mal_id}
+          />
+        </section>
+      </section>
     </div>
   );
 };

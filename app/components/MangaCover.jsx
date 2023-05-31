@@ -1,12 +1,12 @@
 import Image from "next/image";
 import styles from '../styles/mangaCover.module.css'
-const MangaCover = ({ manga }) => {
+const MangaCover = ({ manga,height }) => {
   return (
     <Image
 
       src={manga?.images?.jpg.image_url}
       alt={`Image of ${manga?.title}`}
-      height={250}
+      height={height}
       width={250}
     /> 
   );
