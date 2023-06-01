@@ -11,7 +11,9 @@ body {
   --link-blue:#1992ea;
   --text-black:#000;
   --bg-white:#fff;
-  --small:1.1rem;
+  --hover-yellow:#f1c40f; 
+  --line-grey:#dedede;
+  --small:1rem;
   --medium:1.2rem;
   --large:2rem;
   box-sizing: border-box;
@@ -44,4 +46,8 @@ a{
   to {
     transform: rotate(360deg);
   }
+}
+.grid{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
 }

@@ -15,6 +15,7 @@ import styles from "app/styles/mangaPage.module.css";
 
 // icons
 import { MdOutlineBookmarkAdd } from "react-icons/md";
+import { AiOutlineDoubleRight } from "react-icons/ai";
 
 const MangaPage = ({ params: { id } }) => {
   const [bookmark, setBookmark] = useState("");
@@ -162,8 +163,15 @@ const MangaPage = ({ params: { id } }) => {
     <div className={styles.mangaPage}>
       <section className={styles.mangaPageContainer}>
         <section className={styles.firstSection}>
+          <div className={styles.top}>
+            <Link href={`/`}>Read Manga Online</Link>
+            <span>
+              <AiOutlineDoubleRight className={styles.doubleArrowIcon}/>
+            </span>
+            <Link href={`/mangas/${id}`}>{manga.title}</Link>
+          </div>
           <div className={styles.mangaInfo}>
-            <MangaCover manga={manga} height={300}/>
+            <MangaCover manga={manga} height={300} />
 
             <div>
               <div>
@@ -213,7 +221,7 @@ const MangaPage = ({ params: { id } }) => {
 
                 <div className={styles.subInfo}>
                   <h4>Date published:</h4>
-                 {manga && manga.published?.string}
+                  {manga && manga.published?.string}
                 </div>
 
                 <div className={styles.subInfo}>
@@ -240,10 +248,13 @@ const MangaPage = ({ params: { id } }) => {
                       <span>Bookmark</span>
                     </button>
                   ) : (
-                      <button onClick={()=>router.push(`/auth/login`)}className={styles.letterBtn}>
-                        <MdOutlineBookmarkAdd className={styles.bookmarkIcon} />
-                       <span>Bookmark</span> 
-                      </button>
+                    <button
+                      onClick={() => router.push(`/auth/login`)}
+                      className={styles.letterBtn}
+                    >
+                      <MdOutlineBookmarkAdd className={styles.bookmarkIcon} />
+                      <span>Bookmark</span>
+                    </button>
                   )}
                 </div>
               </div>
@@ -258,6 +269,9 @@ const MangaPage = ({ params: { id } }) => {
 
         {/* <Recommendations manga={manga} /> */}
         <div className={styles.chapters}>
+          <div className={styles.chaptersHeading}>
+            <p>Chapter name</p>
+          </div>
           {chapters &&
             chapters.map((chapter) => (
               <div>

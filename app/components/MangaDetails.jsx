@@ -4,7 +4,7 @@ import ReadMore from "./ReadMore";
 import styles from "../styles/mangaDetails.module.css";
 const MangaDetails = ({ mangas, setMangas }) => {
   return (
-    <div>
+    <div className="grid">
       {mangas && 
         mangas.map((manga) => (
           <div className={styles.mangaDetails} key={manga.mal_id}>

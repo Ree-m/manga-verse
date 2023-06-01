@@ -1,92 +1,130 @@
-.mangaPageContainer{
-    background-color: var(--bg-white);
-    padding: 0px 15px;
+.mangaPageContainer {
+  /* background-color: var(--bg-white); */
+  padding: 0px 15px;
 }
-.mangaPage h1{
-    font-size: var(--large);
-    font-weight: 700;
-    padding-bottom: 10px;
+.top{
+  padding:10px 0px;
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: 1px solid var(--line-grey);
+  margin-bottom: 10px;
+  gap:3px;
 }
-.mangaPage h4{
-    font-weight: 400;
-    font-size: var(--small);
-    color: var(--text-black);
+.top a{
+    color:var(--link-blue);
 }
-.mangaPage p{
-    color:var(--text-black);
-    font-size: var(--small);
-
+.top a:hover{
+    color:var(--hover-yellow);
 }
-.mangaPage .chapters{
-    height: 400px; /* Set the desired height for the scrollable section */
-  overflow: auto; /* Enable scrolling when content exceeds the height */
+.mangaPage .firstSection {
+  background-color: var(--bg-white);
 }
-.mangaPage .mangaInfo{
-    display: flex;
-    flex-direction: row;
-    gap:25px;
+.mangaPage h1 {
+  font-size: var(--large);
+  font-weight: 700;
+  padding-bottom: 10px;
 }
-
-.mangaPage .subInfo{
-    display: flex;
-    /* flex-direction: row; */
-    align-items: center;
-    flex-wrap: wrap;
-    line-height: 2.5rem;
-    gap:8px;
+.mangaPage h4 {
+  font-weight: 400;
+  font-size: var(--small);
+  color: var(--text-black);
 }
-
-.mangaPage .subInfo a{
-    color: var(--link-blue);
-    font-size: var(--small);
-
-
+.mangaPage p {
+  color: var(--text-black);
+  font-size: var(--small);
 }
-.mangaPage .subInfo a:hover{
-    color: var(--orange);
+.mangaPage .chapters {
+  height: 450px; /* Set the desired height for the scrollable section */
+  overflow-y: scroll; /* Enable scrolling when content exceeds the height */
+}
+.mangaPage .mangaInfo {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
 }
 
-.mangaInfo{
-    border-bottom: 1px dashed var(--orange);
-    padding-bottom: 50px;
-}
-.description{
-    padding: 30px 0px;
-
-}
-.description h4{
-    color:var(--orange);
-    padding-bottom: 10px;
-    font-weight: 700;
+.mangaPage .subInfo {
+  display: flex;
+  /* flex-direction: row; */
+  align-items: center;
+  flex-wrap: wrap;
+  line-height: 2.5rem;
+  gap: 8px;
 }
 
-.chapters{
-    margin: 30px 0px;
+.mangaPage .subInfo a {
+  color: var(--link-blue);
+  font-size: var(--small);
+}
+.mangaPage .subInfo a:hover {
+  color: var(--hover-yellow);
+}
+
+.mangaInfo {
+  border-bottom: 1px dashed var(--orange);
+  padding-bottom: 50px;
+}
+.description {
+  padding: 30px 10px;
+}
+.description h4 {
+  color: var(--orange);
+  padding-bottom: 10px;
+  font-weight: 700;
+}
+
+.chapters {
+  margin: 10px 0px;
+  padding: 10px 10px;
+  background-color: var(--bg-white);
+  /* position: absolute; */
+
+}
+.chaptersHeading {
+  border-bottom: 1px solid var(--orange);
+  position: sticky;
+  top: 0;
+  z-index: 1; /* Ensure the heading appears above the scrolling content */
+  background-color: #fff; /* Set the desired background color */
+
+}
+.chaptersHeading p {
+  color: var(--orange);
+  font-weight: 700;
+}
+.doubleArrowIcon{
+  font-size: 0.65rem;
+}
+
+.chapters a {
+  line-height: 26px;
+}
+
+.chapters a:hover {
+  color: var(--hover-yellow);
 }
 
 /* buttons */
-.mangaPage .letterBtn{
-    background-color: inherit;
-    border: none;
-    font-size: var(--small);
+.mangaPage .letterBtn {
+  background-color: transparent;
+  border: none;
+  font-size: var(--small);
 }
 
-.bookmarkBtn button{
-    cursor: pointer;
-    display: flex;
-    align-items:center;
-    justify-content: center;
-    gap:5px;
-    /* background-color: aqua; */
+.bookmarkBtn button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 }
-.bookmarkBtn button:hover{
-    transform:scale(1.05)
-    
+.bookmarkBtn button:hover {
+  transform: scale(1.05);
 }
-.bookmarkBtn span{
-    color:var(--link-blue);
+.bookmarkBtn span {
+  color: var(--black);
 }
-.bookmarkIcon{
-    font-size: 2.8rem;
-    color:var(--orange)
+.bookmarkIcon {
+  font-size: 2.8rem;
+  color: var(--hover-yellow);
 }

@@ -30,4 +30,14 @@
   text-transform: uppercase;
   border-bottom: 1px dashed var(--orange);
   width: 30%;
+  /* display: flex; */
+  /* align-items: center; */
+  /* font-size: var(--small); */
+}
+.showMoreButton:hover{
+  color: var(--hover-yellow);
+}
+
+.description p{
+  line-height: 22px;
 }
