@@ -171,7 +171,7 @@ const MangaPage = ({ params: { id } }) => {
             <Link href={`/mangas/${id}`}>{manga.title}</Link>
           </div>
           <div className={styles.mangaInfo}>
-            <MangaCover manga={manga} height={300} />
+            <MangaCover manga={manga} height={300} width={250}/>
 
             <div>
               <div>

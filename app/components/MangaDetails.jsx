@@ -1,26 +1,41 @@
 import Link from "next/link";
 import MangaCover from "./MangaCover";
 import ReadMore from "./ReadMore";
+import {GiSandsOfTime} from "react-icons/gi"
+
+import {BsFillPersonFill} from "react-icons/bs"
 import styles from "../styles/mangaDetails.module.css";
 const MangaDetails = ({ mangas, setMangas }) => {
   return (
     <div className="grid">
-      {mangas && 
+      {mangas &&
         mangas.map((manga) => (
           <div className={styles.mangaDetails} key={manga.mal_id}>
             <Link href={`/mangas/${manga.mal_id}`}>
-              
-              <MangaCover manga={manga} height={250}/>
+              <MangaCover manga={manga} height={176} width={116} />
             </Link>
             <div>
               <Link href={`/mangas/${manga.mal_id}`}>
-                <h1>{manga.title}</h1>
+                <h2>{manga.title}</h2>
               </Link>
+              <div className={styles.subDetails}>
+                <span>Chapter 33</span>
+              <div className={styles.subDetails2}>
+              <div >
+                  <GiSandsOfTime/>
+                 <p> {manga?.status === "Finished" ? "Completed" : "Ongoing"}</p>
 
-              {/* <p>{manga?.synopsis?.replace(/\[Written by MAL Rewrite\]/g, '')}</p> */}
-              <ReadMore manga={manga} />
-              <div>
+                </div>
+
+                <div>
+                  <BsFillPersonFill/>
+                  <p>Nino</p>
+                </div>
               </div>
+              </div>
+                
+              <ReadMore manga={manga} />
+              <div></div>
             </div>
           </div>
         ))}

@@ -12,9 +12,9 @@ const ShowLess = ({ manga }) => {
   return (
     <div className={styles.description}>
       <div className={showMore ? styles.showLess : styles.showMore}>
-        <p>{text}</p>
+        <p>{text=="" ? "Until This Social Outcast Becomes My Wife... summary is updating. Come visit MangaNato.com sometime to read the latest chapter of Until This Social Outcast Becomes My Wife.... If you have any question about this manga, Please don't hesitate to contact us or translate team. Hope you enjoy it.":text}</p>
         <br />
-        <p>{text2}</p>
+        <p>{text=="" ? "": text2}</p>
       </div>
       <div className={styles.showMoreButtonContainer}>
         <button
