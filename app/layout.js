@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
               <CommentContextProvider>
                 <Header />
                 <main>{children}</main>
-                <Genres />
+                {/* <Genres /> */}
                 {/* <Footer/> */}
               </CommentContextProvider>
             </BookmarkContextProvider>

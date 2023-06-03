@@ -12,7 +12,7 @@ const MangaDetails = ({ mangas, setMangas }) => {
         mangas.map((manga) => (
           <div className={styles.mangaDetails} key={manga.mal_id}>
             <Link href={`/mangas/${manga.mal_id}`}>
-              <MangaCover manga={manga} height={176} width={116} />
+              <MangaCover manga={manga} height={176} width={116} border={true} />
             </Link>
             <div>
               <Link href={`/mangas/${manga.mal_id}`}>

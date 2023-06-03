@@ -1,0 +1,15 @@
+.sideBar{
+    background-color: #fff;
+}
+.sideBar .grid ul{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+
+.genreGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+ 
+  
