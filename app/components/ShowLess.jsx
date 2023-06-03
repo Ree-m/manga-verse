@@ -8,7 +8,7 @@ const ShowLess = ({ manga }) => {
   const [showMore, setShowMore] = useState(false);
   const text = manga?.synopsis?.replace(/\[Written by MAL Rewrite\]/g, "");
   const text2 = manga?.background;
-
+ 
   return (
     <div className={styles.description}>
       <div className={showMore ? styles.showLess : styles.showMore}>

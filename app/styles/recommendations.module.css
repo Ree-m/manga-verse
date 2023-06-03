@@ -1,0 +1,66 @@
+.colorBlock {
+  border-top: 2px solid #903;
+
+}
+
+.colorBlock .colorBlockTitle {
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #903;
+  display: inline-block;
+  padding: 0 5px;
+}
+.colorBlock .colorBlockItems {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.colorBlock .colorBlockItems .colorBlockItem p {
+  color: #fff;
+  height: 25px;
+}
+
+.colorBlock .colorBlockItems .colorBlockItem p:hover {
+  padding-left: 10px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.9); /* Add text-shadow for glow effect */
+
+}
+.no0 {
+  background-color: #c0392b;
+}
+
+.no1 {
+  background-color: #e84c3d;
+}
+
+.no2 {
+  background-color: #e67e22;
+}
+
+.no3 {
+  background-color: #f1c40f;
+}
+
+.no4 {
+  background-color: #2ecc71;
+}
+
+.no5 {
+  background-color: #27ae60 !important;
+}
+
+.no6 {
+  background-color: #1abc9c;
+}
+
+.no7 {
+  background-color: #16a085;
+}
+
+.no8 {
+  background-color: #3498db;
+}
+
+.no9 {
+  background-color: #2980b9;
+}
