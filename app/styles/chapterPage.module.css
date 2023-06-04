@@ -1,0 +1,31 @@
+ .chapterPageNav {
+  display: flex;
+  gap:15px;
+}
+
+
+.buttonContainer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap:3px;
+  background-color: var(--button-green);
+  padding: 4px;
+}
+.buttonContainer button{
+  border: none;
+  background-color: var(--button-green);
+  color: #fff;
+  font-size:0.9rem;
+  text-transform: uppercase;
+  
+}
+.buttonContainer button:hover{
+  color:var(--hover-yellow)
+}
+
+.buttonContainer i{
+  color:#fff;
+  font-size:1rem;
+}

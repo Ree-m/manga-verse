@@ -6,6 +6,11 @@ import Link from "next/link";
 import Loading from "@/app/components/Loading";
 import ChapterImage from "@/app/components/ChapterImage";
 import DropDown from "@/app/components/DropDown";
+import styles from "app/styles/chapterPage.module.css";
+
+// icons
+import { BsArrowRightCircle } from "react-icons/bs";
+import { BsArrowLeftCircle } from "react-icons/bs";
 
 const Chapter = ({ params }) => {
   const [manga, setManga] = useState([]);
@@ -164,7 +169,6 @@ const Chapter = ({ params }) => {
 
   return (
     <div>
-
       <div>
         <Link href={`/`}>Read Manga Online</Link>
         <Link href={`/mangas/${id}`}>{manga?.title}</Link>
@@ -172,18 +176,32 @@ const Chapter = ({ params }) => {
       </div>
       <DropDown id={id} chapters={chapters} chapter={chapter} />
 
-      <h2>{manga.title}{chapter}</h2>
-     
+      <h2>
+        {manga.title}
+        {chapter}
+      </h2>
+
       {chapterImages &&
         chapterImages.map((chapterImage) => (
           <ChapterImage chapterImage={chapterImage} chapters={chapters} />
         ))}
 
-      <div>
-      <DropDown id={id} chapters={chapters} chapter={chapter} />
-        <button onClick={handlePreviousClick}>Previous chapter</button>
-        <button onClick={handleNextClick}>Next chapter</button>
+      <div className={styles.chapterPageNav}>
+        <DropDown id={id} chapters={chapters} chapter={chapter} />
+        <div className={styles.buttonContainer}>
+          <i>
+            <BsArrowLeftCircle />
+          </i>
 
+          <button onClick={handlePreviousClick}>Prev chapter</button>
+        </div>
+
+        <div className={styles.buttonContainer}>
+          <button onClick={handlePreviousClick}>Next chapter</button>
+          <i>
+            <BsArrowRightCircle />
+          </i>
+        </div>
       </div>
     </div>
   );

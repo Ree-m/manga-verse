@@ -39,24 +39,28 @@ async function scrapeChapters(mangaTitle) {
     return mangaExists.chapterLinks;
   }
 
-  const browser = await puppeteer.launch({ headless: "new" });
-  const page = await browser.newPage();
-  const mangaLink = await scrapeMangaLink(mangaTitle);
-  await page.goto(mangaLink);
+  else{
+    const browser = await puppeteer.launch({ headless: "new" });
+    const page = await browser.newPage();
+    const mangaLink = await scrapeMangaLink(mangaTitle);
+    await page.goto(mangaLink);
+  
+    const chapterLinks = await page.$$eval(
+      ".panel-story-chapter-list .row-content-chapter li a",
+      (links) => {
+        return Array.from(links).map((link) => link.href);
+      }
+    );
+    await MangaChapters.create({
+      mangaTitle,
+      chapterLinks,
+    });
+    console.log("added to db");
+    await browser.close();
+    return chapterLinks;
+  }
 
-  const chapterLinks = await page.$$eval(
-    ".panel-story-chapter-list .row-content-chapter li a",
-    (links) => {
-      return Array.from(links).map((link) => link.href);
-    }
-  );
-  await MangaChapters.create({
-    mangaTitle,
-    chapterLinks,
-  });
-  console.log("added to db");
-  await browser.close();
-  return chapterLinks;
+ 
 }
 
 async function scrapeChapterImages(chapterUrl, mangaTitle,chapter) {

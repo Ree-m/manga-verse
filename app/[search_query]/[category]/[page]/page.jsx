@@ -16,7 +16,7 @@ const OrderBy = ({ params }) => {
     async function fetchOrderedManga() {
       setLoading(true);
       const response = await fetch(
-        `https://api.jikan.moe/v4/manga?${searchQuery}=${category}?&page=${page}`
+        `https://api.jikan.moe/v4/manga?${searchQuery}=${category}&min_score=1&page=${page}`
         
       );
       const data = await response.json();

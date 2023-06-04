@@ -1,22 +1,23 @@
 import Link from "next/link";
 import styles from "../styles/recommendations.module.css";
-async function fetchRecommendations(mangaId) {
-  console.log("this is recomm mamngaId reem", mangaId);
+
+import {BsArrowRightCircle} from "react-icons/bs"
+async function fetchManga() {
   const response = await fetch(
-    `https://api.jikan.moe/v4/manga/${mangaId}/recommendations`
+    `https://api.jikan.moe/v4/manga?order_by=popularity&min_score=1`
   );
   const data = await response.json();
-  console.log("this is reem  recomm data", data);
+  console.log("this is reem manga block data", data);
   return data;
 }
-const Recommendations = async ({ manga }) => {
-  let recommendedMangas = await fetchRecommendations(manga?.mal_id);
+const Recommendations = async () => {
+  let manga = await fetchManga();
 
   return (
     <div className={styles.colorBlock}>
-      <h4 className={styles.colorBlockTitle}>Recommendations</h4>
-      {recommendedMangas &&
-        recommendedMangas?.data?.map((manga, index) => {
+      <h2 className={styles.colorBlockTitle}>Most Popular Manga</h2>
+      {manga &&
+        manga?.data?.map((manga, index) => {
 
           const className = `no${index}`; // Define class name for dynamic styling
 
@@ -25,10 +26,10 @@ const Recommendations = async ({ manga }) => {
               <div className={styles.colorBlockItems}>
                 <Link
                 className={styles.colorBlockItem}
-                  href={`/mangas/${manga.entry.mal_id}`}
-                  key={manga.entry.mal_id}
+                  href={`/mangas/${manga.mal_id}`}
+                  key={manga.mal_id}
                 >
-                    <p className={`${styles[className]}`}>{manga.entry.title}</p>
+                    <p className={`${styles[className]}`}>{manga.title}</p>
                 </Link>
               </div>
             );
