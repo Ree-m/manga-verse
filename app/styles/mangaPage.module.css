@@ -1,6 +1,6 @@
 .wholePage{
   display: grid;
-  grid-template-columns: 70% 30%;
+  grid-template-columns: 68% 32%;
   gap:15px;
 }
 
@@ -134,4 +134,9 @@
 .bookmarkIcon {
   font-size: 2.8rem;
   color: var(--hover-yellow);
+}
+.mangaPageSideBar{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }

@@ -5,10 +5,14 @@
 
 .colorBlock .colorBlockTitle {
   text-transform: uppercase;
-  color: #fff;
+  color: #fff; 
   background-color: #903;
   display: inline-block;
-  padding: 0 5px;
+  font-weight:400;
+  font-size: 1.2rem;
+  padding: 5px 8px;
+
+
 }
 .colorBlock .colorBlockItems {
   display: flex;
@@ -17,7 +21,8 @@
 }
 .colorBlock .colorBlockItems .colorBlockItem p {
   color: #fff;
-  height: 25px;
+  /* height: 25px; */
+  padding: 5px;
 }
 
 .colorBlock .colorBlockItems .colorBlockItem p:hover {

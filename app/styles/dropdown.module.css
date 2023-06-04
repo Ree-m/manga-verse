@@ -1,0 +1,21 @@
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown select {
+    width: auto; 
+    height: 30px; 
+    padding: 5px; 
+    font-size: 16px;
+    border: 1px solid var(--line-grey);
+    border-radius: 4px;
+    background-color: #efefef;
+  }
+  
+  
+  .dropdown select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  

@@ -1,0 +1,27 @@
+.footer{
+    background-color: #fff;
+    border-top: 2px solid var(--blue);
+    margin-top: 10px;
+}
+
+.footer .center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:var(--text-grey-medium)
+}
+
+.footerNav h5{
+font-size:1.4rem;
+font-weight: 400;
+color: var(--blue);
+padding: 5px;
+}
+.footerNav p{
+    padding: 3px 5px;
+    color: var(--text-grey-medium);
+}
+.footerNav a{
+    color:var(--blue)
+}
+

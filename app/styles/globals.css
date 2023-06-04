@@ -13,8 +13,11 @@ body {
   --hover-yellow: #f1c40f;
   --line-grey: #dedede;
   --text-grey: #7e7e7e;
+  --text-grey-medium:#383838;
   --text-grey-dark:#424242;
   --image-line-grey: #d7d7d9;
+  --button-green:#27ae60;
+  --blue:#1992ea;
   --smaller: 0.8rem;
   --small: 1rem;
   --medium: 1.2rem;
@@ -53,4 +56,8 @@ a {
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+}
+
+button{
+  cursor: pointer;
 }

@@ -320,7 +320,7 @@ const MangaPage = ({ params: { id } }) => {
         </section>
       </div>
       <div className={styles.mangaPageSideBar}>
-        {/* <Recommendations manga={manga} /> */}
+        <Recommendations  />
         <Genres sideBar={true} />
       </div>
     </div>

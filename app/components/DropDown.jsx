@@ -1,6 +1,7 @@
 "use client";
 import { useState,useEffect } from "react";
 import { useRouter } from "next/navigation";
+import styles from "../styles/dropdown.module.css"
 const DropDown = ({ id, chapters, chapter }) => {
   const [selectedChapter, setSelectedChapter] = useState("");
   const router = useRouter();
@@ -18,7 +19,7 @@ const DropDown = ({ id, chapters, chapter }) => {
   };
 
   return (
-    <div>
+    <div class={styles.dropdown}>
       <select onChange={handleChapterChange} value={selectedChapter}>
         {chapters &&
           chapters.map((chapter) => (

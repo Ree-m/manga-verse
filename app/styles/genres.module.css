@@ -1,15 +1,32 @@
-.sideBar{
-    background-color: #fff;
+.sideBar {
+  border-top: 2px solid #3498db;
 }
-.sideBar .grid ul{
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
+.sideBar h2 {
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #3498db;
+  display: inline-block;
+  padding: 5px 8px;
+  font-weight: 400;
+  font-size: 1.2rem;
 }
 
-.genreGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
- 
-  
+.sideBar .grid {
+  background-color: #fff;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid var(--line-grey);
+  padding: 8px 15px;
+}
+
+.sideBar .grid li {
+  color: var(--text-grey-medium);
+  padding:5px; /* Remove any left padding */
+  list-style-position: inside;
+
+}
+
+.sideBar .grid li:hover{
+  color:var(--hover-yellow)
+}
