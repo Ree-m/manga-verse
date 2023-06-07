@@ -18,7 +18,10 @@ import styles from "app/styles/mangaPage.module.css";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 import { AiOutlineDoubleRight } from "react-icons/ai";
 
-const MangaPage = ({ params: { id } }) => {
+// fucntions
+import { fetchManga } from "@/app/functions/fetchManga";
+
+const MangaPage = ({ params}) => {
   const [bookmark, setBookmark] = useState("");
   const [manga, setManga] = useState({});
   const { user, setUser } = useUserContext();
@@ -31,21 +34,24 @@ const MangaPage = ({ params: { id } }) => {
   const { data } = useSession();
   const userId = data?.user?.id;
   const username = data?.user?.name;
-
+  const id=+params.id
+  
   useEffect(() => {
-    async function fetchManga() {
-      console.log("this is id", id);
-
-      const response = await fetch(`https://api.jikan.moe/v4/manga/${id}`);
-      const manga = await response.json();
-      setManga(manga.data);
-      setIsMangaLoading(false);
-      console.log("finished fetching");
-      console.log("manga", manga);
+    async function fetchMangaData() {
+      try {
+        console.log("reem id",id+1)
+        const response = await fetchManga(id);
+        console.log("reem resppnse",response)
+        setManga(response?.data);
+        setIsMangaLoading(false);
+      } catch (error) {
+        console.log(`Error fetching manga:`, error);
+      }
     }
-    fetchManga();
+  
+    fetchMangaData();
   }, [id]);
-
+  
   useEffect(() => {
     async function fetchChapters() {
       console.log("reem", "hi", manga, isMangaLoading);
@@ -156,7 +162,14 @@ const MangaPage = ({ params: { id } }) => {
     console.log("comments adding data", newComment);
     console.log("finsih adding comment");
   }
-
+// useEffect(()=>{
+//   async function fetchLatest(){
+//     const resposne =await fetch(`https://api.jikan.moe/v4/top/manga?filter=publishing`)
+//     const data =await resposne.json()
+//     console.log("thiissisiisisi reem",data)
+//   }
+//   fetchLatest()
+// },[])
   if (loading) {
     return <Loading />;
   }
@@ -269,7 +282,7 @@ const MangaPage = ({ params: { id } }) => {
             </div>
 
             <div className={styles.description}>
-              <h4>{manga.title} Summary:</h4>
+              <h4>{manga?.title} Summary:</h4>
               <ShowLess manga={manga} />
             </div>
           </section>

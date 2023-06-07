@@ -6,7 +6,7 @@ const ChapterImage = ({ chapterImage, chapters }) => {
   return (
     <div>
      
-      <div className={styles.chapterImageContainer}>
+      <div className={styles.chapterImageContainerHalfSize}>
         <img
           className={styles.chapterImage}
           src={chapterImage?.img}

@@ -1,0 +1,22 @@
+.carouselItemContainer {
+    position: relative;
+  }
+.img{
+    height: 250px;
+}
+  
+  .carouselItemTitle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  .carouselItemTitle:hover{
+    color:var(--hover-yellow)
+  }
+  

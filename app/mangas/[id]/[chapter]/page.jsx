@@ -5,12 +5,11 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Loading from "@/app/components/Loading";
 import ChapterImage from "@/app/components/ChapterImage";
-import DropDown from "@/app/components/DropDown";
+import ChapterPageNav from "@/app/components/ChapterPageNav";
 import styles from "app/styles/chapterPage.module.css";
 
-// icons
-import { BsArrowRightCircle } from "react-icons/bs";
-import { BsArrowLeftCircle } from "react-icons/bs";
+// fucntions
+import { fetchChapters } from "@/app/functions/fetchChapters";
 
 const Chapter = ({ params }) => {
   const [manga, setManga] = useState([]);
@@ -44,28 +43,15 @@ const Chapter = ({ params }) => {
   }, [id]);
 
   useEffect(() => {
-    async function fetchChapters() {
-      console.log("reem in chapter", manga, isMangaLoading);
-      console.log("scrape started", manga.data?.title, manga.title, manga.data);
-      const response = await fetch(`http://localhost:9000/chapters`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title: manga.title,
-        }),
-      });
-      console.log("scarpe", response);
-
-      const data = await response.json();
-
-      setChapters(data);
-
-      console.log("mangaLink", response.data);
-      console.log("chapters length", chapters.length);
+    async function fetchChaptersData() {
+      try{
+        const response =await fetchChapters(manga?.title)
+        setChapters(response)
+      }catch(error){
+        console.log("Error fetching chapters",error)
+      }
     }
-    if (!isMangaLoading) fetchChapters();
+    if (!isMangaLoading) fetchChaptersData();
   }, [manga.title, isMangaLoading]);
 
   console.log("new page", params.chapter);
@@ -101,107 +87,32 @@ const Chapter = ({ params }) => {
     if (!isMangaLoading) fetchChapterImages();
   }, [manga, isMangaLoading]);
 
-  async function handlePreviousClick(e) {
-    e.preventDefault();
-
-    const chapterIndex = chapters.findIndex((chapter) => {
-      const chapterNum = parseFloat(chapter.split("-").pop());
-      return chapterNum === chapterNumber;
-    });
-    console.log(
-      "chapterIndex",
-      chapterIndex,
-      "chapterNumber",
-      chapterNumber,
-      "chapters[chapterIndex]",
-      chapters[chapterIndex],
-      chapters[+chapterIndex + 1],
-      "chapters.length",
-      chapters.length,
-      "chapters",
-      chapters
-    );
-
-    if (chapterIndex !== -1 && chapterIndex > 0) {
-      const previousChapterNum = parseFloat(
-        chapters[chapterIndex + 1].split("-").pop()
-      );
-      router.push(`/mangas/${id}/chapter-${previousChapterNum}`);
-    } else {
-      console.log("Previous chapter does not exist.");
-      // Handle the case when there is no next chapter
-    }
-  }
-
-  async function handleNextClick(e) {
-    e.preventDefault();
-    const chapterIndex = chapters.findIndex((chapter) => {
-      const chapterNum = parseFloat(chapter.split("-").pop());
-      return chapterNum === chapterNumber;
-    });
-    console.log(
-      "chapterIndex",
-      chapterIndex,
-      "chapterNumber",
-      chapterNumber,
-      "chapters[chapterIndex]",
-      chapters[chapterIndex],
-      chapters[+chapterIndex + 1],
-      "chapters.length",
-      chapters.length,
-      "chapters",
-      chapters
-    );
-    if (chapterIndex !== -1 && chapterIndex > 0) {
-      const nextChapterNum = parseFloat(
-        chapters[+chapterIndex - 1].split("-").pop()
-      );
-      router.push(`/mangas/${id}/chapter-${nextChapterNum}`);
-    } else {
-      console.log("Next chapter does not exist.");
-      // Handle the case when there is no next chapter
-    }
-  }
-
   if (loading) {
     return <Loading />;
   }
 
   return (
-    <div>
-      <div>
-        <Link href={`/`}>Read Manga Online</Link>
-        <Link href={`/mangas/${id}`}>{manga?.title}</Link>
-        <Link href={`/mangas/${id}/${chapter}`}>{chapter}</Link>
-      </div>
-      <DropDown id={id} chapters={chapters} chapter={chapter} />
+    <div className={styles.chpaterPage}>
+      <div className={styles.chapterPageContainer}>
+        <ChapterPageNav
+          manga={manga}
+          chapter={chapter}
+          chapters={chapters}
+          id={id}
+          reverse={false}
+        />
+        {chapterImages &&
+          chapterImages.map((chapterImage) => (
+            <ChapterImage chapterImage={chapterImage} chapters={chapters} />
+          ))}
 
-      <h2>
-        {manga.title}
-        {chapter}
-      </h2>
-
-      {chapterImages &&
-        chapterImages.map((chapterImage) => (
-          <ChapterImage chapterImage={chapterImage} chapters={chapters} />
-        ))}
-
-      <div className={styles.chapterPageNav}>
-        <DropDown id={id} chapters={chapters} chapter={chapter} />
-        <div className={styles.buttonContainer}>
-          <i>
-            <BsArrowLeftCircle />
-          </i>
-
-          <button onClick={handlePreviousClick}>Prev chapter</button>
-        </div>
-
-        <div className={styles.buttonContainer}>
-          <button onClick={handlePreviousClick}>Next chapter</button>
-          <i>
-            <BsArrowRightCircle />
-          </i>
-        </div>
+        <ChapterPageNav
+          manga={manga}
+          chapter={chapter}
+          chapters={chapters}
+          id={id}
+          reverse={true}
+        />
       </div>
     </div>
   );

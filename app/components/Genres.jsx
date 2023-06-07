@@ -101,12 +101,12 @@ const Genres = ({ sideBar }) => {
         <Link href={`/genre/Martial Arts/1?genreId=17`}>
           <li>Martial Arts</li>
         </Link>
-        <Link href={`/`}>
+        {/* <Link href={`/`}>
           <li>Manhwa</li>
         </Link>
         <Link href={`/`}>
           <li>Manhua</li>
-        </Link>
+        </Link> */}
         <Link href={`/genre/Mecha/1?genreId=18`}>
           <li>Mecha</li>
         </Link>

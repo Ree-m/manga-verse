@@ -1,4 +1,10 @@
-.chapterImage{
+.chapterImageContainerFullSize{
     width:100%;
     height: auto;
+}
+
+.chapterImageContainerHalfSize{
+    display: flex;
+    justify-content: center;
+    padding: 3px;
 }
