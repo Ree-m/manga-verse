@@ -106,7 +106,7 @@ const Chapter = ({ params }) => {
             <ChapterImage chapterImage={chapterImage} chapters={chapters} />
           ))}
 
-        <ChapterPageNav
+        <ChapterPageNav 
           manga={manga}
           chapter={chapter}
           chapters={chapters}

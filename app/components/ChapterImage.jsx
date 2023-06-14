@@ -8,13 +8,13 @@ const ChapterImage = ({ chapterImage, chapters }) => {
   return (
     <div>
      
-      <div>
+      <div className={styles.imageContainer}>
       <Suspense fallback={<p>Loading image</p>}>
 
         <img
           className={styles.chapterImage}
           src={chapterImage?.img}
-          alt="Manga Image"
+          alt="Manga Image" 
         />
               </Suspense>
 

@@ -7,8 +7,10 @@ import styles from "../styles/chapterPage.module.css";
 import { BsArrowRightCircle } from "react-icons/bs";
 import { BsArrowLeftCircle } from "react-icons/bs";
 import { AiOutlineDoubleRight } from "react-icons/ai";
-
 const ChapterPageNav = ({ manga, chapters, chapter, id, reverse }) => {
+
+  const chapterNumber = chapter.split("-").pop()
+
   async function handlePreviousClick(e) {
     e.preventDefault();
 
@@ -71,7 +73,7 @@ const ChapterPageNav = ({ manga, chapters, chapter, id, reverse }) => {
     }
   }
 
-  return (
+  return ( 
     <div className={reverse ? styles.flexReverse : styles.flex}>
       <div className={styles.chapterPageNav1}>
         <Link href={`/`}>Read Manga Online</Link>

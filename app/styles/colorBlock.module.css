@@ -30,43 +30,43 @@
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.9); /* Add text-shadow for glow effect */
 
 }
-.no0 {
+.one { 
   background-color: #c0392b;
 }
 
-.no1 {
+.two{
   background-color: #e84c3d;
 }
 
-.no2 {
+.three{
   background-color: #e67e22;
 }
 
-.no3 {
+.four {
   background-color: #f1c40f;
 }
 
-.no4 {
+.five {
   background-color: #2ecc71;
 }
 
-.no5 {
+.six {
   background-color: #27ae60 !important;
 }
 
-.no6 {
+.seven{
   background-color: #1abc9c;
 }
 
-.no7 {
+.eight {
   background-color: #16a085;
 }
 
-.no8 {
+.nine {
   background-color: #3498db;
 }
 
-.no9 {
+.ten {
   background-color: #2980b9;
 }
 

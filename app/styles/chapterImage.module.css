@@ -8,8 +8,12 @@
     justify-content: center;
     padding: 3px;
 }  */
-
-.chapterImage{
+.imageContainer{
+    display: flex;
+    justify-content: center;
+    padding: 3px;
+}
+/* .chapterImage{
 width: 100%;
 height: auto;
-}
+} */

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import MangaDetails from "./MangaDetails";
-import Recommendations from "./Recommendations";
+import ColorBlock from "./ColorBlock";
 import Genres from "./Genres";
 import { LongButton } from "./LongButton";
 import styles from "../styles/homePageMain.module.css";
@@ -26,7 +26,7 @@ const HomePageMain = async () => {
       </div>
 
       <div className={styles.sideBar}>
-        {/* <Recommendations /> */}
+        <ColorBlock/>
         <Genres sideBar={true} />
       </div>
     </div> 

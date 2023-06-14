@@ -11,7 +11,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import ShowLess from "@/app/components/ShowLess";
-import Recommendations from "@/app/components/Recommendations";
+import ColorBlock from "@/app/components/ColorBlock";
 import Genres from "@/app/components/Genres";
 import styles from "app/styles/mangaPage.module.css";
 
@@ -339,7 +339,7 @@ const MangaPage = ({ params }) => {
         </section>
       </div>
       <div className={styles.mangaPageSideBar}>
-        {/* <Recommendations  /> */}
+        <ColorBlock/>
         <Genres sideBar={true} />
       </div>
     </div>
