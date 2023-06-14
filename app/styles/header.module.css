@@ -1,0 +1,146 @@
+  .header{
+    display:grid;
+    gap:25px;
+    margin: 0px 15px;
+    margin-bottom: 15px;
+    grid-template-columns: 1fr 4fr;
+  }
+  .logo{
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  .nav1{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap:15px;
+    background-color: #fff;
+    padding:18px 10px ;
+
+  }
+  .nav1 div{
+    display: flex;
+    gap: 10px;
+  }
+
+  .nav2{
+    background-color: var(--orange);
+    display: flex;
+    gap:25px;
+    width:100%;
+    padding:18px 20px ;
+  }
+
+  .nav2 a{
+    color:#fff;
+    text-transform: uppercase;
+  }
+
+  .nav2 a:hover{
+    color:var(--hover-yellow);
+  }
+
+  .btn{
+    border: none;
+    background-color: #373737;
+    padding:8px 15px;
+    color: #fff;
+  }
+
+  .btn:hover{
+    background-color:var(--green);
+  }
+
+  .nav3{
+    display: none;
+  }
+
+
+  .header .icon{
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  .header i span{
+    cursor: pointer;
+    color:#373737;;
+  }
+
+.header i span:nth-child(1) {
+  font-size: 1rem;
+  color: black;
+}
+
+.header i span:nth-child(2) {
+  padding: 0 3px;
+  background-color: var(--green);
+  color: whites;
+  font-weight: bolx;
+  border-radius: 5px;
+  position: relative;
+  top: -15px;
+}
+
+.header i span:hover {
+  color: inherit;
+}
+
+
+  @media (max-width:768px){
+    .header{
+      display: grid;
+      grid-template-columns: 1fr;
+      margin: 0px 0px;
+      margin-bottom: 15px;
+      gap: 15px;
+    }
+
+    .nav1{
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav2{
+      display: none;
+    }
+
+    .logo{
+      padding: 15px 0px;
+    }
+
+    .nav3{
+      display: block;
+    }
+
+    .menuButtonContainer{
+width: 100%;
+    }
+    .menuButton{
+    border:none;
+    background-color: #2e2d2d;
+    color:#fff;
+    width:100% ;
+    font-size: 1.1rem;
+    padding: 8px 0px;
+    }
+
+    .menuItems{
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .menuItems a{
+      color: var(--orange);
+      text-transform: uppercase;
+      padding: 20px;
+    }
+    .menuItems a:hover{
+      color: var(--hover-yellow);
+    }
+
+  }

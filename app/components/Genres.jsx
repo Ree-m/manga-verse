@@ -25,21 +25,24 @@ const Genres = ({ sideBar }) => {
   if (loading) {
     return <Loading />;
   }
-  return (
-    <div className={sideBar ? styles.sideBar : ""}>
+  return ( 
+    <div className={sideBar ? styles.sideBar : styles.genreBig}>
       <h2>Manga by Genres</h2>
-      <div className={`${styles.grid} ${styles.something}`}>
+      <div className={`${styles.grid} ${styles.gridBig}`}>
         
+      <Link href={``}>
+            <li>All</li>
+          </Link>
           <Link href={`/order_by/start_date/1/sort/desc`}>
             <li>Newest</li>
           </Link>
           <Link href={`/order_by/popularity/1`}>
             <li>Popular</li>
-          </Link>
+          </Link> 
         
       </div>
 
-      <div className={`${styles.grid} ${styles.something}`}>
+      <div className={`${styles.grid} ${styles.gridBig}`}>
         
           <Link href={`/order_by/popularity/1`}>
             <li>All</li>
@@ -54,7 +57,7 @@ const Genres = ({ sideBar }) => {
         
       </div>
 
-      <div className={styles.grid}>
+      <div className={`${styles.grid} ${styles.gridBig}`}>
         <Link href={`/allManga/1`}>
           <li>All</li>
         </Link>

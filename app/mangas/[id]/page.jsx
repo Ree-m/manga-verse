@@ -5,13 +5,14 @@ import { useUserContext } from "@/app/context/user";
 import Comments from "@/app/components/Comments";
 import Loading from "@/app/components/Loading";
 import { useCommentContext } from "@/app/context/comment";
+import { useBookmarkContext } from "@/app/context/bookmark";
 import MangaCover from "@/app/components/MangaCover";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import ShowLess from "@/app/components/ShowLess";
 import Recommendations from "@/app/components/Recommendations";
-import Genres from "@/app/components/Genres"
+import Genres from "@/app/components/Genres";
 import styles from "app/styles/mangaPage.module.css";
 
 // icons
@@ -21,8 +22,8 @@ import { AiOutlineDoubleRight } from "react-icons/ai";
 // fucntions
 import { fetchManga } from "@/app/functions/fetchManga";
 
-const MangaPage = ({ params}) => {
-  const [bookmark, setBookmark] = useState("");
+const MangaPage = ({ params }) => {
+  const [bookmark, setBookmark] = useBookmarkContext();
   const [manga, setManga] = useState({});
   const { user, setUser } = useUserContext();
   const [loading, setLoading] = useState(false);
@@ -34,24 +35,24 @@ const MangaPage = ({ params}) => {
   const { data } = useSession();
   const userId = data?.user?.id;
   const username = data?.user?.name;
-  const id=+params.id
-  
+  const id = +params.id;
+
   useEffect(() => {
     async function fetchMangaData() {
       try {
-        console.log("reem id",id+1)
+        console.log("reem id", id + 1);
         const response = await fetchManga(id);
-        console.log("reem resppnse",response)
+        console.log("reem resppnse", response);
         setManga(response?.data);
         setIsMangaLoading(false);
       } catch (error) {
         console.log(`Error fetching manga:`, error);
       }
     }
-  
+
     fetchMangaData();
   }, [id]);
-  
+
   useEffect(() => {
     async function fetchChapters() {
       console.log("reem", "hi", manga, isMangaLoading);
@@ -162,14 +163,7 @@ const MangaPage = ({ params}) => {
     console.log("comments adding data", newComment);
     console.log("finsih adding comment");
   }
-// useEffect(()=>{
-//   async function fetchLatest(){
-//     const resposne =await fetch(`https://api.jikan.moe/v4/top/manga?filter=publishing`)
-//     const data =await resposne.json()
-//     console.log("thiissisiisisi reem",data)
-//   }
-//   fetchLatest()
-// },[])
+
   if (loading) {
     return <Loading />;
   }
@@ -301,6 +295,14 @@ const MangaPage = ({ params}) => {
               ))}
           </div>
           <section className={styles.commentsSection}>
+            <div className={styles.commentsTop}>
+            <h2>Comments</h2>
+
+            </div>
+
+            <div className={styles.numberOfComments}>
+              {/* <span>{`0 Comments`}</span> */}
+            </div>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -315,25 +317,29 @@ const MangaPage = ({ params}) => {
                 );
               }}
             >
-              <input
+              
+              <textarea
                 type="text"
                 value={commentText}
                 placeholder="comment"
                 onChange={(e) => setCommentText(e.target.value)}
               />
-              <button type="submit">Add comment</button>
+              <button type="submit" className={styles.addBtn}>
+                Comment
+              </button>
             </form>
 
             <Comments
               comments={comments}
               setComments={setComments}
               mangaId={manga?.mal_id}
+              userId={userId}
             />
           </section>
         </section>
       </div>
       <div className={styles.mangaPageSideBar}>
-        <Recommendations  />
+        {/* <Recommendations  /> */}
         <Genres sideBar={true} />
       </div>
     </div>

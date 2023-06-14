@@ -3,13 +3,17 @@ import { useEffect, useState } from "react";
 import Loading from "./Loading";
 import { useUserContext } from "../context/user";
 import { Suspense } from "react";
-import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
+import styles from "../styles/comments.module.css"
 
-const Comments = ({ comments, setComments, mangaId }) => {
+import { AiOutlineLike } from "react-icons/ai";
+import { AiOutlineDislike } from "react-icons/ai";
+
+const Comments = ({ comments, setComments, mangaId,userId }) => {
   const [likes, setLikes] = useState(0);
   const [dislikes, setDislikes] = useState(0);
-  const { data } = useSession();
-  const userId = data?.user?.id;
+  // const { data } = useSession();
+  // const userId = data?.user?.id;
 
   async function deleteComment(commentId, userId) {
     try {
@@ -82,31 +86,38 @@ const Comments = ({ comments, setComments, mangaId }) => {
   }
 
   return (
-    <div>
+    <div className={styles.comments}>
+    
       {comments &&
         comments.map((comment) => (
           <div key={comment._id}>
-            <h4>{comment.name}</h4>
+            <h4 className={styles.commentsUserName}>{comment.name}</h4>
 
-            <p>{comment.commentText}</p>
-            <button
-              onClick={() => likeDislikeComment(comment._id, userId, "like")}
-            >
-              like
-            </button>
-            <span>{comment.likesArr.length}</span>
-            <button
+            <p className={styles.commentsText}>{comment.commentText}</p>
+
+            <div className={styles.likeDelete}>
+            <i onClick={() => likeDislikeComment(comment._id, userId, "like")}>
+              <AiOutlineLike className={styles.icon} />
+              <span>{comment.likesArr.length}</span>
+
+            </i>
+
+            <i
               onClick={() => likeDislikeComment(comment._id, userId, "dislike")}
             >
-              dislike
-            </button>
-            <span>{comment.dislikesArr.length}</span>
+              <AiOutlineDislike  className={styles.icon}/>
+              <span>{comment.dislikesArr.length}</span>
+
+            </i>
+
 
             {userId && userId === comment.userId ? (
               <button onClick={() => deleteComment(comment._id, userId)}>
-                delete
+                Delete
               </button>
             ) : null}
+            </div>
+           
           </div>
         ))}
     </div>

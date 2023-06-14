@@ -1,0 +1,42 @@
+.bookmarkPage{
+    margin: 0px 15px;
+}
+
+.item{
+    display: flex;
+    gap: 10px;
+    background-color: #fff;
+margin:10px 0px;
+padding: 10px;
+border-left: 2px solid var(--orange);
+
+}
+ 
+.itemText h3{
+    color:var(--dark-red);
+    padding-bottom: 15px;
+
+}
+.itemText p a{
+    color:var(--link-blue);
+
+}
+.itemText p a:hover{
+    color: var(--hover-yellow);
+}
+.itemText p{
+    padding-bottom: 8px;
+}
+
+.btn button{
+    border: none;
+    color: #bc7690;
+    font-size: 1.15rem;
+}
+
+
+@media (max-width:768px){
+    .bookmarkPage{
+        margin: 0px 0px;
+    }
+}

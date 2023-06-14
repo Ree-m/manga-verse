@@ -5,9 +5,9 @@ import {GiSandsOfTime} from "react-icons/gi"
 
 import {BsFillPersonFill} from "react-icons/bs"
 import styles from "../styles/mangaDetails.module.css";
-const MangaDetails = ({ mangas, setMangas }) => {
+const MangaDetails = ({ mangas }) => {
   return (
-    <div className="grid">
+    <div className={styles.grid} >
       {mangas &&
         mangas.map((manga) => (
           <div className={styles.mangaDetails} key={manga.mal_id}>
@@ -29,7 +29,7 @@ const MangaDetails = ({ mangas, setMangas }) => {
 
                 <div>
                   <BsFillPersonFill/>
-                  <p>Nino</p>
+                  <p>{manga?.authors[0].name}</p>
                 </div>
               </div>
               </div>

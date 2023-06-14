@@ -16,7 +16,7 @@ const Mangas = ({ params }) => {
     const fetchMangas = async () => {
       setLoading(true);
       const response = await fetch(
-        `https://api.jikan.moe/v4/manga?page=${page}`
+        `https://api.jikan.moe/v4/manga?limit=24&page=${page}`
       );
       const data = await response.json();
 
@@ -29,14 +29,7 @@ const Mangas = ({ params }) => {
   }, [page]);
   // console.log("page count",pageCount)
 
-  async function handleNextPage(e) {
-    e.preventDefault();
-    router.push(`/allManga/${+page + 1}`);
-  }
-  async function handleBackPage(e) {
-    e.preventDefault();
-    router.push(`/allManga/${+page - 1}`);
-  }
+  
 
   if (loading) {
     return <Loading />;
@@ -49,11 +42,11 @@ const Mangas = ({ params }) => {
 
       <ReactPaginate
         pageCount={2545} // Replace 10 with the actual number of pages
-        pageRangeDisplayed={10} // Display a range of 5 pages
+        pageRangeDisplayed={3} // Display a range of 5 pages
         marginPagesDisplayed={0}
-        breakLabel="..."
-        nextLabel=">"
-        previousLabel="< "
+        // breakLabel="..."
+        nextLabel="Next"
+        previousLabel="Previous "
         onPageChange={(data) => {
           console.log(data.selected+1, "data.selected");
           router.push(`/allManga/${data.selected + 1}`);

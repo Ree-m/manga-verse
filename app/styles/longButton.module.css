@@ -1,0 +1,18 @@
+.longButton button{
+    border:none;
+    background-color:var(--link-blue);
+    color:#fff;
+    width:100% ;
+    font-size: 1.1rem;
+    padding: 8px 0px;
+    overflow-x: hidden;
+
+ 
+ }
+.longButton button:hover{
+    color: var(--hover-yellow);
+}  
+.longButton{
+    width:100%;
+    overflow-x: hidden;
+}

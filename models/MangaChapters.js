@@ -11,15 +11,13 @@ const MangaChaptersSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    images: [
+    chapterImages: [
       {
-        number: {
-          type: String,
-        },
-        img: {
+        chapter: {
           type: String,
           required: true,
         },
+        images: [Object],
       },
     ],
   },

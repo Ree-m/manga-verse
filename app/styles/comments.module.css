@@ -1,0 +1,43 @@
+.commentsUserName{
+    color: var(--comments-blue);
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+.likeDelete{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:10px;
+    padding: 5px 0px ;
+}
+
+.comments i{
+    color: var(--comments-blue);
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+
+
+}
+
+.icon{
+    font-size: 1rem;
+}
+
+.comments i span{
+    font-size: 0.8rem;
+}
+
+.comments button{
+    color: var(--comments-blue);
+    border: none;
+    background-color: transparent;
+
+
+}
+
+.commentsText{
+    color: #1c1e21;
+    line-height: 1.38;
+    font-size: 1.2rem;
+}

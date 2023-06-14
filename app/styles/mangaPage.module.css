@@ -6,9 +6,9 @@
 
 .mangaPageContainer {
   /* background-color: var(--bg-white); */
-  padding: 0px 15px;
+  padding: 0px 15px;  /* this needs to match with footer margin */
 }
-.top{
+.top{ 
   padding:10px 0px;
   display: flex;
   justify-content: flex-start;
@@ -41,18 +41,19 @@
   font-size: var(--small);
 }
 .mangaPage .chapters {
-  height: 450px; /* Set the desired height for the scrollable section */
-  overflow-y: scroll; /* Enable scrolling when content exceeds the height */
+  height: 450px; 
+  overflow-y: scroll; 
 }
 .mangaPage .mangaInfo {
   display: flex;
   flex-direction: row;
   gap: 25px;
+  border-bottom: 1px dashed var(--orange);
+  padding-bottom: 50px;
 }
 
 .mangaPage .subInfo {
   display: flex;
-  /* flex-direction: row; */
   align-items: center;
   flex-wrap: wrap;
   line-height: 2.5rem;
@@ -67,10 +68,6 @@
   color: var(--hover-yellow);
 }
 
-.mangaInfo {
-  border-bottom: 1px dashed var(--orange);
-  padding-bottom: 50px;
-}
 .description {
   padding: 30px 10px;
 }
@@ -104,6 +101,7 @@
 }
 
 .chapters a {
+   
   line-height: 26px;
 }
 
@@ -139,4 +137,67 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin-right: 15px;
+}
+
+
+/* COMMENTS */
+.commentsSection{
+  background-color: #fff;
+margin: 10px 0px;
+padding: 0px 10px;
+}
+
+.addBtn{
+  background-color:var(--comments-blue);
+  color: #fff;
+  border:none;
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: 25px;
+
+}
+
+.commentsSection{
+  padding: 15px 15px;
+}
+
+.commentsTop{
+  border-bottom: 2px solid var(--text-grey);
+}
+
+.commentsSection textarea{
+  border-color: var(--text-grey-medium);
+}
+.commentsSection textarea:hover{
+  border-color: var(--text-grey);
+}
+
+.commentsSection textarea:focus{
+  outline: var(--comments-blue);
+}
+
+.commentsSection form{
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width:768px){
+
+  .mangaPageContainer{
+    padding: 0px 0px;
+  }
+  .mangaPage .mangaInfo{
+    flex-direction: column;
+    align-items: center;
+  }
+
+}
+@media (max-width:1200px){
+  .wholePage{
+    grid-template-columns: 100%;
+    gap:0px;
+  }
+
+ 
 }

@@ -1,28 +1,27 @@
-"use client";
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import MangaDetails from "@/app/components/MangaDetails";
 
-const SearchResults = ({ params }) => {
-  const query = params.query;
-  const page = params.page;
-  const [results, setResults] = useState([]);
-  console.log("search params", page, query);
+async function fetchSearchResults(query,page) {
+  console.log("start results fetch",query,page+1)
+  const response = await fetch(
+    `https://api.jikan.moe/v4/manga?q=${query}&page=${page}&limit=24`
+  );
+  const data = await response.json();
+  console.log("search results", data.data);
+  return data
+}
 
-  useEffect(() => {
-    async function fetchSearchResults() {
-      const response = await fetch(
-        `https://api.jikan.moe/v4/manga?letter=${query}&page=${page}`
-      );
-      const data = await response.json();
-      setResults(data.data);
-      console.log("search results", data.data);
-    }
-    fetchSearchResults();
-  }, [query]);
+const SearchResults = async ({ params }) => {
+  const query = params.query;
+  const page = + params.page;
+  console.log("search params", page + 1, query);
+  const data =await fetchSearchResults(query,page)
+  const results =data.data
+  console.log("results here",results,data)
+
   return (
     <div>
-      <MangaDetails mangas={results} setMangas={setResults} />
+      <MangaDetails mangas={results}  />
      
     </div>
   );

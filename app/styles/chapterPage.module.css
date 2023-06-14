@@ -3,9 +3,9 @@
  }
 
  .chapterPageContainer{
-  margin:5px;
+  margin: 5px 15px;
  }
-
+ 
 
  .chapterPageNav2 {
   display: flex;
@@ -52,11 +52,13 @@
 .chapterPageNav1 i{
   color: #fff;
   font-size:0.65rem;
+  text-transform: capitalize;
 }
 
 
 .chapterPageNav1 a{
   color: #fff;
+  text-transform: capitalize;
 }
 
 .chapterPageNav1 a:hover{
@@ -93,8 +95,31 @@
   font-weight:400;
   display: flex;
   gap:8px;
+  padding-top: 10px;
+  text-transform: capitalize;
 }
 
 .chapterNavText p{
   color:var(--red);
+  padding: 0px 10px;
+}
+
+
+@media (max-width:768px){
+  .chapterPageNav2{
+    display: flex;
+    flex-direction: column;
+  }
+  .chapterPageNav1{
+    font-size: 0.8rem;
+  }
+
+  .buttonContainer{
+    width: 50%;
+  }
+
+  
+ .chapterPageContainer{
+  margin: 5px 0px;
+ }
 }

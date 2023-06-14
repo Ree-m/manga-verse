@@ -2,7 +2,7 @@
 import DropDown from "./DropDown";
 import Link from "next/link";
 import styles from "../styles/chapterPage.module.css";
-
+ 
 // icons
 import { BsArrowRightCircle } from "react-icons/bs";
 import { BsArrowLeftCircle } from "react-icons/bs";
@@ -73,7 +73,7 @@ const ChapterPageNav = ({ manga, chapters, chapter, id, reverse }) => {
 
   return (
     <div className={reverse ? styles.flexReverse : styles.flex}>
-      <div className={styles.ChapterPageNav1}>
+      <div className={styles.chapterPageNav1}>
         <Link href={`/`}>Read Manga Online</Link>
         <i>
           <AiOutlineDoubleRight />
@@ -85,7 +85,7 @@ const ChapterPageNav = ({ manga, chapters, chapter, id, reverse }) => {
         <Link href={`/mangas/${id}/${chapter}`}>{chapter}</Link>
       </div>
 
-      <div className={styles.ChapterPageNav2}>
+      <div className={styles.chapterPageNav2}>
         <DropDown id={id} chapters={chapters} chapter={chapter}/>
         <div className={styles.buttonContainer}>
           <i><BsArrowLeftCircle/></i>
@@ -93,7 +93,7 @@ const ChapterPageNav = ({ manga, chapters, chapter, id, reverse }) => {
         </div>
 
         <div className={styles.buttonContainer}>
-        <button onClick={handlePreviousClick}>Next Chapter</button>
+        <button onClick={handleNextClick}>Next Chapter</button>
           <i><BsArrowRightCircle/></i>
         </div>
 

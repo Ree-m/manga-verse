@@ -4,7 +4,7 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useUserContext } from "@/app/context/user";
 import { useRouter } from "next/navigation";
-
+import styles from "app/styles/auth.module.css";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -82,39 +82,47 @@ const LoginPage = () => {
   // }
 
   return (
-    <form onSubmit={onSubmit}>
-      <input
-        type="text"
-        value={name}
-        placeholder="name"
-        onChange={(e) => setName(e.target.value)}
-      />
+    <div className={styles.auth}>
+      <form onSubmit={onSubmit}>
+        <div className={styles.flex}>
+          <h2>Login</h2>
+          <p><strong>Demo Account</strong> username: test email: test@test.com password: testtest</p>
+        <input
+          type="text"
+          value={name}
+          placeholder="Name"
+          onChange={(e) => setName(e.target.value)}
+        />
 
-      <input
-        type="email"
-        value={email}
-        placeholder="email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        value={password}
-        placeholder="password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button>Login</button>
+        <input
+          type="email"
+          value={email}
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          value={password}
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button onClick={()=>router.push(`/`)}>Login</button>
+        </div>
+        
 
-      <div className="text-center">
-        <p>
-          Not a member? <Link href="/auth/register">Register</Link>
-        </p>
-        <p>Or sign up with</p>
-        {/* <button type="button" onClick={handleGoogleSignIn}>
+        <div className={styles.end}>
+          <p>
+            Don't have an account? <Link href="/auth/register">Register</Link>
+          </p>
+          {/* <p>Or sign up with</p> */}
+          {/* <button type="button" onClick={handleGoogleSignIn}>
           google
         </button> */}
-      </div>
-    </form>
+        </div>
+      </form>
+    </div>
   );
+
 };
 
 export default LoginPage;

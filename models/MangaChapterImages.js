@@ -25,3 +25,15 @@ const MangaChapterImagesSchema = new mongoose.Schema(
 module.exports = mongoose.model("MangaChaptersImages", MangaChapterImagesSchema);
 
 
+// ,
+//     images: [
+//       {
+//         number: {
+//           type: String,
+//         },
+//         img: {
+//           type: String,
+//           required: true,
+//         },
+//       },
+//     ],

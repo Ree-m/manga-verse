@@ -92,7 +92,7 @@ const Chapter = ({ params }) => {
   }
 
   return (
-    <div className={styles.chpaterPage}>
+    <div className={styles.chapterPage}>
       <div className={styles.chapterPageContainer}>
         <ChapterPageNav
           manga={manga}

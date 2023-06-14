@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@600&family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,400&family=Open+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:ital,wght@0,200;0,300;0,400;1,300;1,500;1,600;1,700;1,800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&family=Source+Sans+Pro&display=swap");
 body {
   font-family: "noto-sans", sans-serif;
-  background-color: #f0f0f0;
+  background-color: #d8d7d7;
 }
 
 * {
@@ -18,9 +18,12 @@ body {
   --image-line-grey: #d7d7d9;
   --button-green:#27ae60;
   --blue:#1992ea;
-  --green-blue:##059e9a;
+  --green-blue:#059e9a;
+  --green:#27ae60;
   --aqua:#0bc3b3;
   --red:#ca4848;
+  --dark-red:#e12a2a;
+  --comments-blue:#385898;
   --smaller: 0.8rem;
   --small: 1rem;
   --medium: 1.2rem;
@@ -28,6 +31,8 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  background: url("assests/body-bg-light.png");
+
 }
 a {
   text-decoration: none;
@@ -64,3 +69,47 @@ a {
 button{
   cursor: pointer;
 }
+
+.main{
+  margin:0px 15px;
+
+}
+/* 
+.body{
+      background: url("assests/body-bg-light.png");
+
+} */
+
+
+
+
+
+/* Extra Small devices (phones, 576px and below) */
+@media (max-width: 767px) {
+  .main{
+    margin: 0px;
+  }
+  
+  }
+  
+  /* Small devices (tablets, 576px to 767px) */
+  @media (min-width: 576px) and (max-width: 767px) {
+  }
+  
+  @media (min-width: 768px) and (max-width: 991px) {
+  }
+  
+  /* Large devices (desktops, 992px to 1199px) */
+  @media (min-width: 992px) and (max-width: 1199px) {
+  
+  }
+  
+  @media (max-width:1200px){
+   
+  }
+  
+  /* Extra Large devices (large desktops, 1200px and above) */
+  @media (min-width:1800px ){
+  
+  }
+  

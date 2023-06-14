@@ -6,28 +6,34 @@ import { useBookmarkContext } from "@/app/context/bookmark";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
+import ReadMore from "@/app/components/ReadMore";
+import styles from "app/styles/bookmarkPage.module.css";
 
 const BookmarkPage = () => {
-  const [bookmarkItems, setBookmarkItems] = useBookmarkContext();
+  const [bookmark, setBookmark] = useBookmarkContext();
   const { user, setUser } = useUserContext();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { data } = useSession();
   const userId = data?.user?.id;
   console.log("bookmark page", userId);
 
   useEffect(() => {
     async function fetchBookmark() {
-      setLoading(true);
-      const response = await fetch(
-        `http://localhost:3000/api/bookmark/${userId}`
-      );
-      const data = await response.json();
-      console.log("bookmark data", data);
-      setBookmarkItems(data);
-      setLoading(false);
+      try{
+        const response = await fetch(
+          `http://localhost:3000/api/bookmark/${userId}`
+        ); 
+        const data = await response.json();
+        console.log("bookmark data", data);
+        setBookmark(data);
+        setLoading(false);
+      }catch(error){
+        console.log(`Error: bookmark error,`,error)
+      }
+      
     }
     fetchBookmark();
-  }, []);
+  }, [userId]);
 
   async function deleteBookmark(userId, itemId) {
     const response = await fetch(
@@ -41,30 +47,36 @@ const BookmarkPage = () => {
   if (loading) {
     return <Loading />;
   }
-  console.log("bookmark items", bookmarkItems);
+  console.log("bookmark items bookmark page", bookmark);
   return (
-    <div>
-      {(bookmarkItems === []) | !bookmarkItems
+    <div className={styles.bookmarkPage}>
+      {(bookmark === []) | !bookmark
         ? "Bookmarks is empty"
-        : bookmarkItems &&
-          bookmarkItems.map((item) => (
-            <div key={item._id}>
+        : bookmark &&
+          bookmark.map((item) => (
+            <div key={item._id} className={styles.item}>
               <Link href={`/mangas/${item.mangaId}`}>
                 <Image
                   src={item.imageUrl}
                   alt={`Image of ${item.nameOfBookmark}`}
-                  height={250}
-                  width={250}
+                  height={90}
+                  width={61}
                 />
               </Link>
-
-              <Link href={`/mangas/${item.mangaId}`}>
-                <h3>{item.nameOfBookmark}</h3>
-              </Link>
-              <p>{item.synopsis}</p>
+              <div className={styles.itemText}>
+                <Link href={`/mangas/${item.mangaId}`}>
+                  <h3>{item.nameOfBookmark}</h3>
+                </Link>
+                <p>Current: <Link href={`/`}>Chapter 33</Link></p>
+<ReadMore synopsis={item.synopsis} bookmark={true} mangaId={item.mangaId}/>
+               
+              </div>
+              <div className={styles.btn}>
               <button onClick={() => deleteBookmark(userId, item._id)}>
-                delete
-              </button>
+                  Remove
+                </button>
+              </div>
+             
             </div>
           ))}
     </div>

@@ -1,11 +1,10 @@
 .mangaDetails{
     background-color: var(--bg-white);
-    margin: 4px;
+    margin: 4px 4px;
     padding: 10px;
     display: flex;
     align-items: center;
     gap: 10px;
-    height: 180px;
 }
 .mangaDetails a h2{
     font-size: 1.3rem;
@@ -22,7 +21,6 @@
 .mangaDetails span{
     color: var(--link-blue);
     font-size: 0.95rem;
-    /* padding: 5px 0px; */
 }
 
 .mangaDetails span:hover{
@@ -45,3 +43,55 @@
 .subDetails2 p{
     color:var(--text-grey);
 }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+  }
+
+  @media (max-width:375px){
+    
+  }
+
+/* Extra Small devices (phones, 576px and below) */
+@media (max-width: 767px) {
+/*     
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .mangaDetails{
+    width: 80%;
+  } */
+
+  
+
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+
+
+  }
+
+  .mangaDetails {
+    margin: 4px 0px;
+  }
+
+}
+  
+  
+  /* Medium devices (laptops, 768px to 991px) */
+  @media (min-width: 768px) and (max-width: 991px) {
+  }
+  
+  /* Large devices (desktops, 992px to 1199px) */
+  @media (min-width: 992px) and (max-width: 1199px) {
+  }
+  
+  /* Extra Large devices (large desktops, 1200px and above) */
+  @media (min-width: 1800px) {
+  }
+  

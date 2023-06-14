@@ -7,7 +7,7 @@
   background-color: #3498db;
   display: inline-block;
   padding: 5px 8px;
-  font-weight: 400;
+  font-weight: 400; 
   font-size: 1.2rem;
 }
 
@@ -30,3 +30,117 @@
 .sideBar .grid li:hover{
   color:var(--hover-yellow)
 }
+
+
+/* second way */
+
+.genreBig{
+  margin:0px 15px;
+}
+
+.gridBig{
+  display: grid;
+  grid-template-columns: repeat(8,1fr);
+  background-color: #fff;
+  margin: 10px 0px;
+  padding: 8px 5px;
+
+}
+
+.genreBig h2{
+  display: none;
+}
+.gridBig li{
+  color: var(--text-grey-medium);
+  padding:5px; 
+  list-style-position: inside;
+}
+
+.gridBig li:hover{
+  color:var(--hover-yellow)
+
+}
+
+
+
+@media (max-width:384px){
+
+  
+
+.gridBig{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+
+
+}
+
+
+.genreBig{
+  margin:0px 0px;
+}
+
+
+
+}
+
+@media (max-width:768px){
+  
+.genreBig{
+  margin:0px 0px;
+  border-top: 2px solid #3498db;
+
+}
+
+.genreBig h2{
+  display: block;
+  
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #3498db;
+  display: inline-block;
+  padding: 5px 8px;
+  font-weight: 400; 
+  font-size: 1.2rem;
+
+
+}
+
+}
+@media (min-width: 385px) and (max-width:800px) {
+   
+
+.gridBig{
+  grid-template-columns: repeat(3,1fr);
+
+}
+
+}
+
+
+@media (min-width: 801px) and (max-width: 1050px) {
+
+  .gridBig{
+    grid-template-columns: repeat(6,1fr);
+  }
+  .genreBig{
+    padding: 0px 1px;
+
+  }
+}
+
+/* Large devices (desktops, 992px to 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+@media (max-width:1200px){
+  .sideBar{
+    display: none;
+  }
+}
+
+/* Extra Large devices (large desktops, 1200px and above) */
+@media (min-width:1800px ){
+
+}
+

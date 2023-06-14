@@ -1,0 +1,72 @@
+.flex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+gap:15px;
+padding-top: 20px;
+}
+.flex input{
+    width: 60%;
+    border: 1px solid var(--text-grey);
+    padding:10px;
+    font-size:1rem
+}
+
+.flex h2{
+    font-weight: 400;
+    color:var(--text-grey-medium);
+    font-size:2rem;
+    padding-bottom: 15px;
+}
+.flex p{
+color:var(--text-grey-medium);
+padding: 10px 0px;
+}
+.flex input:focus{
+    outline: 1px solid var(--blue);
+    border: none;
+}
+.auth{
+    background-color: #fff;
+    margin: 0px 15px;
+    padding: 15px;
+}
+
+.auth button{
+    background-color: var(--blue);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+
+}
+
+.end{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color:var(--text-grey-medium);
+    padding:15px 0px;
+}
+
+.end a{
+    /* text-decoration: underline; */
+    color:var(--blue)
+}
+
+
+@media(max-width:768px){
+    .auth{
+
+        margin: 0px 0px;
+    }
+
+    .auth  p{
+        line-height: 22px;
+    }
+}

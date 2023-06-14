@@ -19,7 +19,7 @@ const SecondOrderBy = ({ params }) => {
      try{
         setLoading(true);
         const response = await fetch(
-          `https://api.jikan.moe/v4/manga?${searchQuery}=${category}&page=${page}&${searchQuery2}=${category2}&min_score=1&sfw`
+          `https://api.jikan.moe/v4/manga?${searchQuery}=${category}&page=${page}&${searchQuery2}=${category2}&min_score=1&sfw&limit=24`
         );
         const data = await response.json();
         console.log("order", data);

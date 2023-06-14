@@ -1,5 +1,5 @@
-.chapterImageContainerFullSize{
-    width:100%;
+/* .chapterImageContainerFullSize{
+    width:auto;
     height: auto;
 }
 
@@ -7,4 +7,9 @@
     display: flex;
     justify-content: center;
     padding: 3px;
+}  */
+
+.chapterImage{
+width: 100%;
+height: auto;
 }

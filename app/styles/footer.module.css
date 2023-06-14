@@ -1,7 +1,13 @@
-.footer{
+.footerContainer{
     background-color: #fff;
     border-top: 2px solid var(--blue);
     margin-top: 10px;
+    margin: 0px 15px;   /* this needs to match with manga page padding */
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
 }
 
 .footer .center{
@@ -25,3 +31,12 @@ padding: 5px;
     color:var(--blue)
 }
 
+
+@media (max-width: 768px) {
+
+.footerContainer{
+    margin: 0px 0px;
+    margin-top: 15px;
+}
+  
+}

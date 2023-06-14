@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import styles from "app/styles/auth.module.css";
+
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
@@ -36,28 +38,35 @@ console.log("api url",API_URL)
     setPassword("")
   }
   return (
-    <form onSubmit={onSubmit}>
-      <input
-        type="text"
-        value={name}
-        placeholder="name"
-        onChange={(e) => setName(e.target.value)}
-      />
-      <input
-        type="email"
-        value={email}
-        placeholder="email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        value={password}
-        placeholder="password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
+    <div className={styles.auth}>
+      <form onSubmit={onSubmit}>
+        <div className={styles.flex}>
+          <h2>Register</h2>
+        <input
+          type="text"
+          value={name}
+          placeholder="Name"
+          onChange={(e) => setName(e.target.value)}
+        />
 
-      <button>Register</button>
-    </form>
+        <input
+          type="email"
+          value={email}
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          value={password}
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button>Register</button>
+        </div>
+        
+
+      </form>
+    </div>
   );
 };
 

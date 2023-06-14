@@ -1,0 +1,41 @@
+.randomComponent{
+  background-color: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.flex{
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    
+} 
+.randomTextPart h2{
+  font-weight:400;
+  color:var(--text-grey-dark)
+}
+.description{
+  color:var(--text-black);
+  line-height: 22px;
+}
+
+ .subInfo {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    line-height: 2.5rem;
+    gap: 8px;
+  }
+  
+.subInfo a {
+    color: var(--link-blue);
+    font-size: var(--small);
+  }
+ .subInfo a:hover {
+    color: var(--hover-yellow);
+  }
+
+  .subInfo h4 {
+    font-weight: 400;
+    font-size: var(--small);
+    color: var(--text-black);
+  }

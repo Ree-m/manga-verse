@@ -1,0 +1,31 @@
+.homePageMain{
+    display: grid;
+    grid-template-columns: 68% 32%;
+    gap:15px;
+    /* background: url("assests/body-bg-light.png"); */
+
+
+}
+
+.sideBar{
+    display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-right: 15px;
+}    
+
+
+  
+  /* Extra Large devices (large desktops, 1200px and above) */
+  @media (max-width:1200px) {
+
+    .homePageMain{
+      display: grid;
+      grid-template-columns: 1fr;
+  
+  
+  }
+  .sideBar{
+    margin-right: 0pxv;
+  }
+  }
