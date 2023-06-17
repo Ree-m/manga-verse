@@ -29,67 +29,24 @@ const CarouselComponent = () => {
 
   useEffect(() => {
     async function fetchCarouselItems() {
-      console.log("reem isItemLoading check", isItemLoading);
+      console.log("carousel isItemLoading check", isItemLoading);
       const response = await fetch(
-        `https://api.jikan.moe/v4/top/manga?type=manhwa`
+        `https://api.jikan.moe/v4/manga?order_by=popularity&sort=desc&limit=15&min_score=1`
       );
       const data = await response.json();
       setItems(data.data);
 
       setIsItemLoading(false);
-      console.log("reem setIsItemLoading ", isItemLoading);
+      console.log("carousel setIsItemLoading ", isItemLoading);
+      console.log("carousel items fetched ",items)
     }
     fetchCarouselItems();
   }, []);
 
-//   if (isItemLoading) {
-//     const loadingElements = Array.from(Array(8)).map((_, index) => (
-//       <div className={styles.carouselItemConatiner} key={index}>
-//         <img src={loadingGif} alt="" className={styles.img} />
-//       </div>
-//     ));
-
-//     return (
-//       <div className={styles.carouselComponent}>
-//         <div className={styles.title}>
-//           <h2>Top Mahwa</h2>
-//           </div>
-
-//           <Carousel
-//             responsive={responsive}
-//             swipeable={false}
-//             draggable={false}
-//             ssr={true} // means to render carousel on server-side.
-//             infinite={true}
-//             autoPlay={true} // Enable auto play
-//             autoPlaySpeed={5000}
-//             keyBoardControl={true}
-//             customTransition="all .5"
-//             transitionDuration={500}
-//             containerClass="carousel-container"
-//             // removeArrowOnDeviceType={["tablet", "mobile"]}
-//             dotListClass="custom-dot-list-style"
-//             itemClass="carousel-item-padding-40-px"
-//           >
-// {/*            
-//               <div  className={styles.carouselItemConatiner}>
-//               <img
-//                 src={loadingGif}
-//                 alt=""
-//                 className={styles.img}
-//               />
-//               </div> */}
-           
-//            {loadingElements}
-
-//           </Carousel>
-//       </div>
-//     );
-//     }else {
     return (
       <div className={styles.carouselComponent}>
         <div className={styles.title}>
-          <h2>Top Manhwa</h2>
+          <h2>Top Week</h2>
         </div>
         <Carousel
           responsive={responsive}
@@ -108,7 +65,7 @@ const CarouselComponent = () => {
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-40-px"
         >
-          {items &&
+          {items && 
             items.length > 0 &&
             items.map((item) => {
               console.log("this is carouselitems", item);
@@ -122,7 +79,7 @@ const CarouselComponent = () => {
                     />
                   </Link>
                   <Link href={`/mangas/${item.mal_id}`}>
-                    <h3 className={styles.carouselItemTitle}>{item.title}</h3>
+                    <h3 className={styles.carouselItemTitle}>{item.title.length<15 ? item.title :item.title.substring(0,15)+"..."}</h3>
                   </Link>
                 </div>
               );
@@ -130,7 +87,7 @@ const CarouselComponent = () => {
         </Carousel>
       </div>
     );
-  }
+  
 
-
+}
 export default CarouselComponent;

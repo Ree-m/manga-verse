@@ -76,12 +76,15 @@
   padding-bottom: 10px;
   font-weight: 700;
 }
-
-.chapters {
-  margin: 10px 0px;
-  padding: 10px 10px;
+.chaptersContainer{
   background-color: var(--bg-white);
-  /* position: absolute; */
+  padding: 10px 10px;
+  margin: 10px 0px;
+
+}
+.chapters { 
+  /* padding: 0px 10px; */
+  background-color: var(--bg-white);
 
 }
 .chaptersHeading {
@@ -148,6 +151,9 @@ margin: 10px 0px;
 padding: 0px 10px;
 }
 
+.commentsSection form{
+  width: 40%;
+}
 .addBtn{
   background-color:var(--comments-blue);
   color: #fff;
@@ -155,19 +161,27 @@ padding: 0px 10px;
   text-align: center;
   padding: 10px 20px;
   border-radius: 25px;
+  margin: 2px 0px;
+  width: 30%;
 
 }
 
 .commentsSection{
-  padding: 15px 15px;
+  padding: 15px 15px; 
+  
 }
-
+ 
 .commentsTop{
-  border-bottom: 2px solid var(--text-grey);
+  border-bottom: 1
+  px solid var(--comments-blue);
+  margin-bottom: 10px;
 }
 
 .commentsSection textarea{
   border-color: var(--text-grey-medium);
+  margin-top: 3px;
+  height:100px;
+
 }
 .commentsSection textarea:hover{
   border-color: var(--text-grey);

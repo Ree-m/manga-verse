@@ -10,17 +10,17 @@ const Genres = ({ sideBar }) => {
   const [genres, setGenres] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    async function fetchGenres() {
-      setLoading(true);
-      const response = await fetch(`https://api.jikan.moe/v4/genres/manga`);
-      const data = await response.json();
-      console.log("genres", data);
-      setLoading(false);
-      setGenres(data.data);
-    }
-    fetchGenres();
-  }, []);
+  // useEffect(() => {
+  //   async function fetchGenres() {
+  //     setLoading(true);
+  //     const response = await fetch(`https://api.jikan.moe/v4/genres/manga`);
+  //     const data = await response.json();
+  //     console.log("genres", data);
+  //     setLoading(false);
+  //     setGenres(data.data);
+  //   }
+  //   fetchGenres();
+  // }, []);
 
   if (loading) {
     return <Loading />;

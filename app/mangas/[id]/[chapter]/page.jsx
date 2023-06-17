@@ -23,6 +23,7 @@ const Chapter = ({ params }) => {
   const chapter = params.chapter;
   const id = params.id;
   const chapterNumber = parseFloat(chapter.split("-").pop());
+  console.log("chapter page chapter number",chapterNumber,chapterNumber+1)
 
   useEffect(() => {
     async function fetchManga() {
@@ -103,7 +104,7 @@ const Chapter = ({ params }) => {
         />
         {chapterImages &&
           chapterImages.map((chapterImage) => (
-            <ChapterImage chapterImage={chapterImage} chapters={chapters} />
+            <ChapterImage chapterImage={chapterImage} chapters={chapters}  />
           ))}
 
         <ChapterPageNav 
@@ -112,6 +113,7 @@ const Chapter = ({ params }) => {
           chapters={chapters}
           id={id}
           reverse={true}
+          chapterNumber={chapterNumber}
         />
       </div>
     </div>

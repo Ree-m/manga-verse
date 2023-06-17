@@ -54,7 +54,6 @@
     
   }
 
-/* Extra Small devices (phones, 576px and below) */
 @media (max-width: 767px) {
 /*     
 .grid {
@@ -78,20 +77,9 @@
 
   .mangaDetails {
     margin: 4px 0px;
+    width: 100%;
   }
 
 }
   
-  
-  /* Medium devices (laptops, 768px to 991px) */
-  @media (min-width: 768px) and (max-width: 991px) {
-  }
-  
-  /* Large devices (desktops, 992px to 1199px) */
-  @media (min-width: 992px) and (max-width: 1199px) {
-  }
-  
-  /* Extra Large devices (large desktops, 1200px and above) */
-  @media (min-width: 1800px) {
-  }
   

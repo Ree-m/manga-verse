@@ -280,24 +280,29 @@ const MangaPage = ({ params }) => {
               <ShowLess manga={manga} />
             </div>
           </section>
-
-          <div className={styles.chapters}>
-            <div className={styles.chaptersHeading}>
-              <p>Chapter name</p>
-            </div>
-            {chapters &&
-              chapters.map((chapter) => (
-                <div>
-                  <Link href={`/mangas/${id}/${chapter.split("/").pop()}`}>
-                    {chapter.split("/").pop()}
-                  </Link>
+          {!chapters || chapters == [] ? (
+            <div>No chapters</div>
+          ) : (
+            <div className={styles.chaptersContainer}>
+              <div className={styles.chapters}>
+                <div className={styles.chaptersHeading}>
+                  <p>Chapter name</p>
                 </div>
-              ))}
-          </div>
+                {chapters &&
+                  chapters.map((chapter) => (
+                    <div>
+                      <Link href={`/mangas/${id}/${chapter.split("/").pop()}`}>
+                        {chapter.split("/").pop()}
+                      </Link>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          )}
+
           <section className={styles.commentsSection}>
             <div className={styles.commentsTop}>
-            <h2>Comments</h2>
-
+              <h2>Comments</h2>
             </div>
 
             <div className={styles.numberOfComments}>
@@ -317,7 +322,6 @@ const MangaPage = ({ params }) => {
                 );
               }}
             >
-              
               <textarea
                 type="text"
                 value={commentText}
@@ -339,7 +343,7 @@ const MangaPage = ({ params }) => {
         </section>
       </div>
       <div className={styles.mangaPageSideBar}>
-        <ColorBlock/>
+        <ColorBlock />
         <Genres sideBar={true} />
       </div>
     </div>

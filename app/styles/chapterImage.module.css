@@ -6,14 +6,14 @@
 .chapterImageContainerHalfSize{
     display: flex;
     justify-content: center;
-    padding: 3px;
+    padding: 3px; 
 }  */
-.imageContainer{
+/* .imageContainer{
     display: flex;
     justify-content: center;
     padding: 3px;
-}
-/* .chapterImage{
+} */
+.chapterImage{
 width: 100%;
 height: auto;
-} */
+}

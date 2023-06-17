@@ -1,5 +1,4 @@
-import { Inter, Noticia_Text } from "next/font/google";
-const inter = Inter({ subsets: ["latin"] });
+
 import Link from "next/link";
 import Genres from "./components/Genres";
 import CarouselComponent from "./components/CarouselComponent";

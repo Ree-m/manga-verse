@@ -23,6 +23,7 @@
   gap:3px;
   background-color: var(--button-green);
   padding: 4px;
+  max-width: 50%;
 }
 .buttonContainer button{
   border: none;
@@ -115,7 +116,7 @@
   }
 
   .buttonContainer{
-    width: 50%;
+    width: 150px;
   }
 
   

@@ -49,12 +49,13 @@ const Header = () => {
                   Logout ({username})
                 </button>
               </div>
-            </div>
+            </div>          
+
 
             <div className={styles.nav2}>
               <Link href={`/`}>Manga Online</Link>
-              <Link href={`/`}>Hot Manga</Link>
-              <Link href={`/`}>Newest Manga</Link>
+              <Link href={`/order_by/popularity/1`}>Hot Manga</Link>
+              <Link  href={`/order_by/start_date/1/sort/desc`}>Newest Manga</Link>
             </div>
 
             <div className={styles.nav3}>
@@ -65,8 +66,8 @@ const Header = () => {
               {toggleMenu ? (
                 <div className={styles.menuItems}>
                   <Link href={`/`}>Manga Online</Link>
-                  <Link href={`/`}>Hot Manga</Link>
-                  <Link href={`/`}>Newest Manga</Link>
+                  <Link href={`/order_by/popularity/1`}>Hot Manga</Link>
+                  <Link  href={`/order_by/start_date/1/sort/desc`}>Newest Manga</Link>
                 </div>
               ) : (
                 ""
