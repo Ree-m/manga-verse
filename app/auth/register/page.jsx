@@ -14,7 +14,7 @@ console.log("api url",API_URL)
   async function onSubmit(e) {
     e.preventDefault();
     console.log("register");
-    const response = await fetch(`http://localhost:3000/api/auth/register`, {
+    const response = await fetch(`/api/auth/register`, {
       method: "POST",
       body: JSON.stringify({ name, email, password }),
       headers: {

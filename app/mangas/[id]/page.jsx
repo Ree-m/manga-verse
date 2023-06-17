@@ -28,7 +28,7 @@ const MangaPage = ({ params }) => {
   const { user, setUser } = useUserContext();
   const [loading, setLoading] = useState(false);
   const [commentText, setCommentText] = useState("");
-  const [comments, setComments] = useCommentContext();
+  const [comments, setComments] = useCommentContext(); 
   const [chapters, setChapters] = useState([]);
   const [isMangaLoading, setIsMangaLoading] = useState(true);
   const router = useRouter();
@@ -85,7 +85,7 @@ const MangaPage = ({ params }) => {
   ) {
     console.log("start bookmark");
     const response = await fetch(
-      `http://localhost:3000/api/bookmark/${userId}`,
+      `/api/bookmark/${userId}`,
       {
         method: "POST",
 
@@ -117,7 +117,7 @@ const MangaPage = ({ params }) => {
   useEffect(() => {
     async function fetchComments() {
       setLoading(true);
-      const response = await fetch(`http://localhost:3000/api/comment/${id}`);
+      const response = await fetch(`/api/comment/${id}`);
       const data = await response.json();
       console.log("comments data", data);
       setComments(data);
@@ -138,7 +138,7 @@ const MangaPage = ({ params }) => {
     e.preventDefault();
     console.log("start adding comment");
     const response = await fetch(
-      `http://localhost:3000/api/comment/${mangaId}`,
+      `/api/comment/${mangaId}`,
       {
         method: "POST",
         body: JSON.stringify({
@@ -290,9 +290,9 @@ const MangaPage = ({ params }) => {
                 </div>
                 {chapters &&
                   chapters.map((chapter) => (
-                    <div>
+                    <div className={styles.chaptersList}>
                       <Link href={`/mangas/${id}/${chapter.split("/").pop()}`}>
-                        {chapter.split("/").pop()}
+                       <p>{chapter.split("/").pop()}</p> 
                       </Link>
                     </div>
                   ))}

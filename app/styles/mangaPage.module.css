@@ -112,10 +112,13 @@
   color: var(--hover-yellow);
 }
 
+.chaptersList p{
+text-transform: capitalize;
+}
 /* buttons */
 .mangaPage .letterBtn {
   background-color: transparent;
-  border: none;
+  border: none; 
   font-size: var(--small);
 }
 

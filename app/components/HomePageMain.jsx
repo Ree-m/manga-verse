@@ -19,7 +19,8 @@ const HomePageMain = async () => {
   const data = await fetchTopManga();
   const topManga = data.data;
   return (
-    <div className={styles.homePageMain}>
+    <div className={styles.bgContainer}>
+       <div className={styles.homePageMain}>
       <div>
         <MangaDetails mangas={topManga} />
         <LongButton content={"<< More >>"} href={`/`} />
@@ -30,6 +31,8 @@ const HomePageMain = async () => {
         <Genres sideBar={true} />
       </div>
     </div> 
+    </div>
+   
   );
 }; 
 

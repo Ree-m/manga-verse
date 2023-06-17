@@ -1,54 +1,59 @@
-.carouselComponent{
-height:300px;
-border-top: 2px solid var(--orange);
-/* background: url("assests/body-bg-light.png"); */
-margin: 0px 15px;
-
-
+.carouselComponent {
+  height: 300px;
+  border-top: 2px solid var(--orange);
+  /* background: url("assests/body-bg-light.png"); */
+  margin: 0px 15px;
 }
 
-.title{
+.title {
   background-color: var(--orange);
   padding: 5px 8px;
   display: inline-block;
-
 }
-.title h2{
+.title h2 {
   font-weight: 400;
   color: #fff;
-  font-size:1.3rem;
+  font-size: 1.3rem;
 }
 .carouselItemContainer {
-    position: relative;
-
-  }
-.img{
-    height: 230px;
-    width:100%;
-    padding:2px;
-
+  position: relative;
 }
-  
-  .carouselItemTitle {
+/* 
+.imgContainer {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  z-index: 1;
+} */
+.img {
+  height: 230px;
+  width: auto;
+  object-fit: contain;
+  padding: 1px;
+/* 
+  height: auto;
+  width: 400px; */
+}
+
+.carouselItemTitle {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   padding: 5px;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    font-size: 1rem;
-    font-weight: 400;
-  }
-  .carouselItemTitle:hover{
-    color:var(--hover-yellow)
-  }
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 1rem;
+  font-weight: 400;
+}
+.carouselItemTitle:hover {
+  color: var(--hover-yellow);
+}
 
-  @media (max-width:768px){
-    .carouselComponent{
-      margin: 0px 0px;
-
-    }
-
+@media (max-width: 768px) {
+  .carouselComponent {
+    margin: 0px 0px;
+    display: none;
   }
-  
+}

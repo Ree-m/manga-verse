@@ -6,9 +6,10 @@ const bodyParser = require("body-parser");
 const connectMongo = require("../utils/connectMongo.js");
 const MangaChapters = require("../models/MangaChapters.js");
 const MangaChapterImages = require("../models/MangaChapterImages.js");
+require("dotenv").config({ path: "../.env" });
 
-
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+console.log("checking dotenv NEXTAPP",process.env.NEXTAPP)
+app.use(cors({ credentials: true, origin: process.env.NEXTAPP }));
 app.use(bodyParser.json());
 
 async function scrapeMangaLink(mangaTitle) {
@@ -62,90 +63,6 @@ async function scrapeChapters(mangaTitle) {
 
  
 }
-
-// async function scrapeChapterImages(chapterUrl, mangaTitle,chapter) {
-//   connectMongo();
-//   const mangaExists = await MangaChapters.findOne({ mangaTitle });
-//   if (mangaExists) {
-//     const matchingChapter = mangaExists.chapterImages.find(
-//       (chapterObj) => chapterObj.chapter === chapter
-//     );
-//     if (matchingChapter && matchingChapter.images.length > 0) {
-//       console.log("get images from db");
-//       return matchingChapter.images;
-//     }
-    
-//   }
-  
-  
-// else{
-
-//   const browser = await puppeteer.launch({ headless: "new" });
-//   const page = await browser.newPage();
-//   await page.goto(chapterUrl);
-
-//   const images = await page.$$eval(
-//     ".body-site .container-chapter-reader img",
-//     (imgs) => {
-//       return Array.from(imgs).map((img) => ({
-//         img: img.src || img.getAttribute("data-src"),
-//       }));
-//     }
-//   );
-// // const manga=await MangaChapters.findOne({mangaTitle})
-// // manga.number=chapter
-// //  manga.images=images
-
-
-// //  await manga.save()
-// // console.log("saved images to db")
-// //   console.log("in pupeteer", images);
-// // await MangaChapters.findOneAndUpdate(
-// //   { mangaTitle },
-// //   { $push: { chapterImages: images } }, // Append the new images to the chapterImages array
-// //   { new: true, upsert: true }
-// // // );
-// // await MangaChapters.findOneAndUpdate(
-// //   { mangaTitle },
-// //   { $set: { "chapterImages.$[elem].images": images } },
-// //   { arrayFilters: [{ "elem.chapter": chapter }], new: true, upsert: true }
-// // );
-
-// if (mangaExists) {
-
-//   await MangaChapters.updateOne(
-//     { mangaTitle },
-//     {
-//       $push: {
-//         "chapterImages": {
-//           chapter,
-//           images
-//         }
-//       }
-//     }
-//   );
-//   console.log("saved images to db");
-// } else {
-//   await MangaChapters.create({
-//     mangaTitle,
-//     chapterImages: [
-//       {
-//         chapter,
-//         images
-//       }
-//     ]
-//   });
-//   console.log("created new manga entry with chapter images");
-// }
-
-// await browser.close();
-// console.log("scraped images");
-// return images;
-// }
-
-
- 
-// }
 
 async function scrapeChapterImages(chapterUrl, mangaTitle, chapter) {
   connectMongo();

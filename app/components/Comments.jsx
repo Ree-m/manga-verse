@@ -18,7 +18,7 @@ const Comments = ({ comments, setComments, mangaId,userId }) => {
   async function deleteComment(commentId, userId) {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/comment/${mangaId}/${commentId}/${userId}`,
+        `/api/comment/${mangaId}/${commentId}/${userId}`,
         {
           method: "DELETE",
           credentials: "include",
@@ -45,7 +45,7 @@ const Comments = ({ comments, setComments, mangaId,userId }) => {
   async function likeDislikeComment(commentId, userId, action) {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/comment/${mangaId}/${commentId}/${userId}`,
+        `/api/comment/${mangaId}/${commentId}/${userId}`,
         {
           method: "PUT",
           body: JSON.stringify({ action }),

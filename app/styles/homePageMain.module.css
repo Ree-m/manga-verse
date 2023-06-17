@@ -2,8 +2,11 @@
     display: grid;
     grid-template-columns: 68% 32%;
     gap:15px;
-    /* background: url("assests/body-bg-light.png"); */
 
+
+}
+.bgContainer{
+  /* background: url("asse sts/body-bg-light.png"); */
 
 }
 

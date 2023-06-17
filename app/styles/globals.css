@@ -2,6 +2,8 @@
 body {
   font-family: "noto-sans", sans-serif;
   background-color: #d8d7d7;
+  /* background-image: url("assests/body-bg-light.png"); */
+
 }
 
 * {
@@ -72,14 +74,15 @@ button{
 
 .main{
   margin:0px 15px;
+  background: url("assests/body-bg-light.png");
+
 
 }
-/* 
-.body{
-      background: url("assests/body-bg-light.png");
 
-} */
+.bgContainer{
+  background: url("assests/body-bg-light.png");
 
+}
 
 
 

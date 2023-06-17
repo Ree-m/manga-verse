@@ -21,7 +21,7 @@ const BookmarkPage = () => {
     async function fetchBookmark() {
       try{
         const response = await fetch(
-          `http://localhost:3000/api/bookmark/${userId}`
+          `/api/bookmark/${userId}`
         ); 
         const data = await response.json();
         console.log("bookmark data", data);
@@ -37,7 +37,7 @@ const BookmarkPage = () => {
 
   async function deleteBookmark(userId, itemId) {
     const response = await fetch(
-      `http://localhost:3000/api/bookmark/${userId}/${itemId}`,
+      `/api/bookmark/${userId}/${itemId}`,
       {
         method: "DELETE",
       }

@@ -16,10 +16,15 @@ const MangaDetails = ({ mangas }) => {
             </Link>
             <div>
               <Link href={`/mangas/${manga.mal_id}`}>
-                <h2>{manga.title}</h2>
+                {/* <h2>{manga.titles.map((title)=>(
+                  title.type=="Synonym"|| title.type=="English" &&
+                  title.title
+                  ))}</h2> */}
+
+                  <h2>{manga.title}</h2>
               </Link>
               <div className={styles.subDetails}>
-                <span>Chapter 33</span>
+                {/* <span>Chapter 33</span> */}
               <div className={styles.subDetails2}>
               <div >
                   <GiSandsOfTime/>
