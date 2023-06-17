@@ -26,7 +26,7 @@ const GenrePage = ({ params }) => {
       console.log("second genre", genre);
 
       const response = await fetch(
-        `https://api.jikan.moe/v4/manga?genres=${genreId}?&page=${page}`
+        `https://api.jikan.moe/v4/manga?genres=${genreId}?&limit=24&page=${page}`
       );
 
       const filteredMangas = await response.json();
