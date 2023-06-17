@@ -5,7 +5,6 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const connectMongo = require("../utils/connectMongo.js");
 const MangaChapters = require("../models/MangaChapters.js");
-const MangaChapterImages = require("../models/MangaChapterImages.js");
 require("dotenv").config({ path: "../.env" });
 
 console.log("checking dotenv NEXTAPP",process.env.NEXTAPP)
@@ -195,8 +194,8 @@ app.post("/chapterImages", async (req, res) => {
 
 
 
+console.log("dotenv check",process.env.SCRAPER_API)
 
-
-app.listen(9000, () => {
+app.listen(process.env.SCRAPER_API, () => {
   console.log("server runing");
 });
