@@ -5,9 +5,9 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const connectMongo = require("../utils/connectMongo.js");
 const MangaChapters = require("../models/MangaChapters.js");
-require("dotenv").config({ path: "../.env" });
+require("dotenv").config({ path: "../.env.local" });
 
-console.log("checking dotenv NEXTAPP",process.env.ALLOWED_ORIGIN)
+console.log("checking dotenv ALLOWED_ORIGIN",process.env.ALLOWED_ORIGIN)
 app.use(cors({ credentials: true, origin: process.env.ALLOWED_ORIGIN }));
 app.use(bodyParser.json());
 
@@ -194,7 +194,7 @@ app.post("/chapterImages", async (req, res) => {
 
 
 
-console.log("dotenv check",process.env.SCRAPER_API)
+console.log("dotenv check SCARPER_API",process.env.SCRAPER_API)
 
 app.listen(process.env.PORT || 9000, () => {
   console.log("server runing");
