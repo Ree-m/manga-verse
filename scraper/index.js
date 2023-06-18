@@ -7,8 +7,8 @@ const connectMongo = require("../utils/connectMongo.js");
 const MangaChapters = require("../models/MangaChapters.js");
 require("dotenv").config({ path: "../.env" });
 
-console.log("checking dotenv NEXTAPP",process.env.NEXTAPP)
-app.use(cors({ credentials: true, origin: process.env.NEXTAPP }));
+console.log("checking dotenv NEXTAPP",process.env.ALLOWED_ORIGIN)
+app.use(cors({ credentials: true, origin: process.env.ALLOWED_ORIGIN }));
 app.use(bodyParser.json());
 
 async function scrapeMangaLink(mangaTitle) {
@@ -196,6 +196,6 @@ app.post("/chapterImages", async (req, res) => {
 
 console.log("dotenv check",process.env.SCRAPER_API)
 
-app.listen(process.env.SCRAPER_API, () => {
+app.listen(process.env.PORT || 9000, () => {
   console.log("server runing");
 });

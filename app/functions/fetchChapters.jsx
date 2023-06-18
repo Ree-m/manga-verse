@@ -1,5 +1,6 @@
+
 export async function fetchChapters(mangaTitle) {
-  const response = await fetch(`http://localhost:9000/chapters`, {
+  const response = await fetch(`${process.env.SCRAPER_API}/chapters`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

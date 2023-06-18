@@ -57,7 +57,7 @@ const MangaPage = ({ params }) => {
     async function fetchChapters() {
       console.log("reem", "hi", manga, isMangaLoading);
       console.log("scrape started", manga.data?.title, manga.title, manga.data);
-      const response = await fetch(`http://localhost:9000/chapters`, {
+      const response = await fetch(`${process.env.SCRAPER_API}/chapters`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

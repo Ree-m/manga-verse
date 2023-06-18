@@ -4,7 +4,7 @@ import ColorBlock from "./ColorBlock";
 import Genres from "./Genres";
 import { LongButton } from "./LongButton";
 import styles from "../styles/homePageMain.module.css";
-
+// import { API_URL } from "../GlobalVariables";
 async function fetchTopManga() {
   console.log("start home page fetching");
   const response = await fetch(

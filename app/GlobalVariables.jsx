@@ -1,1 +1,1 @@
-export let NEXT_BTN=true
+export const API_URL = import.meta.env.SCARPER_API;
