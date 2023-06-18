@@ -4,7 +4,7 @@ const puppeteer = require("puppeteer");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const connectMongo = require("./ConnectMongo.js");
-const MangaChapters = require("../models/MangaChapters.js");
+const MangaChapters = require("./models/MangaChapters.js");
 require("dotenv").config({ path: "../.env.local" });
 
 console.log("checking dotenv ALLOWED_ORIGIN",process.env.ALLOWED_ORIGIN)
