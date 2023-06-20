@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import Loading from "@/app/components/Loading";
 import MangaDetails from "@/app/components/MangaDetails";
+import Paginate from "@/app/components/Paginate";
+import ReactPaginate from "react-paginate";
 
 const GenrePage = ({ params }) => {
   const [mangas, setMangas] = useState([]);
@@ -46,18 +48,29 @@ const GenrePage = ({ params }) => {
   return (
     <div>
       <MangaDetails mangas={mangas} setMangas={setMangas} />
-     
+
       <ReactPaginate
-        pageCount={pageCount && pageCount}
-        pageRangeDisplayed={10} // Display a range of 5 pages
-        marginPagesDisplayed={2} // Display 2 margin pages on each side
+        nextLabel="next >"
         onPageChange={(data) => {
-          router.push(
-            `/genre/${genre}/${data.selected + 1}?genreId=${genreId}`
-          );
+          console.log(data.selected + 1, "data.selected");
+          router.push(`/genre/${genre}/${data.selected +1}?genreId=${genreId}`);
         }} // Handle page change event
-        containerClassName={"pagination"} // Set CSS class for container
-        activeClassName={"active"} // Set CSS class for active page
+        pageRangeDisplayed={3}
+        marginPagesDisplayed={2}
+        pageCount={pageCount}
+        previousLabel="< previous"
+        pageClassName="page-item"
+        pageLinkClassName="page-link"
+        previousClassName="page-item"
+        previousLinkClassName="page-link"
+        nextClassName="page-item"
+        nextLinkClassName="page-link"
+        breakLabel="..."
+        breakClassName="page-item"
+        breakLinkClassName="page-link"
+        containerClassName="pagination"
+        activeClassName="active"
+        renderOnZeroPageCount={null}
       />
     </div>
   );
