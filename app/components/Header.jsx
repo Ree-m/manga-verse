@@ -43,31 +43,38 @@ const Header = () => {
               <div>
                 <i onClick={() => router.push(`/bookmark/${userId}`)}>
                   <BsBell className={styles.icon} />
-                  {bookmark.length==0?null:<span>{bookmark.length}</span>}
+                  {bookmark.length == 0 ? null : <span>{bookmark.length}</span>}
                 </i>
                 <button onClick={() => signOut()} className={styles.btn}>
                   Logout ({username})
                 </button>
               </div>
-            </div>          
-
+            </div>
 
             <div className={styles.nav2}>
               <Link href={`/`}>Manga Online</Link>
               <Link href={`/order_by/popularity/1`}>Hot Manga</Link>
-              <Link  href={`/order_by/start_date/1/sort/desc`}>Newest Manga</Link>
+              <Link href={`/order_by/start_date/1/sort/desc`}>
+                Newest Manga
+              </Link>
             </div>
 
             <div className={styles.nav3}>
               <div className={styles.menuButtonContainer}>
-              <button onClick={() => setToggleMenu(!toggleMenu)} className={styles.menuButton}>Menu</button>
-
+                <button
+                  onClick={() => setToggleMenu(!toggleMenu)}
+                  className={styles.menuButton}
+                >
+                  Menu
+                </button>
               </div>
               {toggleMenu ? (
                 <div className={styles.menuItems}>
                   <Link href={`/`}>Manga Online</Link>
                   <Link href={`/order_by/popularity/1`}>Hot Manga</Link>
-                  <Link  href={`/order_by/start_date/1/sort/desc`}>Newest Manga</Link>
+                  <Link href={`/order_by/start_date/1/sort/desc`}>
+                    Newest Manga
+                  </Link>
                 </div>
               ) : (
                 ""
@@ -96,8 +103,10 @@ const Header = () => {
 
             <div className={styles.nav2}>
               <Link href={`/`}>Manga Online</Link>
-              <Link href={`/`}>Hot Manga</Link>
-              <Link href={`/`}>Newest Manga</Link>
+              <Link href={`/order_by/popularity/1`}>Hot Manga</Link>
+              <Link href={`/order_by/start_date/1/sort/desc`}>
+                Newest Manga
+              </Link>
             </div>
           </div>
         )}

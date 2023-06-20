@@ -5,7 +5,6 @@ import Loading from "@/app/components/Loading";
 import MangaDetails from "@/app/components/MangaDetails";
 import Paginate from "@/app/components/Paginate";
 import { useRouter } from "next/navigation";
-// import styles from "app/styles/paginate.module.css";
 
 const OrderBy = ({ params }) => {
   const category = params.category;
