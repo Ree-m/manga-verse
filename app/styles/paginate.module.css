@@ -1,1 +1,8 @@
- 
+  .pagination{
+    background-color: aqua;
+    /* display:flex; */
+  }
+
+  .active{
+    background-color:yellow;
+  }

@@ -1,7 +1,10 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import PopupComponent from "@/app/components/PopupComponent";
 import styles from "app/styles/auth.module.css";
+
+
 
 
 const RegisterPage = () => {
@@ -27,11 +30,16 @@ console.log("api url",API_URL)
     console.log(response)
 
     if (responseData == "User already exists") {
+      <PopupComponent content={"User already exists"}/>
+
       alert(`User already exists`);
     } else if (response.ok) {
+      <PopupComponent content={"Registeration successful.You can login now"}/>
       alert("Registeration successful.You can login now");
     } else {
       alert("Registeration failed.Try again later.");
+      <PopupComponent content={"Registeration failed.Try again later."}/>
+
     }
     setName("")
     setEmail("")

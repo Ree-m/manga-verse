@@ -3,14 +3,15 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Loading from "@/app/components/Loading";
 import MangaDetails from "@/app/components/MangaDetails";
-import ReactPaginate from "react-paginate";
+import Paginate from "@/app/components/Paginate";
 import { useRouter } from "next/navigation";
-import styles from "app/styles/paginate.module.css";
+
 const OrderBy = ({ params }) => {
   const category = params.category;
   const page = params.page;
   const searchQuery = params.search_query;
   const [orderedManga, setOrderedManga] = useState([]);
+  const [pageCount,setPageCount]=useState(null)
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -26,6 +27,7 @@ const OrderBy = ({ params }) => {
       const data = await response.json();
       console.log("order", data);
       setOrderedManga(data.data);
+      setPageCount(data.pagination.last_visible_page)
       setLoading(false);
     }
     fetchOrderedManga();
@@ -38,20 +40,8 @@ const OrderBy = ({ params }) => {
     <div>
       <MangaDetails mangas={orderedManga} setMangas={setOrderedManga} />
 
-      <ReactPaginate
-        pageCount={20}
-        pageRangeDisplayed={3}
-        marginPagesDisplayed={0}
-        // breakLabel="..."
-        nextLabel="Next"
-        previousLabel="Previous "
-        onPageChange={(data) => {
-          console.log(data.selected + 1, "data.selected");
-          router.push(`/order_by/popularity/${data.selected + 1}`);
-        }} // Handle page change event
-        containerClassName={"pagination"} // Set CSS class for container
-        activeClassName={"active"} // Set CSS class for active page
-      />
+   <Paginate link={`/order_by/popularity`} pageCount={pageCount}/>
+
     </div>
   );
 };

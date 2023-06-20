@@ -13,6 +13,7 @@ import { useSession } from "next-auth/react";
 import ShowLess from "@/app/components/ShowLess";
 import ColorBlock from "@/app/components/ColorBlock";
 import Genres from "@/app/components/Genres";
+import PopupComponent from "@/app/components/PopupComponent";
 import styles from "app/styles/mangaPage.module.css";
 
 // icons
@@ -104,13 +105,18 @@ const MangaPage = ({ params }) => {
     console.log("bookmark repsonse", response);
     const bookmark = await response.json();
     if (response.ok && bookmark === "Bookmark already exists") {
-      alert("Bookmark already exists");
+      <PopupComponent content={"Bookmark already exists."}/>
+      // alert("Bookmark already exists");
     } else if (response.ok) {
       setBookmark(bookmark);
       console.log("finish bookmark", bookmark);
-      alert("bookmark added");
+      // alert("Bookmark added");
+      <PopupComponent content={"Bookmark added."}/>
+
     } else {
-      alert("Adding to bookmark failed.Try again later.");
+      // alert("Adding to bookmark failed.Try again later.");
+      <PopupComponent content={"Adding to bookmark failed.Try again later."}/>
+
     }
   }
 
