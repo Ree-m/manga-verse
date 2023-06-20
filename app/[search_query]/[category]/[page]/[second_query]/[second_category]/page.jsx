@@ -4,7 +4,7 @@ import Link from "next/link";
 import Loading from "@/app/components/Loading";
 import MangaDetails from "@/app/components/MangaDetails";
 import ReactPaginate from "react-paginate";
-// import Paginate from "../../../../../components/Paginate";
+import "app/styles/paginate.css"
 const SecondOrderBy = ({ params }) => {
   const searchQuery = params.search_query;
   const searchQuery2 = params.second_query;

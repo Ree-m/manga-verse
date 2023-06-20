@@ -24,7 +24,7 @@ const MangaDetails = ({ mangas }) => {
                   <h2>{manga.title}</h2>
               </Link>
               <div className={styles.subDetails}>
-                {/* <span>Chapter 33</span> */}
+                <span>Chapter 33</span>
               <div className={styles.subDetails2}>
               <div >
                   <GiSandsOfTime/>

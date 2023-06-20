@@ -1,7 +1,8 @@
 import ReactPaginate from "react-paginate";
 import { useRouter } from "next/navigation";
+import "../styles/paginate.css"
 
-const Paginate = ({pageCount,link,linkSecondHalf}) => {
+const Paginate = ({pageCount,link}) => {
 
   const router =useRouter()
   return (

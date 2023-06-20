@@ -2,6 +2,8 @@ import Link from "next/link";
 import MangaDetails from "@/app/components/MangaDetails";
 import Paginate from "@/app/components/Paginate";
 
+
+
 async function fetchSearchResults(query,page) {
   console.log("start results fetch",query,page+1)
   const response = await fetch(

@@ -6,9 +6,8 @@ import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import Loading from "@/app/components/Loading";
 import MangaDetails from "@/app/components/MangaDetails";
-import Paginate from "@/app/components/Paginate";
-import ReactPaginate from "react-paginate";
 
+import "app/styles/paginate.css"
 const GenrePage = ({ params }) => {
   const [mangas, setMangas] = useState([]);
   const [loading, setLoading] = useState(false);

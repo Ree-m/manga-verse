@@ -24,7 +24,6 @@ const HomePageMain = async () => {
       <div>
         <MangaDetails mangas={topManga} />
         <LongButton content={"<< More >>"} href={`/`} />
-        <p>AAAAAAAAAAAaa</p>
       </div>
 
       <div className={styles.sideBar}>
