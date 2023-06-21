@@ -4,9 +4,12 @@ import Link from "next/link";
 import Loading from "@/app/components/Loading";
 import MangaDetails from "@/app/components/MangaDetails";
 import ReactPaginate from "react-paginate";
-import "app/styles/paginate.css"
+// import "app/styles/paginate.css"
+import styles from "app/styles/mangaDetialsPages.module.css"
+
+
 const SecondOrderBy = ({ params }) => {
-  const searchQuery = params.search_query;
+  const searchQuery = params.search_query; 
   const searchQuery2 = params.second_query;
   const category = params.category;
   const category2 = params.second_category;
@@ -41,7 +44,7 @@ const SecondOrderBy = ({ params }) => {
     return <Loading />;
   }
   return (
-    <div>
+    <div className={styles.mangaDetailsPage}>
              <MangaDetails mangas={orderedManga} setMangas={setOrderedManga} />
 
              <Paginate link={`/${searchQuery}/${category}`} linkSecondHalf={`${searchQuery2}/${category2}`} pageCount={pageCount}/>

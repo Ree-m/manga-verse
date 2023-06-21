@@ -23,7 +23,7 @@ const HomePageMain = async () => {
        <div className={styles.homePageMain}>
       <div>
         <MangaDetails mangas={topManga} />
-        <LongButton content={"<< More >>"} href={`/`} />
+        <LongButton content={"<< More >>"} href={`/order_by/popularity/1`} />
       </div>
 
       <div className={styles.sideBar}>

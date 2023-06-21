@@ -6,6 +6,8 @@ import MangaDetails from "@/app/components/MangaDetails";
 import Paginate from "@/app/components/Paginate";
 import { useRouter } from "next/navigation";
 
+import styles from "app/styles/mangaDetialsPages.module.css"
+
 const OrderBy = ({ params }) => {
   const category = params.category;
   const page = params.page;
@@ -17,7 +19,7 @@ const OrderBy = ({ params }) => {
 
   console.log("order by", page, category, searchQuery);
 
-  useEffect(() => {
+  useEffect(() => { 
     async function fetchOrderedManga() {
       setLoading(true);
       const response = await fetch(
@@ -37,7 +39,7 @@ const OrderBy = ({ params }) => {
     return <Loading />;
   }
   return (
-    <div>
+    <div className={styles.mangaDetailsPage}>
       <MangaDetails mangas={orderedManga} setMangas={setOrderedManga} />
 
    <Paginate link={`/order_by/popularity`} pageCount={pageCount}/>

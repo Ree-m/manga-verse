@@ -86,12 +86,7 @@ button{
 
 }
  */
-.pagination{
-  margin: 0px 15px;
-  /* display:flex; */
-  /* flex-direction:row; */
-  /* justify-content:flex-end; */
-}
+
 
 /* Extra Small devices (phones, 576px and below) */
 @media (max-width: 767px) {
