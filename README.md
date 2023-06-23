@@ -17,14 +17,14 @@
   <p align="center">
     Welcome to Manga Verse, a manga viewing application.
     <br />
-    <a href="https://github.com/Ree-m/"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Ree-m/manga-verse"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://skinology-ecommerce-app-client.onrender.com/">View Demo</a>
     ·
-    <a href="https://github.com/Ree-m/skinology-ecommerce-app/issues">Report Bug</a>
+    <a href="https://github.com/Ree-m/manga-verse/issues">Report Bug</a>
     ·
-    <a href="https://github.com/Ree-m/skinology-ecommerce-app/issues">Request Feature</a>
+    <a href="https://github.com/Ree-m/manga-verse/issues">Request Feature</a>
   </p>
 </div>
 
@@ -60,32 +60,28 @@
 ## About The Project
 
 [![Skinology Ecommerce App][product-screenshot]](https://skinology-ecommerce-app-client.onrender.com/)
-Skinology is a full-stack ecommerce web app with a React frontend and an Express/MongoDB backend. It uses JSON web tokens for authentication and is fully responsive for a seamless shopping experience on any device.
+Manga Vesre is a full-stack manga viewing app that combines the power of NEXTJS, JIKAN API, Pupeteer, Express, and MongoDB. It follows a microservices architecture and incorporates next auth for authentication. With its responsive design, Manga Vesre delivers an immersive manga reading experience across devices.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Features
 
-- Non-registered users can browse and search for products in the app, and add them to a guest cart.
-- Registered users can log in to view and manage their persistent cart, including adding, deleting, and updating products.
-- All users can easily search for products using the app's search function.
-- The app includes two distinct interfaces: one for regular users and one for admin.
-- Admin has full access to all the features of regular users, as well as the ability to add, edit, and delete products in the app.
+- Users can browse and view manga and its chapters.
+- The app uses pupeteer to scrape manga chapters initially and then caches them for faster subsequent loads.
+-  All users can easily search for manga using the app's search function.
+- Registered users can add manga to bookmark
+- Filter manga by genre, status, and popularity according to your preferences.
+
 
 ### Optimizations
 
-- Add pop up saying "item has been added to cart" and showing cart and contine shopping buttons.
-
-- Adding loading states for each action.
-
-- Improve local setup instructions
-
-- Improve search bar in mobile
-
-- Filter products by category and brand
-
-- Give users the ability to delete their account and give admins the ability to delete any account.
-
+- Make filtering more dynamic
+- Google auth
+- Fix dupliacte bookmark bug
+- Fix bookmark icon not showing number till i am on the bookmark page
+- Acess chapter everywhere in the app
+- Change background to the bg-image
+- 
 
 
 ### Built With
@@ -94,6 +90,9 @@ Skinology is a full-stack ecommerce web app with a React frontend and an Express
 - [![React][react.js]][react-url]
 - [![Express][express.js]][express-url]
 - [![MongoDB][mongodb]][mongodb-url]
+- [![MongoDB][mongodb]][puppeteer-url]
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -109,7 +108,6 @@ username: test password: testtest email: test@test.com
 
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
@@ -122,25 +120,41 @@ To get a local copy up and running follow these simple example steps.
 
 ### Setup
 
+Add  the .env.local file in root of the pp
+
 ```sh
- #cd into the cloned repo
-  cd manga-app
-  
-#install all the packages
-   npm install
-
-  #start vite app
-  npm run dev
-
-  #cd into the backend folder
-  cd scraper
-
-  #install all the packages
-  npm install
-
-  #start server
-  npm run start
+MONGODB_URI=
+PRIVATE_KEY=
+NODE_ENV=
+ALLOWED_ORIGIN=
+SCRAPER_API=
+PORT=
+NODE_VERSION=
 ```
+
+Install the dependencies and devDependencies.
+
+```sh
+cd manga-app
+npm install
+cd scraper
+npm install
+```
+
+To start nextjs server 
+
+```sh
+cd manga-app
+npm run start
+```
+
+To start puppeteer server
+
+```sh 
+cd scraper
+npm run start
+```
+
 
 <!-- USAGE EXAMPLES -->
 
@@ -223,4 +237,5 @@ Project Link: [https://github.com/Ree-m/skinology-ecommerce-app](https://github.
 [mongodb-url]: https://www.mongodb.com/docs/atlas/
 [express.js]: https://img.shields.io/badge/Express.js-404D59?style=for-the-badge
 [express-url]: https://expressjs.com/
+[puppeteer-url]: https://pptr.dev/
 
