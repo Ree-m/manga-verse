@@ -120,7 +120,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### Setup
 
-Add  the .env.local file in root of the pp
+Add  the .env.local file in root of the app
 
 ```sh
 MONGODB_URI=
@@ -135,16 +135,18 @@ NODE_VERSION=
 Install the dependencies and devDependencies.
 
 ```sh
-cd manga-app
+
+# In root of the app
 npm install
 cd scraper
 npm install
+
 ```
 
-To start nextjs server 
+To start the nextjs server 
 
 ```sh
-cd manga-app
+# In root of the app
 npm run start
 ```
 
@@ -203,7 +205,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Reem Bsrat - reembsrat@gmail.com
 
-Project Link: [https://github.com/Ree-m/skinology-ecommerce-app](https://github.com/Ree-m/skinology-ecommerce-app)
+Project Link: [https://github.com/Ree-m/manga-verse](https://github.com/Ree-m/manga-verse)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -211,9 +213,9 @@ Project Link: [https://github.com/Ree-m/skinology-ecommerce-app](https://github.
 
 ## Acknowledgments
 
-- [Layout and Copy Inspiration](https://www.likeskincare.com/)
-- [Product Images and Copy Inspiration](https://www.stylevana.com/en_US/)
-- [Enhancing Images](https://letsenhance.io/)
+- [Layout and Copy Inspiration](https://manganato.com/)
+- [Scraping chapters](ww6.manganelo.tv)
+- [Manga API](https://jikan.moe/)
 - [Choose an Open Source License](https://choosealicense.com)
 - [Img Shields](https://shields.io) 
 - [React Icons](https://react-icons.github.io/react-icons/search)
