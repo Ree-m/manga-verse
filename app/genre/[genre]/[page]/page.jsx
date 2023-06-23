@@ -7,7 +7,7 @@ import { useSearchParams } from "next/navigation";
 import Loading from "@/app/components/Loading";
 import MangaDetails from "@/app/components/MangaDetails";
 
-import "app/styles/paginate.css"
+// import "app/styles/paginate.css"
 const GenrePage = ({ params }) => {
   const [mangas, setMangas] = useState([]);
   const [loading, setLoading] = useState(false);
