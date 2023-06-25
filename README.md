@@ -20,7 +20,7 @@
     <a href="https://github.com/Ree-m/manga-verse"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://skinology-ecommerce-app-client.onrender.com/">View Demo</a>
+    <a href="">View Demo</a>
     ·
     <a href="https://github.com/Ree-m/manga-verse/issues">Report Bug</a>
     ·
@@ -59,7 +59,7 @@
 
 ## About The Project
 
-[![Skinology Ecommerce App][product-screenshot]](https://skinology-ecommerce-app-client.onrender.com/)
+[![Skinology Ecommerce App][product-screenshot]]()
 Manga Vesre is a full-stack manga viewing app that combines the power of NEXTJS, JIKAN API, Pupeteer, Express, and MongoDB. It follows a microservices architecture and incorporates next auth for authentication. With its responsive design, Manga Vesre delivers an immersive manga reading experience across devices.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -68,7 +68,7 @@ Manga Vesre is a full-stack manga viewing app that combines the power of NEXTJS,
 
 - Users can browse and view manga and its chapters.
 - The app uses pupeteer to scrape manga chapters initially and then caches them for faster subsequent loads.
--  All users can easily search for manga using the app's search function.
+- All users can easily search for manga using the app's search function.
 - Registered users can add manga to bookmark
 - Filter manga by genre, status, and popularity according to your preferences.
 
@@ -88,6 +88,7 @@ Manga Vesre is a full-stack manga viewing app that combines the power of NEXTJS,
 
 - [![Node][node.js]][node-url]
 - [![React][react.js]][react-url]
+- [![Next][next.js]][nextjs-url]
 - [![Express][express.js]][express-url]
 - [![MongoDB][mongodb]][mongodb-url]
 - [![MongoDB][mongodb]][puppeteer-url]
@@ -120,7 +121,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### Setup
 
-Add  the .env.local file in root of the app
+Add the .env.local file in root of the app
 
 ```sh
 MONGODB_URI=
@@ -147,7 +148,7 @@ To start the nextjs server
 
 ```sh
 # In root of the app
-npm run start
+npm run dev
 ```
 
 To start puppeteer server
@@ -164,11 +165,28 @@ npm run start
 
 ## Usage
 
-Users can signup here.
-<img src="client/src/assets/signup-form.png" alt="Image of signup form" />
+Users can login here.
+<img src="" alt="Image of login form" />
 
-Users can login here.Try our demo account.
-<img src="client/src/assets/login-form-screenshot.png" alt="Image of the login form" />
+Home Page
+<img src="" alt="Image of home page" />
+
+Manga Page
+<img src="" alt="Image of manga page" />
+
+Chapter Page
+<img src="" alt="Image of chapter page" />
+
+Filter by genre
+<img src="" alt="Genres" />
+
+Bookmarks page
+<img src="" alt="Image of bookmarks page" />
+
+
+
+
+
 
 
 
@@ -235,9 +253,12 @@ Project Link: [https://github.com/Ree-m/manga-verse](https://github.com/Ree-m/ma
 [node-url]: https://nodejs.org/en
 [react.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [react-url]: https://reactjs.org/
+[next.js]:https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+[nextjs-url]: https://nextjs.org/
 [mongodb]: https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white
 [mongodb-url]: https://www.mongodb.com/docs/atlas/
 [express.js]: https://img.shields.io/badge/Express.js-404D59?style=for-the-badge
 [express-url]: https://expressjs.com/
 [puppeteer-url]: https://pptr.dev/
+
 
