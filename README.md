@@ -79,9 +79,9 @@ Manga Vesre is a full-stack manga viewing app that combines the power of NEXTJS,
 - Google auth
 - Fix dupliacte bookmark bug
 - Fix bookmark icon not showing number till i am on the bookmark page
-- Acess chapter everywhere in the app
+- Access chapter everywhere in the app
 - Change background to the bg-image
-- 
+- Make carousel images less pixelated
 
 
 ### Built With
@@ -91,7 +91,7 @@ Manga Vesre is a full-stack manga viewing app that combines the power of NEXTJS,
 - [![Next][next.js]][nextjs-url]
 - [![Express][express.js]][express-url]
 - [![MongoDB][mongodb]][mongodb-url]
-- [![MongoDB][mongodb]][puppeteer-url]
+- [![Puppeteer][puppeteer]][puppeteer-url]
 
 
 
@@ -259,6 +259,7 @@ Project Link: [https://github.com/Ree-m/manga-verse](https://github.com/Ree-m/ma
 [mongodb-url]: https://www.mongodb.com/docs/atlas/
 [express.js]: https://img.shields.io/badge/Express.js-404D59?style=for-the-badge
 [express-url]: https://expressjs.com/
+[puppeteer]: https://img.shields.io/badge/-Puppeteer-40B5A4?logo=Puppeteer&logoColor=
 [puppeteer-url]: https://pptr.dev/
 
 
