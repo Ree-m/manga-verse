@@ -34,7 +34,7 @@ import { fetchChapters } from "../functions/fetchChapters";
   //   }
   // }
 
-const MangaDetail = async({manga}) => {
+const MangaDetail = ({manga}) => {
 // const chapters=await fetchChaptersData(manga)
 //     console.log("manga detail here",chapters)
 // let last = chapters && chapters[0].split("chapter-").pop()
