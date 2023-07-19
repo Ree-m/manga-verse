@@ -51,6 +51,11 @@
     color: #fff;
   }
 
+  .btnRed:hover{
+    background-color: #d80f16;
+    
+  }
+
   .btn:hover{
     background-color:var(--green);
   }

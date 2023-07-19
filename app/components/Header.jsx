@@ -45,7 +45,7 @@ const Header = () => {
                   <BsBell className={styles.icon} />
                   {bookmark.length == 0 ? null : <span>{bookmark.length}</span>}
                 </i>
-                <button onClick={() => signOut()} className={styles.btn}>
+                <button onClick={() => signOut()} className={`${styles.btn} ${styles.btnRed}`}>
                   Logout ({username})
                 </button>
               </div>

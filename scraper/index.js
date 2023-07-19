@@ -10,7 +10,8 @@ require("dotenv").config({ path: "../.env.local" });
 // connectMongo();
 
 console.log("checking dotenv ALLOWED_ORIGIN",process.env.ALLOWED_ORIGIN)
-app.use(cors({ origin: `http://localhost:3000` }));
+app.use(cors({ origin: `https://manga-verse.onrender.com
+` }));
 app.use(bodyParser.json());
 
 async function scrapeMangaLink(mangaTitle) {

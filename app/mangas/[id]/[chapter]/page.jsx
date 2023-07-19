@@ -68,7 +68,7 @@ const Chapter = ({ params }) => {
         manga.data
       );
 
-      const response = await fetch(`http://localhost:9000/chapterImages`, {
+      const response = await fetch(`https://manga-verse-scraper.onrender.com/chapterImages`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -67,7 +67,7 @@ const BookmarkPage = () => {
                 <Link href={`/mangas/${item.mangaId}`}>
                   <h3>{item.nameOfBookmark}</h3>
                 </Link>
-                <p>Current: <Link href={`/`}>Chapter 33</Link></p>
+                {/* <p>Current: <Link href={`/`}>Chapter 33</Link></p> */}
 <ReadMore synopsis={item.synopsis} bookmark={true} mangaId={item.mangaId}/>
                
               </div>
