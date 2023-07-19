@@ -10,8 +10,7 @@ require("dotenv").config({ path: "../.env.local" });
 // connectMongo();
 
 console.log("checking dotenv ALLOWED_ORIGIN",process.env.ALLOWED_ORIGIN)
-app.use(cors({ origin: `https://manga-verse.onrender.com
-` }));
+app.use(cors({ origin: process.env.ALLOWED_ORIGIN}));
 app.use(bodyParser.json());
 
 async function scrapeMangaLink(mangaTitle) {
@@ -132,7 +131,7 @@ app.get("/chapters", async (req, res) => {
     // const mangaTitle = req.body.title;
     const mangaTitle = req.query.title;
 
-    console.log("mangaTitle line 64", mangaTitle, req.body);
+    console.log( mangaTitle, req.body);
     const manga = await MangaChapters.findOne({ mangaTitle });
     if (manga && manga.chapterLinks.length > 0) {
       console.log("get chapter links from the database");
