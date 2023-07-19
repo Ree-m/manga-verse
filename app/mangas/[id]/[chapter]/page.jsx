@@ -68,7 +68,7 @@ const Chapter = ({ params }) => {
         manga.data
       );
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_SCRAPER_API}/chapterImages?chapter=${chapter} title=${manga.title}`,
+      const response = await fetch(`${process.env.NEXT_PUBLIC_SCRAPER_API}/chapterImages?chapter=${chapter}&title=${manga.title}`,
       //  {
       //   method: "POST",
       //   headers: {
