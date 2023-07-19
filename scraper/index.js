@@ -191,7 +191,7 @@ app.get("/chapterImages", async (req, res) => {
     }
 
 } catch (error) {
-    console.error(error);
+    console.error(`ChapterImages error: ${error}`);
     res.status(500).send("Server Error");
   }
 });
