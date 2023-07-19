@@ -68,7 +68,7 @@ const Chapter = ({ params }) => {
         manga.data
       );
 
-      const response = await fetch(`${SCARPER_API}/chapterImages`, {
+      const response = await fetch(`${process.env.SCRAPER_API}/chapterImages`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
