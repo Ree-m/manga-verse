@@ -40,10 +40,13 @@
   } 
 
 
-
+  @media (max-width:345px){
+    .readMore p{
+      font-size: 0.85rem;
+    }
+  }
   
 
-/* Extra Small devices (phones, 576px and below) */
 @media (max-width: 767px) {
   /* .readMore p{
     width: 80%;
@@ -58,11 +61,11 @@
 
   
   .readMore p {
-    width: 100%; /* Set width to 100% */
+    width: 100%; 
   }
 
   .readMore p::after {
-    width: 100%; /* Set width to 100% */
+    width: 100%; 
   }
 
 

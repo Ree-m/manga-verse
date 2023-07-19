@@ -5,6 +5,7 @@ import Loading from "@/app/components/Loading";
 import MangaDetails from "@/app/components/MangaDetails";
 import ReactPaginate from "react-paginate";
 // import "app/styles/paginate.css"
+import Paginate from "@/app/components/Paginate";
 import styles from "app/styles/mangaDetialsPages.module.css"
 
 
@@ -48,7 +49,7 @@ const SecondOrderBy = ({ params }) => {
              <MangaDetails mangas={orderedManga} setMangas={setOrderedManga} />
 
              <Paginate link={`/${searchQuery}/${category}`} linkSecondHalf={`${searchQuery2}/${category2}`} pageCount={pageCount}/>
-
+{/* 
                
 <ReactPaginate
         nextLabel="next >"
@@ -72,7 +73,9 @@ const SecondOrderBy = ({ params }) => {
         containerClassName="pagination"
         activeClassName="active"
         renderOnZeroPageCount={null}
-      />
+      /> */}
+
+
 
 
     </div>

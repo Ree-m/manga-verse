@@ -26,9 +26,9 @@
 }
 
 .active {
-  border: solid 1px #808e9b;
+  border: solid 1px black;
   border-radius: 40px;
-  color: #808e9b;
+  color: black;
 }
 
 .break-me {
@@ -61,7 +61,7 @@
 }
 
 .previous {
-  border-right: solid 1px #808e9b;
+  border-right: solid 1px black;
   font-size: 4px;
   height: 60px;
   left: 0;

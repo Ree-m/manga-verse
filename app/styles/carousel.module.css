@@ -3,6 +3,7 @@
   border-top: 2px solid var(--orange);
   /* background: url("assests/body-bg-light.png"); */
   margin: 0px 15px;
+  display: block;
 }
 
 .title {
@@ -54,6 +55,12 @@
 @media (max-width: 768px) {
   .carouselComponent {
     margin: 0px 0px;
+    display: none;
+  }
+}
+
+@media(max-width:1023px){
+  .carouselComponent{
     display: none;
   }
 }

@@ -57,8 +57,8 @@ const MangaPage = ({ params }) => {
   useEffect(() => {
     async function fetchChapters() {
       console.log("reem", "hi", manga, isMangaLoading);
-      console.log("scrape started", manga.data?.title, manga.title, manga.data);
-      const response = await fetch(`${process.env.SCRAPER_API}/chapters`, {
+      console.log("scrape started", manga.title, manga.data,process.env.SCRAPER_API);
+      const response = await fetch(`http://localhost:9000/chapters`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -67,7 +67,7 @@ const MangaPage = ({ params }) => {
           title: manga.title,
         }),
       });
-      console.log("scarpe", response);
+      console.log("scarpe manga page", response);
 
       const data = await response.json();
       setChapters(data);
@@ -196,6 +196,7 @@ const MangaPage = ({ params }) => {
               <div>
                 <div>
                   <h1>{manga?.title}</h1>
+                  <h4>{process.env.SCRAPER_API}</h4>
 
                   <div className={styles.subInfo}>
                     <h4>Alternative:</h4>
@@ -283,6 +284,8 @@ const MangaPage = ({ params }) => {
 
             <div className={styles.description}>
               <h4>{manga?.title} Summary:</h4>
+              <h4>{process.env.SCRAPER_API}</h4>
+
               <ShowLess manga={manga} />
             </div>
           </section>

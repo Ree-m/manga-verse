@@ -7,8 +7,10 @@ const connectMongo = require("./utils/connectMongo.js");
 const MangaChapters = require("./models/MangaChapters.js");
 require("dotenv").config({ path: "../.env.local" });
 
+// connectMongo();
+
 console.log("checking dotenv ALLOWED_ORIGIN",process.env.ALLOWED_ORIGIN)
-app.use(cors({ credentials: true, origin: process.env.ALLOWED_ORIGIN }));
+app.use(cors({ origin: `http://localhost:3000` }));
 app.use(bodyParser.json());
 
 async function scrapeMangaLink(mangaTitle) {

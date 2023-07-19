@@ -47,7 +47,7 @@ const CarouselComponent = () => {
     async function fetchCarouselItems() {
       console.log("carousel isItemLoading check", isItemLoading);
       const response = await fetch(
-        `https://api.jikan.moe/v4/manga?order_by=popularity&sort=desc&limit=25&min_score=1`
+        `https://api.jikan.moe/v4/manga?order_by=popularity&sort=desc&limit=25&min_score=1&sfw`
       );
       const data = await response.json();
       setItems(data.data);
