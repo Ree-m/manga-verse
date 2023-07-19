@@ -68,16 +68,18 @@ const Chapter = ({ params }) => {
         manga.data
       );
 
-      const response = await fetch(`${process.env.SCRAPER_API}/chapterImages`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          chapter,
-          title: manga.title,
-        }),
-      });
+      const response = await fetch(`${process.env.SCRAPER_API}/chapterImages?chapter=${chapter} title=${manga.title}`,
+      //  {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     chapter,
+      //     title: manga.title,
+      //   }),
+      // }
+      );
       console.log("new page", response);
 
       const data = await response.json();

@@ -125,10 +125,12 @@ async function scrapeChapterImages(chapterUrl, mangaTitle, chapter) {
 }
 
 
-app.post("/chapters", async (req, res) => {
+app.get("/chapters", async (req, res) => {
   connectMongo();
   try {
-    const mangaTitle = req.body.title;
+
+    // const mangaTitle = req.body.title;
+    const mangaTitle = req.query.title;
 
     console.log("mangaTitle line 64", mangaTitle, req.body);
     const manga = await MangaChapters.findOne({ mangaTitle });
@@ -146,12 +148,14 @@ app.post("/chapters", async (req, res) => {
 });
 
 
-app.post("/chapterImages", async (req, res) => {
+app.get("/chapterImages", async (req, res) => {
   try {
 
     console.log("starting chapterImages")
-    const chapter = req.body.chapter;
-    const mangaTitle = req.body?.title;
+    // const chapter = req.body.chapter;
+    const chapter = req.query.chapter;
+
+    const mangaTitle = req.query?.title;
 
     const manga = await MangaChapters.findOne({
       mangaTitle,
@@ -197,7 +201,6 @@ app.post("/chapterImages", async (req, res) => {
 
 
 
-console.log("dotenv check SCARPER_API",process.env.SCRAPER_API)
 
 app.listen(process.env.PORT || 9000, () => {
   console.log("server runing");
