@@ -58,7 +58,6 @@ const Chapter = ({ params }) => {
   console.log("new page", params.chapter);
   useEffect(() => {
     async function fetchChapterImages() {
-      console.log("reem in chapter images", manga, isMangaLoading);
       setLoading(true);
       console.log("new page");
       console.log(
