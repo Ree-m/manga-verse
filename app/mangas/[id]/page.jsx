@@ -59,15 +59,7 @@ const MangaPage = ({ params }) => {
       console.log("reem", "hi", manga, isMangaLoading);
       console.log("scrape started", manga.title, manga.data,process.env.NEXT_PUBLIC_SCRAPER_API);
       const response = await fetch(`${process.env.NEXT_PUBLIC_SCRAPER_API}/chapters?title=${manga.title}`, 
-      // {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     title: manga.title,
-      //   }),
-      // }
+   
       );
       console.log("scarpe manga page", response);
 

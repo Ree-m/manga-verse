@@ -7,7 +7,7 @@ const connectMongo = require("./utils/connectMongo.js");
 const MangaChapters = require("./models/MangaChapters.js");
 require("dotenv").config({ path: "../.env.local" });
 
-// connectMongo();
+connectMongo();
 
 console.log("checking dotenv ALLOWED_ORIGIN",process.env.ALLOWED_ORIGIN)
 app.use(cors({ origin: process.env.ALLOWED_ORIGIN}));
@@ -32,7 +32,7 @@ async function scrapeMangaLink(mangaTitle) {
 }
 
 async function scrapeChapters(mangaTitle) {
-  connectMongo();
+  // connectMongo();
 
   const mangaExists = await MangaChapters.findOne({ mangaTitle });
 
@@ -66,7 +66,7 @@ async function scrapeChapters(mangaTitle) {
 }
 
 async function scrapeChapterImages(chapterUrl, mangaTitle, chapter) {
-  connectMongo();
+  // connectMongo();
   const mangaExists = await MangaChapters.findOne({ mangaTitle });
 
   if (mangaExists) {
@@ -125,10 +125,10 @@ async function scrapeChapterImages(chapterUrl, mangaTitle, chapter) {
 
 
 app.get("/chapters", async (req, res) => {
-  connectMongo();
+  // connectMongo();
   try {
 
-    // const mangaTitle = req.body.title;
+
     const mangaTitle = req.query.title;
 
     console.log( mangaTitle, req.body);
@@ -151,7 +151,6 @@ app.get("/chapterImages", async (req, res) => {
   try {
 
     console.log("starting chapterImages")
-    // const chapter = req.body.chapter;
     const chapter = req.query.chapter;
 
     const mangaTitle = req.query?.title;

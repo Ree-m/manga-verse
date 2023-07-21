@@ -68,16 +68,7 @@ const Chapter = ({ params }) => {
       );
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_SCRAPER_API}/chapterImages?chapter=${chapter}&title=${manga.title}`,
-      //  {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     chapter,
-      //     title: manga.title,
-      //   }),
-      // }
+     
       );
       console.log("new page", response);
 
