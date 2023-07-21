@@ -114,55 +114,55 @@ const MangaPage = ({ params }) => {
     }
   }
 
-  useEffect(() => {
-    async function fetchComments() {
-      setLoading(true);
-      const response = await fetch(`/api/comment/${id}`);
-      const data = await response.json();
-      console.log("comments data", data);
-      setComments(data);
-      setLoading(false);
-    }
-    fetchComments();
-  }, []);
+  // useEffect(() => {
+  //   async function fetchComments() {
+  //     setLoading(true);
+  //     const response = await fetch(`/api/comment/${id}`);
+  //     const data = await response.json();
+  //     console.log("comments data", data);
+  //     setComments(data);
+  //     setLoading(false);
+  //   }
+  //   fetchComments();
+  // }, []);
 
-  async function addComment(
-    e,
-    userId,
-    name,
-    commentText,
-    likes,
-    dislikes,
-    mangaId
-  ) {
-    e.preventDefault();
-    console.log("start adding comment");
-    const response = await fetch(
-      `/api/comment/${mangaId}`,
-      {
-        method: "POST",
-        body: JSON.stringify({
-          userId,
-          name,
-          commentText,
-          likes,
-          dislikes,
-          mangaId,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const newComment = await response.json();
-    const updatedComments = [...comments];
-    updatedComments.push(newComment);
-    setComments(updatedComments);
-    setCommentText("");
-    console.log("addComment has access", comments);
-    console.log("comments adding data", newComment);
-    console.log("finsih adding comment");
-  }
+  // async function addComment(
+  //   e,
+  //   userId,
+  //   name,
+  //   commentText,
+  //   likes,
+  //   dislikes,
+  //   mangaId
+  // ) {
+  //   e.preventDefault();
+  //   console.log("start adding comment");
+  //   const response = await fetch(
+  //     `/api/comment/${mangaId}`,
+  //     {
+  //       method: "POST",
+  //       body: JSON.stringify({
+  //         userId,
+  //         name,
+  //         commentText,
+  //         likes,
+  //         dislikes,
+  //         mangaId,
+  //       }),
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     }
+  //   );
+  //   const newComment = await response.json();
+  //   const updatedComments = [...comments];
+  //   updatedComments.push(newComment);
+  //   setComments(updatedComments);
+  //   setCommentText("");
+  //   console.log("addComment has access", comments);
+  //   console.log("comments adding data", newComment);
+  //   console.log("finsih adding comment");
+  // }
 
   if (loading) {
     return <Loading />;
@@ -303,15 +303,15 @@ const MangaPage = ({ params }) => {
             </div>
           )}
 
-          <section className={styles.commentsSection}>
-            <div className={styles.commentsTop}>
+          {/* <section className={styles.commentsSection}> */}
+            {/* <div className={styles.commentsTop}>
               <h2>Comments</h2>
             </div>
 
             <div className={styles.numberOfComments}>
-              {/* <span>{`0 Comments`}</span> */}
-            </div>
-            <form
+            </div> */}
+
+            {/* <form
               onSubmit={(e) => {
                 e.preventDefault();
                 addComment(
@@ -324,8 +324,8 @@ const MangaPage = ({ params }) => {
                   manga?.mal_id
                 );
               }}
-            >
-              <textarea
+            > */}
+              {/* <textarea
                 type="text"
                 value={commentText}
                 placeholder="comment"
@@ -334,16 +334,16 @@ const MangaPage = ({ params }) => {
               <button type="submit" className={styles.addBtn}>
                 Comment
               </button>
-            </form>
-
+            </form> */}
+{/* 
             <Comments
               comments={comments}
               setComments={setComments}
               mangaId={manga?.mal_id}
               userId={userId}
-            />
-          </section>
-        </section>
+            /> */}
+            {/* </section> */}
+        </section> 
       </div>
       <div className={styles.mangaPageSideBar}>
         <ColorBlock />
