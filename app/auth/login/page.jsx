@@ -50,10 +50,19 @@ const LoginPage = () => {
         password,
         name,
       });
-      setName("");
-      setEmail("");
-      setPassword("");
-      router.push("/");
+
+      if (data?.error) {
+        // Handle login error
+        alert("Wrong credentials");
+      } else {
+        // Login successful
+        setName("");
+        setEmail("");
+        setPassword("");
+        router.push("/");
+      }
+  
+    
 
       console.log("post login", data);
     } catch (error) {
@@ -61,25 +70,7 @@ const LoginPage = () => {
     }
   }
 
-  // async function handleGoogleSignIn() {
-  //   try {
-  //     const response = await fetch(`http://localhost:3000/api/auth/register`, {
-  //       method: "POST",
-  //       body: JSON.stringify({ name, email }),
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
 
-  //     const data = await response.json();
-  //     console.log("sign in with google", data);
-  //     setUser(data); // Save the user object in the user context
-
-  //     await signIn("google");
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
 
   return (
     <div className={styles.auth}>
@@ -106,7 +97,7 @@ const LoginPage = () => {
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={()=>router.push(`/`)}>Login</button>
+        <button>Login</button>
         </div>
         
 
@@ -114,10 +105,7 @@ const LoginPage = () => {
           <p>
             Don't have an account? <Link href="/auth/register">Register</Link>
           </p>
-          {/* <p>Or sign up with</p> */}
-          {/* <button type="button" onClick={handleGoogleSignIn}>
-          google
-        </button> */}
+        
         </div>
       </form>
     </div>

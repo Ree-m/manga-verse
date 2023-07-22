@@ -79,7 +79,7 @@ const Header = () => {
               ) : (
                 ""
               )}
-            </div>
+            </div> 
           </div>
         ) : (
           <div className={styles.headerText}>
@@ -108,6 +108,27 @@ const Header = () => {
                 Newest Manga
               </Link>
             </div>
+            <div className={styles.nav3}>
+              <div className={styles.menuButtonContainer}>
+                <button
+                  onClick={() => setToggleMenu(!toggleMenu)}
+                  className={styles.menuButton}
+                >
+                  Menu
+                </button>
+              </div>
+              {toggleMenu ? (
+                <div className={styles.menuItems}>
+                  <Link href={`/`}>Manga Online</Link>
+                  <Link href={`/order_by/popularity/1`}>Hot Manga</Link>
+                  <Link href={`/order_by/start_date/1/sort/desc`}>
+                    Newest Manga
+                  </Link>
+                </div>
+              ) : (
+                ""
+              )}
+            </div> 
           </div>
         )}
       </div>
