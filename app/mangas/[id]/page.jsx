@@ -47,6 +47,12 @@ const MangaPage = ({ params }) => {
         console.log("reem resppnse", response);
         setManga(response?.data);
         setIsMangaLoading(false);
+        if (userId && bookmark.some(item => item.mangaId === response?.data.mal_id)) {
+          setIsBookmarked(true);
+        } else {
+          setIsBookmarked(false);
+        }
+  
       } catch (error) {
         console.log(`Error fetching manga:`, error);
       }
