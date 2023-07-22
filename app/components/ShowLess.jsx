@@ -9,26 +9,7 @@ const ShowLess = ({ manga }) => {
   const text = manga?.synopsis?.replace(/\[Written by MAL Rewrite\]/g, "");
   const text2 = manga?.background;
   const title=manga?.title
- 
-  // return (
-    
-  //   <div className={styles.description}>
-  //     <div className={showMore ? styles.showLess : styles.showMore}>
-  //       <p>{text=="" ? "Until This Social Outcast Becomes My Wife... summary is updating. Come visit MangaNato.com sometime to read the latest chapter of Until This Social Outcast Becomes My Wife.... If you have any question about this manga, Please don't hesitate to contact us or translate team. Hope you enjoy it.":text}</p>
-  //       <br />
-  //       <p>{text=="" ? "": text2}</p>
-  //     </div>
-  //     <div className={styles.showMoreButtonContainer}>
-  //       <button
-  //         className={styles.showMoreButton}
-  //         onClick={() => setShowMore(!showMore)}
-  //       >
-  //         {showMore ? "Show less" : "Show more"}
-  //         {showMore ? <AiOutlineArrowUp /> : <AiOutlineArrowDown />}
-  //       </button>
-  //     </div>
-  //   </div>
-  // );
+
 
   return (
     <div className={styles.description}>

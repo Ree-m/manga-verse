@@ -4,7 +4,6 @@ import styles from "../styles/random.module.css"
 async function fetchRandom() {
   const response = await fetch(`https://api.jikan.moe/v4/random/manga`,{ next: { revalidate: 60 } });
   const data = await response.json();
-  console.log("random data", data);
   return data;
 }
 

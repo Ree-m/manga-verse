@@ -45,7 +45,6 @@ const CarouselComponent = () => {
 
   useEffect(() => {
     async function fetchCarouselItems() {
-      console.log("carousel isItemLoading check", isItemLoading);
       const response = await fetch(
         `https://api.jikan.moe/v4/manga?order_by=popularity&sort=desc&limit=25&min_score=1&sfw`
       );
@@ -53,8 +52,6 @@ const CarouselComponent = () => {
       setItems(data.data);
 
       setIsItemLoading(false);
-      console.log("carousel setIsItemLoading ", isItemLoading);
-      console.log("carousel items fetched ", items);
     }
     fetchCarouselItems();
   }, []);
@@ -84,7 +81,6 @@ const CarouselComponent = () => {
         {items &&
           items.length > 0 &&
           items.map((item) => {
-            console.log("this is carouselitems", item);
             return (
               <div className={styles.carouselItemConatiner} key={item.mal_id}>
                 <Link href={`/mangas/${item.mal_id}`}>

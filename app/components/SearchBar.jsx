@@ -28,9 +28,7 @@ const SearchBar = () => {
           onChange={(e) => setQuery(e.target.value)}
         /> 
 
-        {/* <i><IoSearchCircle/></i> */}
 
-        {/* <button type="submit">Search</button> */}
       </form>
     </div>
   );
