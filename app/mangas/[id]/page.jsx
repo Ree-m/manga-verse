@@ -32,6 +32,7 @@ const MangaPage = ({ params }) => {
   const [comments, setComments] = useCommentContext(); 
   const [chapters, setChapters] = useState([]);
   const [isMangaLoading, setIsMangaLoading] = useState(true);
+  const [isBookmarked,setIsBookmarked] = useState(false)
   const router = useRouter();
   const { data } = useSession();
   const userId = data?.user?.id;
@@ -98,17 +99,18 @@ const MangaPage = ({ params }) => {
     );
     console.log("bookmark repsonse", response);
     const bookmark = await response.json();
+    setIsBookmarked(true)
     if (response.ok && bookmark === "Bookmark already exists") {
       <PopupComponent content={"Bookmark already exists."}/>
-      // alert("Bookmark already exists");
+      alert("Bookmark already exists");
     } else if (response.ok) {
       setBookmark(bookmark);
       console.log("finish bookmark", bookmark);
-      // alert("Bookmark added");
+      alert("Bookmark added");
       <PopupComponent content={"Bookmark added."}/>
 
     } else {
-      // alert("Adding to bookmark failed.Try again later.");
+      alert("Adding to bookmark failed.Try again later.");
       <PopupComponent content={"Adding to bookmark failed.Try again later."}/>
 
     }
@@ -246,23 +248,25 @@ const MangaPage = ({ params }) => {
                     </p>
                   </div>
                   <div className={styles.bookmarkBtn}>
-                    {userId ? (
-                      <button
-                        className={styles.letterBtn}
-                        onClick={() =>
-                          addToBookmark(
-                            manga?.title,
-                            userId,
-                            manga?.mal_id,
-                            manga?.images.jpg.image_url,
-                            manga?.synopsis
-                          )
-                        }
-                      >
-                        <MdOutlineBookmarkAdd className={styles.bookmarkIcon} />
-                        <span>Bookmark</span>
-                      </button>
-                    ) : (
+                    {userId  ? 
+                    (isBookmarked? <span>Bookmarked</span>:(<button
+                      className={styles.letterBtn}
+                      onClick={() =>
+                        addToBookmark(
+                          manga?.title,
+                          userId,
+                          manga?.mal_id, 
+                          manga?.images.jpg.image_url,
+                          manga?.synopsis
+                        )
+                      }
+                    >
+                      <MdOutlineBookmarkAdd className={styles.bookmarkIcon} />
+                      <span>Bookmark</span>
+                    </button>
+                    ))
+                      
+                     : (
                       <button
                         onClick={() => router.push(`/auth/login`)}
                         className={styles.letterBtn}
