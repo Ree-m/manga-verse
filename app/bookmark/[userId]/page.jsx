@@ -19,29 +19,27 @@ const BookmarkPage = () => {
 
   useEffect(() => {
     async function fetchBookmark() {
-      try{
-        const response = await fetch(
-          `/api/bookmark/${userId}`
-        ); 
+      try {
+        const response = await fetch(`/api/bookmark/${userId}`);
         const data = await response.json();
         console.log("bookmark data", data);
         setBookmark(data);
         setLoading(false);
-      }catch(error){
-        console.log(`Error: bookmark error,`,error)
+      } catch (error) {
+        console.log(`Error: bookmark error,`, error);
       }
-      
     }
     fetchBookmark();
   }, [userId]);
 
   async function deleteBookmark(userId, itemId) {
-    const response = await fetch(
-      `/api/bookmark/${userId}/${itemId}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`/api/bookmark/${userId}/${itemId}`, {
+      method: "DELETE",
+      credentials:"include"
+    });
+
+    const newBookmarks= await bookmark.filter((item)=>item._id !== itemId)
+    setBookmark(newBookmarks)
   }
 
   if (loading) {
@@ -68,15 +66,17 @@ const BookmarkPage = () => {
                   <h3>{item.nameOfBookmark}</h3>
                 </Link>
                 {/* <p>Current: <Link href={`/`}>Chapter 33</Link></p> */}
-<ReadMore synopsis={item.synopsis} bookmark={true} mangaId={item.mangaId}/>
-               
+                <ReadMore
+                  synopsis={item.synopsis}
+                  bookmark={true}
+                  mangaId={item.mangaId}
+                />
               </div>
               <div className={styles.btn}>
-              <button onClick={() => deleteBookmark(userId, item._id)}>
+                <button onClick={() => deleteBookmark(userId, item._id)}>
                   Remove
                 </button>
               </div>
-             
             </div>
           ))}
     </div>
