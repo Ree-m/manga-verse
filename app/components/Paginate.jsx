@@ -45,7 +45,7 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 const Paginate = ({ pageCount, link }) => {
   const router = useRouter();
 
-  
+   
 
   const handlePageChange = (data) => {
     console.log(data.selected + 1, "data.selected");
