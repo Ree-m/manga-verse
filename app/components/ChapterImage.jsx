@@ -14,7 +14,7 @@ const ChapterImage = ({ chapterImage, chapters }) => {
         <img
           className={styles.chapterImage}
           src={chapterImage?.img}
-          alt="Manga Image" 
+          alt="" 
         />
               </Suspense>
 

@@ -45,15 +45,18 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 const Paginate = ({ pageCount, link }) => {
   const router = useRouter();
 
+  
+
   const handlePageChange = (data) => {
     console.log(data.selected + 1, "data.selected");
     router.push(`${link}/${data.selected + 1}`);
   };
+  
 
   return ( 
     <div className="paginationContainer">
       <ReactPaginate
-        activeClassName={"item active"}
+        activeClassName={"pagination-page active"}
         breakClassName={"item break-me"}
         breakLabel={"..."}
         onPageChange={handlePageChange}

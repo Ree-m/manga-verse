@@ -25,7 +25,7 @@
   color: #808e9b;
 }
 
-.active {
+.pagination-page .active {
   border: solid 1px white;
   border-radius: 40px;
   color: white;
@@ -61,7 +61,7 @@
 }
 
 .previous {
-  border-right: solid 1px white;
+  border-right: solid 1px #808e9b;
   font-size: 4px;
   height: 60px;
   left: 0;
