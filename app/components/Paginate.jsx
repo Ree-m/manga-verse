@@ -54,8 +54,7 @@ const Paginate = ({ pageCount, link }) => {
   
 
   return ( 
-    <div id="container">
-    {/* // <div className="paginationContainer"> */}
+      <div className="paginationContainer"> 
       {/* <ReactPaginate
         activeClassName={"pagination-page active"}
         breakClassName={"item break-me"}
