@@ -8,8 +8,6 @@
     background-color: yellow;
   } */
 
-/* .item must be first */
-/* 
 .item {
   align-items: center;
   color: #fff;
@@ -25,8 +23,8 @@
   color: #808e9b;
 }
 
-.pagination-page .active {
-  border: solid 1px white;
+.active {
+  /* border: solid 1px white; */
   border-radius: 40px;
   color: white;
 }
@@ -71,53 +69,5 @@
 
 .paginationContainer {
   width: 100%;
-} */
+} 
 
-
-/* paginate.css */
-
-.paginationContainer{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.page-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 5px;
-  width: 30px; 
-  height: 30px; 
-  background-color: white;
-  border: 1px solid black; 
-  cursor: pointer;
-}
-
-.page-item.active {
-  background-color: blue;
-  color: white; 
-}
-
-.page-item.previous,
-.page-item.next {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 5px; 
-  width: 30px; 
-  height: 30px; 
-  background-color: white;
-  border: 1px solid black; 
-  cursor: pointer;
-}
-
-.page-item.previous svg,
-.page-item.next svg {
-  width: 18px; 
-  height: 18px;
-}
-
-.page-item.break-me {
-  margin: 0 5px;
-}
