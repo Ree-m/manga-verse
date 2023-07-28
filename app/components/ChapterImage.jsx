@@ -6,7 +6,7 @@ const ChapterImage = ({ chapterImage, chapters }) => {
   const router = useRouter();
 
   return (
-    <div>
+    <div> 
      
       <div className={styles.imageContainer}>
       <Suspense fallback={<p>Loading image</p>}>

@@ -9,7 +9,6 @@ require("dotenv").config({ path: "../.env.local" });
 
 connectMongo();
 
-console.log("checking dotenv ALLOWED_ORIGIN",process.env.ALLOWED_ORIGIN)
 app.use(cors({ origin: process.env.ALLOWED_ORIGIN}));
 app.use(bodyParser.json());
 
@@ -21,18 +20,15 @@ async function scrapeMangaLink(mangaTitle) {
   const mangaLink = await page.$eval(
     ".panel-search-story .search-story-item a",
     (links) => {
-      console.log("links.href", links);
       return links.href;
     }
   );
 
-  console.log("mangaLink line 20", mangaLink);
   await browser.close();
   return mangaLink;
 }
 
 async function scrapeChapters(mangaTitle) {
-  // connectMongo();
 
   const mangaExists = await MangaChapters.findOne({ mangaTitle });
 
@@ -66,7 +62,6 @@ async function scrapeChapters(mangaTitle) {
 }
 
 async function scrapeChapterImages(chapterUrl, mangaTitle, chapter) {
-  // connectMongo();
   const mangaExists = await MangaChapters.findOne({ mangaTitle });
 
   if (mangaExists) {
@@ -125,7 +120,6 @@ async function scrapeChapterImages(chapterUrl, mangaTitle, chapter) {
 
 
 app.get("/chapters", async (req, res) => {
-  // connectMongo();
   try {
 
 
@@ -141,8 +135,7 @@ app.get("/chapters", async (req, res) => {
       res.json(chapterLinks);
     }
   } catch (error) {
-    console.error(error);
-    res.status(500).send("Server Error");
+    res.status(500).send(`Get chapters error: ${error}`);
   }
 });
 
@@ -201,5 +194,5 @@ app.get("/chapterImages", async (req, res) => {
 
 
 app.listen(process.env.PORT || 9000, () => {
-  console.log("server runing");
+  console.log("server running");
 });

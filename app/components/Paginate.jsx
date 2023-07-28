@@ -44,16 +44,19 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 
 const Paginate = ({ pageCount, link }) => {
   const router = useRouter();
-  return (
+
+  const handlePageChange = (data) => {
+    console.log(data.selected + 1, "data.selected");
+    router.push(`${link}/${data.selected + 1}`);
+  };
+
+  return ( 
     <div className="paginationContainer">
       <ReactPaginate
         activeClassName={"item active"}
         breakClassName={"item break-me"}
         breakLabel={"..."}
-        onPageChange={(data) => {
-          console.log(data.selected + 1, "data.selected");
-          router.push(`${link}/${data.selected + 1}`);
-        }}
+        onPageChange={handlePageChange}
         containerClassName={"pagination"}
         disabledClassName={"disabled-page"}
         marginPagesDisplayed={2}
@@ -62,8 +65,6 @@ const Paginate = ({ pageCount, link }) => {
         pageClassName={"item pagination-page"}
         pageRangeDisplayed={5}
         previousClassName={"item previous"}
-        // previousLabel="< previous"
-        // nextLabel="next >"
         previousLabel={
           <AiOutlineArrowLeft style={{ fontSize: 18, width: 150 }} />
         }

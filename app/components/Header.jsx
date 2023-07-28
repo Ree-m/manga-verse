@@ -27,7 +27,8 @@ const Header = () => {
     <nav className={styles.header}>
       <div className={styles.logo}>
         <Link href="/">
-          <h1>Manga App</h1>
+          {/* <h1>Manga App</h1> */}
+          <img src={`/assests/mangaverse-logo.png`} alt="Logo image" />
         </Link>
       </div>
       <div>

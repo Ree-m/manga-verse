@@ -13,8 +13,8 @@ const MangaDetails = ({ mangas }) => {
   return (
     <div className={styles.grid} >
       {mangas &&
-        mangas.map((manga) => (
-         <MangaDetail manga={manga}/>
+        mangas.map((manga,index) => (
+         <MangaDetail key={index} manga={manga}/>
         ))}
     </div>
   );

@@ -20,11 +20,13 @@ const BookmarkPage = () => {
   useEffect(() => {
     async function fetchBookmark() {
       try {
-        const response = await fetch(`/api/bookmark/${userId}`);
-        const data = await response.json();
-        console.log("bookmark data", data);
-        setBookmark(data);
-        setLoading(false);
+        if (userId) {
+          const response = await fetch(`/api/bookmark/${userId}`);
+          const data = await response.json();
+          console.log("bookmark data", data);
+          setBookmark(data);
+          setLoading(false);
+        }
       } catch (error) {
         console.log(`Error: bookmark error,`, error);
       }
@@ -35,11 +37,11 @@ const BookmarkPage = () => {
   async function deleteBookmark(userId, itemId) {
     const response = await fetch(`/api/bookmark/${userId}/${itemId}`, {
       method: "DELETE",
-      credentials:"include"
+      credentials: "include",
     });
 
-    const newBookmarks= await bookmark.filter((item)=>item._id !== itemId)
-    setBookmark(newBookmarks)
+    const newBookmarks = await bookmark.filter((item) => item._id !== itemId);
+    setBookmark(newBookmarks);
   }
 
   if (loading) {

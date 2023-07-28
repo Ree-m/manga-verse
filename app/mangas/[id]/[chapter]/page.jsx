@@ -64,7 +64,9 @@ const Chapter = ({ params }) => {
         "scrape started chapter page",
         manga.data?.title,
         manga.title,
-        manga.data
+        manga.data,
+        "chapter",
+        chapter
       );
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_SCRAPER_API}/chapterImages?chapter=${chapter}&title=${manga.title}`,
@@ -73,6 +75,7 @@ const Chapter = ({ params }) => {
       console.log("new page", response);
 
       const data = await response.json();
+      console.log("setchapter images",data)
       setChapterImages(data);
       setLoading(false);
       console.log("new page", data);

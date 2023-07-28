@@ -19,7 +19,7 @@ const DropDown = ({ id, chapters, chapter }) => {
   };
 
   return (
-    <div class={styles.dropdown}>
+    <div className={styles.dropdown}>
       <select onChange={handleChapterChange} value={selectedChapter}>
         {chapters &&
           chapters.map((chapter) => (

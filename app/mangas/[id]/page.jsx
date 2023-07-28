@@ -296,9 +296,7 @@ const MangaPage = ({ params }) => {
               <ShowLess manga={manga} />
             </div>
           </section>
-          {!chapters || chapters == [] ? (
-            <div>No chapters</div>
-          ) : (
+          {chapters.length!==0 ?  (
             <div className={styles.chaptersContainer}>
               <div className={styles.chapters}>
                 <div className={styles.chaptersHeading}>
@@ -314,7 +312,9 @@ const MangaPage = ({ params }) => {
                   ))}
               </div>
             </div>
-          )}
+          ):(<div>
+            <p>No chapters</p>
+          </div>)}
 
           {/* <section className={styles.commentsSection}> */}
             {/* <div className={styles.commentsTop}>

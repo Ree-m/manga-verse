@@ -8,12 +8,12 @@
     justify-content: center;
     padding: 3px; 
 }  */
-/* .imageContainer{
+.imageContainer{
     display: flex;
     justify-content: center;
-    padding: 3px;
-} */
+    padding: 3px; 
+}
 .chapterImage{
-width: 100%;
-height: auto;
+max-width: 100%;
+/* height: auto; */
 }
