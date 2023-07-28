@@ -139,6 +139,10 @@ text-transform: capitalize;
   font-size: 2.8rem;
   color: var(--hover-yellow);
 }
+.bookmarked{
+  color: var(--hover-yellow);
+  padding-top: 10px;
+}
 .mangaPageSideBar{
   display: flex;
   flex-direction: column;

@@ -59,7 +59,7 @@ const CarouselComponent = () => {
   return (
     <div className={styles.carouselComponent}>
       <div className={styles.title}>
-        <h2>Top Week</h2>
+        <h2>New</h2>
       </div>
       <Carousel
         responsive={responsive}

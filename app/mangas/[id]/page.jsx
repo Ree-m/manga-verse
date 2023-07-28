@@ -106,14 +106,17 @@ const MangaPage = ({ params }) => {
     console.log("bookmark repsonse", response);
     const bookmark = await response.json();
     setIsBookmarked(true)
+
     if (response.ok && bookmark === "Bookmark already exists") {
-      <PopupComponent content={"Bookmark already exists."}/>
+      // <PopupComponent content={"Bookmark already exists."}/>
       alert("Bookmark already exists");
     } else if (response.ok) {
-      setBookmark(bookmark);
+      setBookmark((prevBookmarks) => [...prevBookmarks, bookmark]);
+
+      // setBookmark(bookmark);
       console.log("finish bookmark", bookmark);
       alert("Bookmark added");
-      <PopupComponent content={"Bookmark added."}/>
+      // <PopupComponent content={"Bookmark added."}/>
 
     } else {
       alert("Adding to bookmark failed.Try again later.");
@@ -255,7 +258,7 @@ const MangaPage = ({ params }) => {
                   </div>
                   <div className={styles.bookmarkBtn}>
                     {userId  ? 
-                    (isBookmarked? <span>Bookmarked</span>:(<button
+                    (isBookmarked? <span className={styles.bookmarked}>Bookmarked</span>:(<button
                       className={styles.letterBtn}
                       onClick={() =>
                         addToBookmark(
