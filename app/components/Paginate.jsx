@@ -93,7 +93,6 @@ const Paginate = ({ pageCount, link }) => {
         onPageChange={handlePageChange}
         containerClassName="pagination"
         activeClassName="active"
-        // forcePage={pageOffset}
       />
     </div>
   );
