@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 async function scrapeMangaLink(mangaTitle) {
   const browser = await puppeteer.launch({ headless: "new" });
   const page = await browser.newPage();
+  await page.setCacheEnabled(false);
   await page.goto(`https://ww5.manganelo.tv/search/${mangaTitle}`);
 
   const mangaLink = await page.$eval(
@@ -22,6 +23,7 @@ async function scrapeMangaLink(mangaTitle) {
     (links) => {
       return links.href;
     }
+
   );
 
   await browser.close();
@@ -42,6 +44,8 @@ async function scrapeChapters(mangaTitle) {
     const page = await browser.newPage();
     const mangaLink = await scrapeMangaLink(mangaTitle);
     await page.goto(mangaLink);
+    await page.setCacheEnabled(false);
+
   
     const chapterLinks = await page.$$eval(
       ".panel-story-chapter-list .row-content-chapter li a",
@@ -77,6 +81,8 @@ async function scrapeChapterImages(chapterUrl, mangaTitle, chapter) {
   const browser = await puppeteer.launch({ headless: "new" });
   const page = await browser.newPage();
   await page.goto(chapterUrl);
+  await page.setCacheEnabled(false);
+
 
   const images = await page.$$eval(
     ".body-site .container-chapter-reader img",

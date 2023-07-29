@@ -6,8 +6,9 @@ import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import Loading from "@/app/components/Loading";
 import MangaDetails from "@/app/components/MangaDetails";
+import { AiOutlineDoubleRight } from "react-icons/ai";
+import TopHeading from "@/app/components/TopHeading";
 
-// import "app/styles/paginate.css"
 const GenrePage = ({ params }) => {
   const [mangas, setMangas] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -46,13 +47,16 @@ const GenrePage = ({ params }) => {
 
   return (
     <div>
+      <TopHeading category={genre} page={page} />
       <MangaDetails mangas={mangas} setMangas={setMangas} />
 
       <ReactPaginate
         nextLabel="next >"
         onPageChange={(data) => {
           console.log(data.selected + 1, "data.selected");
-          router.push(`/genre/${genre}/${data.selected +1}?genreId=${genreId}`);
+          router.push(
+            `/genre/${genre}/${data.selected + 1}?genreId=${genreId}`
+          );
         }} // Handle page change event
         pageRangeDisplayed={3}
         marginPagesDisplayed={2}

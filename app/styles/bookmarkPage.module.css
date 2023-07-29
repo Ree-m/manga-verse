@@ -34,6 +34,26 @@ border-left: 2px solid var(--orange);
     font-size: 1.15rem;
 }
 
+.top{ 
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    gap:3px;
+    background-color: var(--green-blue);
+    color:#fff;
+    padding: 8px;
+
+
+  }
+  .top a{
+      color:#fff;
+      text-decoration: none;
+  }
+  
+  .top a:hover{
+      text-decoration: underline;
+  }
+
 
 @media (max-width:768px){
     .bookmarkPage{

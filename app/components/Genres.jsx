@@ -33,15 +33,14 @@ const Genres = ({ sideBar }) => {
       </div>
 
       <div className={`${styles.grid} ${styles.gridBig}`}>
-        
           <Link href={`/order_by/popularity/1`}>
             <li>All</li>
           </Link>
-          <Link href={`/order_by/start_date/1/sort/desc`}>
+          <Link href={`/status/publishing/1`}>
             <li>Ongoing</li>
           </Link>
 
-          <Link href={`/order_by/start_date/1/sort/desc`}>
+          <Link href={`/status/complete/1`}>
             <li>Completed</li>
           </Link>
         

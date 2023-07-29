@@ -80,6 +80,33 @@ button{
 
 
 }
+
+
+.top{ 
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  gap:3px;
+  background-color: var(--green-blue);
+  color:#fff;
+  padding: 8px;
+
+
+}
+.top a{
+    color:#fff;
+    text-decoration: none;
+}
+
+.top a:hover{
+    text-decoration: underline;
+}
+
+.top p{
+  text-transform: capitalize;
+}
+
+
 /* 
 .bgContainer{
   background: url("assests/body-bg-light.png");

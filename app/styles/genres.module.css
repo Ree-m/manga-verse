@@ -35,7 +35,7 @@
 /* second way */
 
 .genreBig{
-  margin:0px 15px;
+  margin:8px 15px;
 }
 
 .gridBig{
@@ -76,7 +76,9 @@
 
 
 .genreBig{
-  margin:0px 0px;
+  /* margin:0px 0px; */
+  margin:8px 0px;
+
 }
 
 
@@ -86,7 +88,9 @@
 @media (max-width:768px){
   
 .genreBig{
-  margin:0px 0px;
+  /* margin:0px 0px; */
+  margin:8px 0px;
+
   border-top: 2px solid #3498db;
 
 }

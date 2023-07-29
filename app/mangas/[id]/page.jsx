@@ -208,7 +208,7 @@ const MangaPage = ({ params }) => {
                     {manga &&
                       manga.titles &&
                       manga.titles.map((title, index) => (
-                        <div>
+                        <div key={index}>
                           <p>
                             {title.title}
                             {index !== manga.titles.length - 1 && ","}
@@ -296,15 +296,15 @@ const MangaPage = ({ params }) => {
               <ShowLess manga={manga} />
             </div>
           </section>
-          {chapters.length!==0 ?  (
+          {chapters.length==0 ? <Loading/> : (
             <div className={styles.chaptersContainer}>
               <div className={styles.chapters}>
                 <div className={styles.chaptersHeading}>
                   <p>Chapter name</p>
                 </div>
                 {chapters &&
-                  chapters.map((chapter) => (
-                    <div className={styles.chaptersList}>
+                  chapters.map((chapter,index) => (
+                    <div className={styles.chaptersList} key={index}>
                       <Link href={`/mangas/${id}/${chapter.split("/").pop()}`}>
                        <p>{chapter.split("/").pop()}</p> 
                       </Link>
@@ -312,9 +312,7 @@ const MangaPage = ({ params }) => {
                   ))}
               </div>
             </div>
-          ):(<div>
-            <p>No chapters</p>
-          </div>)}
+          )}
 
           {/* <section className={styles.commentsSection}> */}
             {/* <div className={styles.commentsTop}>

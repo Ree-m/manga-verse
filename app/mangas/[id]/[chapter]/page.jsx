@@ -98,8 +98,8 @@ const Chapter = ({ params }) => {
           reverse={false}
         />
         {chapterImages &&
-          chapterImages.map((chapterImage) => (
-            <ChapterImage chapterImage={chapterImage} chapters={chapters}  />
+          chapterImages.map((chapterImage,index) => (
+            <ChapterImage key ={index} chapterImage={chapterImage} chapters={chapters}  />
           ))}
 
         <ChapterPageNav 
