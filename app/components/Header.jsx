@@ -28,7 +28,6 @@ const Header = () => {
       <div className={styles.logo}>
         <Link href="/">
           <h1>Manga Verse</h1>
-          <img src="/assests/mangaverse-logo.png" alt="Logo image" />
         </Link>
       </div>
       <div>
