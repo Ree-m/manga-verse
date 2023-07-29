@@ -35,3 +35,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+scraper/.cache/
+scraper/.cache/puppeteer/
+scraper/.cache/puppeteer/chrome/
+scraper/.cache/puppeteer/chrome

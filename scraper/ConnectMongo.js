@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:be4c2896996f0b22b795e1039c248a71b4e8d7c5efe0108792cec324049b5b5a
-size 466
+// const mongoose=require("mongoose")
+// require("dotenv").config({ path: "../.env.local" });
+
+
+// const connectMongo = () => {
+//   try {
+//     console.log(process.env.MONGODB_URI, "checking dotenv");
+//     const conn = mongoose.connect(process.env.MONGODB_URI);
+//     console.log(`MongoDB Connected inside scraper`);
+//   } catch (error) {
+//     console.error(`Error: ${error.message}`);
+//     process.exit(1);
+//   }
+// };
+
+// module.exports = connectMongo;
