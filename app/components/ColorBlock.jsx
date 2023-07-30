@@ -12,7 +12,7 @@ const ColorBlock = async () => {
 
   return (
     <div className={styles.colorBlock}>
-     <h2 className={styles.colorBlockTitle}>Most Popular Manhwa</h2>
+     <h2 className={styles.colorBlockTitle}>Top Manhwa</h2>
      
               <div className={styles.colorBlockItems}>
                 {manga && manga.map((manga,index)=>(

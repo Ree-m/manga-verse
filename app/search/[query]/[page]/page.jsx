@@ -1,8 +1,8 @@
 // import Link from "next/link";
 // import MangaDetails from "@/app/components/MangaDetails";
 // import Paginate from "@/app/components/Paginate";
-
-
+// import { AiOutlineDoubleRight } from "react-icons/ai";
+// import styles from "app/styles/search.module.css"
 
 // async function fetchSearchResults(query,page) {
 //   console.log("start results fetch",query,page+1)
@@ -25,6 +25,13 @@
 
 //   return (
 //     <div>
+{/* <div className={styles.top}>
+  <Link href={`/`}>Read Manga Online</Link>
+  <span>
+    <AiOutlineDoubleRight className={styles.doubleArrowIcon} />
+  </span>
+  <p>Search Results</p>
+</div>; */}
 //       <MangaDetails mangas={results}  />
 //       <Paginate link={`/search/${query}`} pageCount={pageCount}/>
 
