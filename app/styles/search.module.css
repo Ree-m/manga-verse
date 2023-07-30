@@ -15,6 +15,9 @@
       color:#fff;
       text-decoration: none;
   }
+  .top p{
+    text-transform: capitalize;
+  }
   
   .top a:hover{
       text-decoration: underline;
