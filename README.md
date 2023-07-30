@@ -165,27 +165,30 @@ npm run start
 
 ## Usage
 
-Users can login here.
+The app offers an immersive manga reading experience where users can seamlessly access and enjoy manga chapters. Dive into captivating storylines and stunning artwork as you effortlessly binge through your favorite manga series.
+Clicking on a chapter in the manga details page displays the chapter\'s images. Users can easily navigate between chapters using "next chapter" and "previous chapter" buttons, or by selecting a specific chapter from the dropdown menu.
+<img src="/styles/assests/readme/manga-verse-chapter-page.jpg" alt="Image of chapter page" />
+<img src="app/styles/assests/readme/manga-verse-chapter-page2.jpg" alt="Image of chapter page" />
+
+
+The app incorporates NextAuth to facilitate user authentication. This allows users to create accounts, log in, and securely access personalized feautures.
 <img src="app/styles/assests/readme/manga-verse-login.jpg" alt="Image of login form" />
 
 Home Page
 <img src="app/styles/assests/readme/manga-verse-home-page.jpg" alt="Image of home page" />
 
-Manga Page
+This page provides comprehensive information about a specific manga, including its title, author, genres, manga cover, and a list of chapters. Registered users can also bookmark manga directly from this page.
 <img src="app/styles/assests/readme/manga-verse-manga-page.jpg" alt="Image of manga page" />
 <img src="app/styles/assests/readme/manga-verse-chapters-list.jpg" alt="Image of manga page" />
 
-Chapter Page
-<img src="/styles/assests/readme/manga-verse-chapter-page.jpg" alt="Image of chapter page" />
-<img src="app/styles/assests/readme/manga-verse-chapter-page2.jpg" alt="Image of chapter page" />
 
-Filter by genre
+Users have the ability to filter manga based on various variables such as status (completed/ongoing), popularity, or genres.
 <img src="app/styles/assests/readme/manga-verse-genres.png" alt="Genres" />
 
-Bookmarks page
+Registered users can bookmark manga they enjoy, providing a convenient way to save and access their favorite titles. This feature enhances the user experience by allowing users to easily track and revisit their preferred manga.
 <img src="app/styles/assests/readme/manga-verse-bookmark-page.jpg" alt="Image of bookmarks page" />
 
-Search
+Users can easily search for manga using the search bar located in the app's header.
 <img src="app/styles/assests/readme/manga-verse-search.jpg" alt="Image of serach results" />
 
 
