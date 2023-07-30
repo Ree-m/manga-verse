@@ -167,7 +167,7 @@ npm run start
 
 The app offers an immersive manga reading experience where users can seamlessly access and enjoy manga chapters. Dive into captivating storylines and stunning artwork as you effortlessly binge through your favorite manga series.
 Clicking on a chapter in the manga details page displays the chapter\'s images. Users can easily navigate between chapters using "next chapter" and "previous chapter" buttons, or by selecting a specific chapter from the dropdown menu.
-<img src="/styles/assests/readme/manga-verse-chapter-page.jpg" alt="Image of chapter page" />
+<img src="app/styles/assests/readme/manga-verse-chapter-page.jpg" alt="Image of chapter page" />
 <img src="app/styles/assests/readme/manga-verse-chapter-page2.jpg" alt="Image of chapter page" />
 
 
