@@ -16,8 +16,8 @@ const ColorBlock = async () => {
      
               <div className={styles.colorBlockItems}>
                 {manga && manga.map((manga,index)=>(
-                  <Link href={`/manga/${manga.mal_id}`} key={manga.mal_id}>
-                    <p>{index}</p>
+                  <Link href={`/manga/${manga.mal_id}`} key={manga.mal_id} className={styles.colorBlockItem}>
+                    <p className={styles[`c${index}`]}>{manga.title}</p>
                   </Link>
                 ))}
 

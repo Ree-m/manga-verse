@@ -30,43 +30,46 @@
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.9); /* Add text-shadow for glow effect */
 
 }
-.one { 
+/* .colorBlockItems p{
+  color: #fff;
+} */
+.c0 { 
   background-color: #c0392b;
 }
 
-.two{
+.c1{
   background-color: #e84c3d;
 }
 
-.three{
+.c2{
   background-color: #e67e22;
 }
 
-.four {
+.c3{
   background-color: #f1c40f;
 }
 
-.five {
+.c4 {
   background-color: #2ecc71;
 }
 
-.six {
+.c5{
   background-color: #27ae60 !important;
 }
 
-.seven{
+.c6{
   background-color: #1abc9c;
 }
 
-.eight {
+.c7{
   background-color: #16a085;
 }
 
-.nine {
+.c8{
   background-color: #3498db;
 }
 
-.ten {
+.c9{
   background-color: #2980b9;
 }
 
