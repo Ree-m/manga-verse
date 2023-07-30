@@ -20,7 +20,7 @@
     <a href="https://github.com/Ree-m/manga-verse"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="">View Demo</a>
+    <a href="https://manga-verse.onrender.com">View Demo</a>
     ·
     <a href="https://github.com/Ree-m/manga-verse/issues">Report Bug</a>
     ·
@@ -59,7 +59,7 @@
 
 ## About The Project
 
-[![Manga Verse App][product-screenshot]]()
+[![Manga Verse App][product-screenshot]](https://manga-verse.onrender.com)
 Manga Vesre is a full-stack manga viewing app that combines the power of NEXTJS, JIKAN API, Pupeteer, Express, and MongoDB. It follows a microservices architecture and incorporates next auth for authentication. With its responsive design, Manga Vesre delivers an immersive manga reading experience across devices.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -99,7 +99,7 @@ Manga Vesre is a full-stack manga viewing app that combines the power of NEXTJS,
 
 ## Live Demo
 
-[Live Demo](https://skinology-ecommerce-app-client.onrender.com/)
+[Live Demo](https://manga-verse.onrender.com)
 
 ### Demo Account
 
@@ -173,9 +173,6 @@ Clicking on a chapter in the manga details page displays the chapter\'s images. 
 
 The app incorporates NextAuth to facilitate user authentication. This allows users to create accounts, log in, and securely access personalized feautures.
 <img src="app/styles/assests/readme/manga-verse-login.jpg" alt="Image of login form" />
-
-Home Page
-<img src="app/styles/assests/readme/manga-verse-home-page.jpg" alt="Image of home page" />
 
 This page provides comprehensive information about a specific manga, including its title, author, genres, manga cover, and a list of chapters. Registered users can also bookmark manga directly from this page.
 <img src="app/styles/assests/readme/manga-verse-manga-page.jpg" alt="Image of manga page" />
@@ -252,8 +249,8 @@ Project Link: [https://github.com/Ree-m/manga-verse](https://github.com/Ree-m/ma
 [issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
 [issues-url]: https://github.com/othneildrew/Best-README-Template/issues
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/Ree-m/skinology-ecommerce-app/blob/main/LICENSE.txt
-[product-screenshot]: client/src/assets/project-main-screenshot.png
+[license-url]: https://github.com/Ree-m/manga-verse/blob/main/LICENSE.txt
+[product-screenshot]: app/styles/assests/readme/manga-verse-home-page.jpg
 [node.js]: https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white
 [node-url]: https://nodejs.org/en
 [react.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
