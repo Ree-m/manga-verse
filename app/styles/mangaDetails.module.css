@@ -1,11 +1,12 @@
 .mangaDetails{
     background-color: var(--bg-white);
-    margin: 4px 4px;
-    padding: 10px;
+    margin: 4px 2px 4px 0px;
+    padding: 0px;
     display: flex;
     align-items: center;
     gap: 10px;
 }
+
 .mangaDetails a h2{
     font-size: 1.3rem;
     font-weight: 700;

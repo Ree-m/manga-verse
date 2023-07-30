@@ -4,6 +4,8 @@ import ColorBlock from "./ColorBlock";
 import Genres from "./Genres";
 import { LongButton } from "./LongButton";
 import styles from "../styles/homePageMain.module.css";
+import { AiOutlineDoubleRight } from "react-icons/ai";
+
 async function fetchTopManga() {
   const response = await fetch(
     `https://api.jikan.moe/v4/top/manga?filter=bypopularity&limit=24`
@@ -19,7 +21,16 @@ const HomePageMain = async () => {
     <div className={styles.bgContainer}>
        <div className={styles.homePageMain}>
       <div>
-        <MangaDetails mangas={topManga} />
+
+      <div className={styles.top}>
+        <Link href={`/`}>Read Manga Online</Link>
+        <span>
+          <AiOutlineDoubleRight className={styles.doubleArrowIcon} />
+        </span>
+        <p>Most Popular</p>
+      </div>
+
+        <MangaDetails className={styles.mangaDetails} mangas={topManga} />
         <LongButton content={"<< More >>"} href={`/order_by/popularity/1`} />
       </div>
 
