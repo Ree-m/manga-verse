@@ -291,7 +291,6 @@ const MangaPage = ({ params }) => {
 
             <div className={styles.description}>
               <h4>{manga?.title} Summary:</h4>
-              <h4>{process.env.SCRAPER_API}</h4>
 
               <ShowLess manga={manga} />
             </div>

@@ -49,7 +49,12 @@ const SearchResults = ({ params }) => {
         <span>
           <AiOutlineDoubleRight className={styles.doubleArrowIcon} />
         </span>
+        <p>{query}</p>
+        <span>
+          <AiOutlineDoubleRight className={styles.doubleArrowIcon} />
+        </span>
         <p>Search Results</p>
+
       </div>
       
       <MangaDetails mangas={results} />
