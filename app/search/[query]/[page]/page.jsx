@@ -14,6 +14,7 @@ import styles2 from "app/styles/search.module.css";
 
 const SearchResults = ({ params }) => {
   const query = params.query;
+  const decodeQuery =decodeURIComponent(query)
   const page = +params.page;
 
   const [results,setResults]=useState([])
@@ -49,7 +50,7 @@ const SearchResults = ({ params }) => {
         <span>
           <AiOutlineDoubleRight className={styles.doubleArrowIcon} />
         </span>
-        <p>{query}</p>
+        <p>{decodeQuery}</p>
         <span>
           <AiOutlineDoubleRight className={styles.doubleArrowIcon} />
         </span>
