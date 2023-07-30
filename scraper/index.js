@@ -15,8 +15,9 @@ app.use(bodyParser.json());
 async function scrapeMangaLink(mangaTitle) {
   const browser = await puppeteer.launch({ headless: "new" });
   const page = await browser.newPage();
-  await page.setCacheEnabled(false);
   await page.goto(`https://ww5.manganelo.tv/search/${mangaTitle}`);
+  await page.setCacheEnabled(false);
+
 
   const mangaLink = await page.$eval(
     ".panel-search-story .search-story-item a",

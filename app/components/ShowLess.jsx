@@ -15,9 +15,9 @@ const ShowLess = ({ manga }) => {
     <div className={styles.description}>
       <div className={showMore ? styles.showLess : styles.showMore}>
         <p>
-          {!manga.synopsis
-            ? `${title}... summary is updating. Come visit MangaNato.com sometime to read the latest chapter of Until This Social Outcast Becomes My Wife.... If you have any question about this manga, Please don't hesitate to contact us or translate team. Hope you enjoy it.`
-            : text}
+          {manga.synopsis
+            ? text
+            : `${title}... summary is updating. Come visit MangaNato.com sometime to read the latest chapter of Until This Social Outcast Becomes My Wife.... If you have any question about this manga, Please don't hesitate to contact us or translate team. Hope you enjoy it.`}
         </p>
         <br />
         {text !== "" && <p>{text2}</p>}

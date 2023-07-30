@@ -31,16 +31,9 @@
 
 import Link from "next/link";
 import styles from "../styles/colorBlock.module.css";
-async function fetchManga() {
-  const response = await fetch(
-    `https://api.jikan.moe/v4/top/manga?type=manhwa&limit=10`
-  );
-  const manga = await response.json();
-  return manga;
-}
-const ColorBlock = async () => {
-  const data = await fetchManga();
-  const manga = data.data;
+
+const ColorBlock = () => {
+  
 
   return (
     <div className={styles.colorBlock}>
@@ -83,7 +76,7 @@ const ColorBlock = async () => {
           key={121269}
           className={styles.colorBlockItem}
         >
-          <p className={styles.c}>Who Made Me a Princess</p>
+          <p className={styles.c4}>Who Made Me a Princess</p>
         </Link>
 
         <Link
@@ -91,7 +84,7 @@ const ColorBlock = async () => {
           key={141120}
           className={styles.colorBlockItem}
         >
-          <p className={styles.c}>The Boxer </p>
+          <p className={styles.c5}>The Boxer </p>
         </Link>
 
         <Link
@@ -99,7 +92,7 @@ const ColorBlock = async () => {
           key={132214}
           className={styles.colorBlockItem}
         >
-          <p className={styles.c}>Omniscient Reader</p>
+          <p className={styles.c6}>Omniscient Reader</p>
         </Link>
 
         <Link
@@ -107,7 +100,7 @@ const ColorBlock = async () => {
           key={8586}
           className={styles.colorBlockItem}
         >
-          <p className={styles.c}>The Breaker</p>
+          <p className={styles.c7}>The Breaker</p>
         </Link>
 
         <Link
@@ -115,7 +108,7 @@ const ColorBlock = async () => {
           key={134744}
           className={styles.colorBlockItem}
         >
-          <p className={styles.c}>The Legend of the Northern Blade</p>
+          <p className={styles.c8}>The Legend of the Northern Blade</p>
         </Link>
 
         <Link
@@ -123,7 +116,7 @@ const ColorBlock = async () => {
           key={122663}
           className={styles.colorBlockItem}
         >
-          <p className={styles.c}>Tower of God</p>
+          <p className={styles.c9}>Tower of God</p>
         </Link>
 
       </div>
