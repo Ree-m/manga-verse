@@ -8,13 +8,10 @@ export async function DELETE(request) {
     const { url } = request;
 
     const itemId = url?.split("/").pop();
-    console.log("itemId", itemId);
 
     const userId = url?.split("/")[5];
-    console.log(" userId", userId);
 
      const bookmark = await Bookmark.deleteOne({ userId, _id:itemId });
-     console.log("bookmark", bookmark);
 
 
      if (bookmark === null) {

@@ -14,35 +14,10 @@ const LoginPage = () => {
   async function onSubmit(e) {
     e.preventDefault();
 
-    // try {
-
-    //   e.preventDefault();
-    //   const response = await fetch(`http://localhost:3000/api/auth/login`, {
-    //     method: "POST",
-    //     body: JSON.stringify({ name, password, email }),
-    //     headers: { "Content-Type": "application/json" },
-    //     credentials: "include",
-    //   });
-
-    //   if (response.ok) {
-    //     response.json().then((user) => {
-    //       console.log("this is login page",user);
-    //       setUser(user);
-    //     });
-    //   } else {
-    //     alert("Wrong credentials");
-    //   }
-
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    
 
     try {
-      console.log("login data", {
-        email,
-        password,
-        name,
-      });
+    
 
       const data = await signIn("credentials", {
         redirect: false,
@@ -64,7 +39,6 @@ const LoginPage = () => {
   
     
 
-      console.log("post login", data);
     } catch (error) {
       console.log(error);
     }

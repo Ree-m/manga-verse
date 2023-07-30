@@ -23,12 +23,10 @@ const Chapter = ({ params }) => {
   const chapter = params.chapter;
   const id = params.id;
   const chapterNumber = parseFloat(chapter.split("-").pop());
-  console.log("chapter page chapter number",chapterNumber,chapterNumber+1)
 
   useEffect(() => {
     async function fetchManga() {
       setLoading(true);
-      console.log("this is id", id);
 
       const response = await fetch(`https://api.jikan.moe/v4/manga/${id}`);
       const manga = await response.json();
@@ -37,8 +35,7 @@ const Chapter = ({ params }) => {
 
       setLoading(false);
 
-      console.log("finished fetching");
-      console.log("manga", manga);
+      
     }
     fetchManga();
   }, [id]);
@@ -55,30 +52,18 @@ const Chapter = ({ params }) => {
     if (!isMangaLoading) fetchChaptersData();
   }, [manga.title, isMangaLoading]);
 
-  console.log("new page", params.chapter);
   useEffect(() => {
     async function fetchChapterImages() {
       setLoading(true);
-      console.log("new page");
-      console.log(
-        "scrape started chapter page",
-        manga.data?.title,
-        manga.title,
-        manga.data,
-        "chapter",
-        chapter
-      );
+ 
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_SCRAPER_API}/chapterImages?chapter=${chapter}&title=${manga.title}`,
      
       );
-      console.log("new page", response);
 
       const data = await response.json();
-      console.log("setchapter images",data)
       setChapterImages(data);
       setLoading(false);
-      console.log("new page", data);
     }
     if (!isMangaLoading) fetchChapterImages();
   }, [manga, isMangaLoading]);

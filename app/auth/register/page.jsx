@@ -12,11 +12,9 @@ const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const API_URL = process.env.API_URL;
-console.log("api url",API_URL)
 
   async function onSubmit(e) {
     e.preventDefault();
-    console.log("register");
     const response = await fetch(`/api/auth/register`, {
       method: "POST",
       body: JSON.stringify({ name, email, password }),
@@ -26,8 +24,7 @@ console.log("api url",API_URL)
       credentials: "include",
     });
     const responseData = await response.json();
-    console.log(responseData);
-    console.log(response)
+ 
 
     if (responseData == "User already exists") {
       <PopupComponent content={"User already exists"}/>

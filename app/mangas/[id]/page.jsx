@@ -42,9 +42,7 @@ const MangaPage = ({ params }) => {
   useEffect(() => {
     async function fetchMangaData() {
       try {
-        console.log("reem id", id + 1);
         const response = await fetchManga(id);
-        console.log("reem resppnse", response);
         setManga(response?.data);
         setIsMangaLoading(false);
         if (userId && bookmark.some(item => item.mangaId === response?.data.mal_id)) {
@@ -63,16 +61,12 @@ const MangaPage = ({ params }) => {
 
   useEffect(() => {
     async function fetchChapters() {
-      console.log("reem", "hi", manga, isMangaLoading);
-      console.log("scrape started", manga.title, manga.data,process.env.NEXT_PUBLIC_SCRAPER_API);
       const response = await fetch(`${process.env.NEXT_PUBLIC_SCRAPER_API}/chapters?title=${manga.title}`, 
    
       );
-      console.log("scarpe manga page", response);
 
       const data = await response.json();
       setChapters(data);
-      console.log("chapters", data);
     }
     if (!isMangaLoading) fetchChapters();
   }, [manga?.title, isMangaLoading]);
@@ -85,7 +79,6 @@ const MangaPage = ({ params }) => {
     imageUrl,
     synopsis
   ) {
-    console.log("start bookmark");
     const response = await fetch(
       `/api/bookmark/${userId}`,
       {
@@ -103,7 +96,6 @@ const MangaPage = ({ params }) => {
         },
       }
     );
-    console.log("bookmark repsonse", response);
     const bookmark = await response.json();
     setIsBookmarked(true)
 
@@ -114,7 +106,6 @@ const MangaPage = ({ params }) => {
       setBookmark((prevBookmarks) => [...prevBookmarks, bookmark]);
 
       // setBookmark(bookmark);
-      console.log("finish bookmark", bookmark);
       alert("Bookmark added");
       // <PopupComponent content={"Bookmark added."}/>
 

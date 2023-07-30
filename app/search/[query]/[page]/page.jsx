@@ -22,7 +22,6 @@ const SearchResults = ({ params }) => {
   const [loading,setLoading]=useState(true)
 
   async function fetchSearchResults(query, page) {
-    console.log("start results fetch", query, page + 1);
     const response = await fetch(
       `https://api.jikan.moe/v4/manga?q=${query}&limit=24&page=${page}`
     );
@@ -32,7 +31,6 @@ const SearchResults = ({ params }) => {
     setPageCount( data.pagination.last_visible_page)
     setLoading(false)
 
-    console.log("search results", data.data);
   }
 
   useEffect(()=>{

@@ -10,7 +10,6 @@ const Paginate = ({ link,pageCount }) => {
    
 
   const handlePageChange = (data) => {
-    console.log(data.selected + 1, "data.selected");
     router.push(`${link}/${data.selected + 1}`);
   };
   

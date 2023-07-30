@@ -19,7 +19,6 @@ const OrderBy = ({ params }) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  console.log("order by", page, category, "searchQuery", searchQuery);
 
   useEffect(() => {
     async function fetchOrderedManga() {
@@ -29,7 +28,6 @@ const OrderBy = ({ params }) => {
           `https://api.jikan.moe/v4/manga?${searchQuery}=${category}&limit=24&page=${page}`
         );
         const data = await response.json();
-        console.log("order", data);
         setOrderedManga(data.data);
         setPageCount(data.pagination.last_visible_page);
         setLoading(false);
@@ -40,7 +38,6 @@ const OrderBy = ({ params }) => {
           `https://api.jikan.moe/v4/top/manga?filter=bypopularity&limit=24&page=${page}`
         );
         const data = await response.json();
-        console.log("order", data);
         setOrderedManga(data.data);
         setPageCount(data.pagination.last_visible_page);
         setLoading(false);

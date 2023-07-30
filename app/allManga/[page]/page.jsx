@@ -27,7 +27,6 @@ const Mangas = ({ params }) => {
 
     fetchMangas();
   }, [page]);
-  // console.log("page count",pageCount)
 
   
 
@@ -48,7 +47,6 @@ const Mangas = ({ params }) => {
         nextLabel="Next"
         previousLabel="Previous "
         onPageChange={(data) => {
-          console.log(data.selected+1, "data.selected");
           router.push(`/allManga/${data.selected + 1}`);
         }} // Handle page change event
         containerClassName={"pagination"} // Set CSS class for container

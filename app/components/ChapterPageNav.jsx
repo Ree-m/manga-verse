@@ -13,7 +13,6 @@ const ChapterPageNav = ({ manga, chapters, chapter, id, reverse }) => {
   const router = useRouter();
   const chapterNumber = parseFloat(chapter.split("-").pop());
 
-  console.log("chapter nav", chapterNumber);
   async function handlePreviousClick(e) {
     e.preventDefault();
 
@@ -21,19 +20,7 @@ const ChapterPageNav = ({ manga, chapters, chapter, id, reverse }) => {
       const chapterNum = parseFloat(chapter.split("-").pop());
       return chapterNum === chapterNumber;
     });
-    console.log(
-      "chapterIndex",
-      chapterIndex,
-      "chapterNumber",
-      chapterNumber,
-      "chapters[chapterIndex]",
-      chapters[chapterIndex],
-      chapters[+chapterIndex + 1],
-      "chapters.length",
-      chapters.length,
-      "chapters",
-      chapters
-    );
+  
 
     if (chapterIndex !== -1 && chapterIndex > 0) {
       const previousChapterNum = parseFloat(
@@ -47,24 +34,11 @@ const ChapterPageNav = ({ manga, chapters, chapter, id, reverse }) => {
 
   async function handleNextClick(e) {
     e.preventDefault();
-    console.log("in function", chapterNumber);
     const chapterIndex = chapters.findIndex((chapter) => {
       const chapterNum = parseFloat(chapter.split("-").pop());
       return chapterNum === chapterNumber;
     });
-    console.log(
-      "chapterIndex",
-      chapterIndex,
-      "chapterNumber",
-      chapterNumber,
-      "chapters[chapterIndex]",
-      chapters[chapterIndex],
-      chapters[+chapterIndex - 1],
-      "chapters.length",
-      chapters.length,
-      "chapters",
-      chapters
-    );
+  
     if (chapterIndex !== -1 && chapterIndex <= chapters.length - 1) {
       const nextChapterNum = parseFloat(
         chapters[+chapterIndex - 1].split("-").pop()
@@ -87,7 +61,6 @@ const ChapterPageNav = ({ manga, chapters, chapter, id, reverse }) => {
       return chapterNum < chapterNumber ;
     }) !== -1;
 
-    console.log("hasNextChapter",hasNextChapter,"hasPreviousChapter",hasPreviousChapter)
 
   return (
     <div className={reverse ? styles.flexReverse : styles.flex}>

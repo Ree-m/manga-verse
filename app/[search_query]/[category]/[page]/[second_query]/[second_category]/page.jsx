@@ -17,7 +17,6 @@ const SecondOrderBy = ({ params }) => {
   const [loading, setLoading] = useState(false);
   const [pageCount, setPageCount] = useState(null);
 
-  console.log("order", page, category, searchQuery, category2, searchQuery2);
 
   useEffect(() => {
     async function fetchOrderedManga() {
@@ -27,7 +26,6 @@ const SecondOrderBy = ({ params }) => {
           `https://api.jikan.moe/v4/manga?${searchQuery}=${category}&page=${page}&${searchQuery2}=${category2}&min_score=1&sfw&limit=24`
         );
         const data = await response.json();
-        console.log("order", data);
         setOrderedManga(data.data);
         setPageCount(data.pagination.last_visible_page);
         setLoading(false);

@@ -19,20 +19,16 @@ const GenrePage = ({ params }) => {
 
   const genreId = searchParams.get("genreId");
 
-  console.log("genre", genre, params.page);
-  console.log("genreId", genreId);
   const page = params.page;
   useEffect(() => {
     async function filterByGenre() {
       setLoading(true);
-      console.log("second genre", genre);
 
       const response = await fetch(
         `https://api.jikan.moe/v4/manga?genres=${genreId}?&limit=24&page=${page}`
       );
 
       const filteredMangas = await response.json();
-      console.log("filteredMangas", filteredMangas);
 
       setMangas(filteredMangas.data);
       setPageCount(filteredMangas.pagination.last_visible_page);
@@ -53,7 +49,6 @@ const GenrePage = ({ params }) => {
       <ReactPaginate
         nextLabel="next >"
         onPageChange={(data) => {
-          console.log(data.selected + 1, "data.selected");
           router.push(
             `/genre/${genre}/${data.selected + 1}?genreId=${genreId}`
           );

@@ -17,7 +17,6 @@ const BookmarkPage = () => {
   const [loading, setLoading] = useState(true);
   const { data } = useSession();
   const userId = data?.user?.id;
-  console.log("bookmark page", userId);
 
   useEffect(() => {
     async function fetchBookmark() {
@@ -25,7 +24,6 @@ const BookmarkPage = () => {
         if (userId) {
           const response = await fetch(`/api/bookmark/${userId}`);
           const data = await response.json();
-          console.log("bookmark data", data);
           setBookmark(data);
           setLoading(false);
         }
@@ -49,7 +47,6 @@ const BookmarkPage = () => {
   if (loading) {
     return <Loading />;
   }
-  console.log("bookmark items bookmark page", bookmark);
   return (
     <div className={styles.bookmarkPage}>
       <div className={styles.top}>
