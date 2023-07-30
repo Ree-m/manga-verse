@@ -166,25 +166,27 @@ npm run start
 ## Usage
 
 Users can login here.
-<img src="" alt="Image of login form" />
+<img src="/styles/assests/readme/manga-verse-login.jpg" alt="Image of login form" />
 
 Home Page
-<img src="" alt="Image of home page" />
+<img src="/styles/assests/readme/manga-verse-home-page.jpg" alt="Image of home page" />
 
 Manga Page
-<img src="" alt="Image of manga page" />
+<img src="/styles/assests/readme/manga-verse-manga-page.jpg" alt="Image of manga page" />
+<img src="/styles/assests/readme/manga-verse-chapters-list.jpg" alt="Image of manga page" />
 
 Chapter Page
-<img src="" alt="Image of chapter page" />
+<img src="/styles/assests/readme/manga-verse-chapter-page.jpg" alt="Image of chapter page" />
+<img src="/styles/assests/readme/manga-verse-chapter-page2.jpg" alt="Image of chapter page" />
 
 Filter by genre
-<img src="" alt="Genres" />
+<img src="/styles/assests/readme/manga-verse-genres.png" alt="Genres" />
 
 Bookmarks page
-<img src="" alt="Image of bookmarks page" />
+<img src="/styles/assests/readme/manga-verse-bookmark-page.jpg" alt="Image of bookmarks page" />
 
-
-
+Search
+<img src="/styles/assests/readme/manga-verse-search.jpg" alt="Image of serach results" />
 
 
 
