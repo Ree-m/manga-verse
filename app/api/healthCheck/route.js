@@ -7,7 +7,7 @@ export async function GET(){
         return NextResponse.json("OK")
 
     }catch(error){
-        return NextResponse.json(`Health check error" ${error}`)
+        return NextResponse.json(`Health check error:" ${error}`)
     }
   }
   

@@ -1,13 +1,14 @@
 const fetchStatus = async ()=>{
-    const response = await fetch(`${API_URL}/healthCheck`)
-    const data= response.json()
+    const response = await fetch(`/api/healthCheck`)
+    const data= await response.json()
+    console.log(data)
     return data
     }
     const HealthCheck= async() => {
         const data = await fetchStatus()
       return (
         <div>
-            {data}
+            hi
         </div>
       )
     }
