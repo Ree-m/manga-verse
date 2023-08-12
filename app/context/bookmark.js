@@ -9,7 +9,6 @@ export const BookmarkContextProvider = ({ children }) => {
   const [bookmark, setBookmark] = useState([]);
   const { data } = useSession();
   const userId = data?.user?.id;
-  console.log("bookmark context", userId);
 
 
   useEffect(() => {

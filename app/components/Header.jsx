@@ -20,9 +20,7 @@ const Header = () => {
   const username = data?.user?.name;
   const router = useRouter();
 
-  console.log("data,status", data, status);
 
-  console.log("header bookmark reem", bookmark);
   return (
     <nav className={styles.header}>
       <div className={styles.logo}>

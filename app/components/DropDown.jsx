@@ -13,7 +13,7 @@ const DropDown = ({ id, chapters, chapter }) => {
 
   const handleChapterChange = (e) => {
     const selectedChapter = e.target.value;
-    console.log("selected reem chap", selectedChapter);
+    console.log("selected chapter", selectedChapter);
     setSelectedChapter(selectedChapter);
     router.push(`/mangas/${id}/chapter-${selectedChapter.split("-").pop()}`);
   };

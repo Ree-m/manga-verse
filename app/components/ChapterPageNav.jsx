@@ -18,14 +18,19 @@ const ChapterPageNav = ({ manga, chapters, chapter, id, reverse }) => {
 
     const chapterIndex = chapters.findIndex((chapter) => {
       const chapterNum = parseFloat(chapter.split("-").pop());
+      console.log("chapterNum",chapterNum)
       return chapterNum === chapterNumber;
+
     });
+
+    console.log("chapterIndex",chapterIndex,"chapters",chapters)
   
 
     if (chapterIndex !== -1 && chapterIndex > 0) {
       const previousChapterNum = parseFloat(
         chapters[chapterIndex + 1].split("-").pop()
       );
+      console.log("previous chapter", previousChapterNum)
       router.push(`/mangas/${id}/chapter-${previousChapterNum}`);
     } else {
       console.log("Previous chapter does not exist.");
