@@ -9,7 +9,7 @@ require("dotenv").config({ path: "../.env.local" });
 
 connectMongo();
 
-app.use(cors({ origin: process.env.ALLOWED_ORIGIN}));
+app.use(cors({ origin: process.env.ALLOWED_ORIGIN }));
 app.use(bodyParser.json());
 
 async function scrapeMangaLink(mangaTitle) {
@@ -18,13 +18,11 @@ async function scrapeMangaLink(mangaTitle) {
   await page.goto(`https://ww5.manganelo.tv/search/${mangaTitle}`);
   await page.setCacheEnabled(false);
 
-
   const mangaLink = await page.$eval(
     ".panel-search-story .search-story-item a",
     (links) => {
       return links.href;
     }
-
   );
 
   await browser.close();
@@ -32,22 +30,18 @@ async function scrapeMangaLink(mangaTitle) {
 }
 
 async function scrapeChapters(mangaTitle) {
-
   const mangaExists = await MangaChapters.findOne({ mangaTitle });
 
   if (mangaExists && mangaExists.chapterLinks.length > 0) {
     console.log("get chapterLinks from db");
     return mangaExists.chapterLinks;
-  }
-
-  else{
+  } else {
     const browser = await puppeteer.launch({ headless: "new" });
     const page = await browser.newPage();
     const mangaLink = await scrapeMangaLink(mangaTitle);
     await page.goto(mangaLink);
     await page.setCacheEnabled(false);
 
-  
     const chapterLinks = await page.$$eval(
       ".panel-story-chapter-list .row-content-chapter li a",
       (links) => {
@@ -62,8 +56,6 @@ async function scrapeChapters(mangaTitle) {
     await browser.close();
     return chapterLinks;
   }
-
- 
 }
 
 async function scrapeChapterImages(chapterUrl, mangaTitle, chapter) {
@@ -83,7 +75,6 @@ async function scrapeChapterImages(chapterUrl, mangaTitle, chapter) {
   const page = await browser.newPage();
   await page.goto(chapterUrl);
   await page.setCacheEnabled(false);
-
 
   const images = await page.$$eval(
     ".body-site .container-chapter-reader img",
@@ -125,14 +116,19 @@ async function scrapeChapterImages(chapterUrl, mangaTitle, chapter) {
   return images;
 }
 
+app.get("/healthCheck", async (res, res) => {
+  try {
+    res.json("OK");
+  } catch (error) {
+    res.json(`Scraper health check error: ${error}`);
+  }
+});
 
 app.get("/chapters", async (req, res) => {
   try {
-
-
     const mangaTitle = req.query.title;
 
-    console.log( mangaTitle, req.body);
+    console.log(mangaTitle, req.body);
     const manga = await MangaChapters.findOne({ mangaTitle });
     if (manga && manga.chapterLinks.length > 0) {
       console.log("get chapter links from the database");
@@ -146,11 +142,9 @@ app.get("/chapters", async (req, res) => {
   }
 });
 
-
 app.get("/chapterImages", async (req, res) => {
   try {
-
-    console.log("starting chapterImages")
+    console.log("starting chapterImages");
     const chapter = req.query.chapter;
 
     const mangaTitle = req.query?.title;
@@ -158,7 +152,7 @@ app.get("/chapterImages", async (req, res) => {
     const manga = await MangaChapters.findOne({
       mangaTitle,
     });
-    
+
     if (manga) {
       const matchingChapter = manga.chapterImages.find(
         (chapterObj) => chapterObj.chapter === chapter
@@ -166,18 +160,19 @@ app.get("/chapterImages", async (req, res) => {
       if (matchingChapter && matchingChapter.images.length > 0) {
         console.log("get images from db");
         res.json(matchingChapter.images);
-      }
-      else{
-        console.log("manga is there but chapter isnt")
+      } else {
+        console.log("manga is there but chapter isnt");
         const mangaLink = await scrapeMangaLink(mangaTitle);
         const mangaId = mangaLink.split("-").pop();
-        const chapterImages =await scrapeChapterImages(`https://ww5.manganelo.tv/chapter/manga-${mangaId}/${chapter}`,mangaTitle,chapter)
+        const chapterImages = await scrapeChapterImages(
+          `https://ww5.manganelo.tv/chapter/manga-${mangaId}/${chapter}`,
+          mangaTitle,
+          chapter
+        );
         console.log("chapter not there in db,197");
         res.json(chapterImages);
       }
-    }
-
-    else {
+    } else {
       const mangaLink = await scrapeMangaLink(mangaTitle);
       const mangaId = mangaLink.split("-").pop();
       const chapterImages = await scrapeChapterImages(
@@ -185,20 +180,14 @@ app.get("/chapterImages", async (req, res) => {
         mangaTitle,
         chapter
       );
-      console.log("chapter not there in db")
+      console.log("chapter not there in db");
       res.json(chapterImages);
     }
-
-} catch (error) {
+  } catch (error) {
     console.error(`ChapterImages error: ${error}`);
     res.status(500).send(`Server error:${error}`);
   }
 });
-
-
-
-
-
 
 app.listen(process.env.PORT || 9000, () => {
   console.log("server running");
