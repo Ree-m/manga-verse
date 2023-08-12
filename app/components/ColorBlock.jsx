@@ -41,22 +41,22 @@ const ColorBlock = () => {
 
       <div className={styles.colorBlockItems}>
         <Link
-          href={`/manga/121496`}
+          href={`/mangas/121496`}
           key={121496}
           className={styles.colorBlockItem}
         >
-          <p className={styles.c0}>Solo Leveling </p>
+          <p className={styles.c0}>Solo Leveling</p>
         </Link>
         <Link
-          href={`/manga/125036`}
+          href={`/mangas/125036`}
           key={125036}
           className={styles.colorBlockItem}
         >
-          <p className={styles.c1}> The Horizon</p>
+          <p className={styles.c1}>The Horizon</p>
         </Link>
 
         <Link
-          href={`/manga/103237`}
+          href={`/mangas/103237`}
           key={103237}
           className={styles.colorBlockItem}
         >
@@ -64,7 +64,7 @@ const ColorBlock = () => {
         </Link>
 
         <Link
-          href={`/manga/111213`}
+          href={`/mangas/111213`}
           key={111213}
           className={styles.colorBlockItem}
         >
@@ -72,7 +72,7 @@ const ColorBlock = () => {
         </Link>
 
         <Link
-          href={`/manga/121269`}
+          href={`/mangas/121269`}
           key={121269}
           className={styles.colorBlockItem}
         >
@@ -80,15 +80,15 @@ const ColorBlock = () => {
         </Link>
 
         <Link
-          href={`/manga/141120`}
+          href={`/mangas/141120`}
           key={141120}
           className={styles.colorBlockItem}
         >
-          <p className={styles.c5}>The Boxer </p>
+          <p className={styles.c5}>The Boxer</p>
         </Link>
 
         <Link
-          href={`/manga/132214`}
+          href={`/mangas/132214`}
           key={132214}
           className={styles.colorBlockItem}
         >
@@ -96,7 +96,7 @@ const ColorBlock = () => {
         </Link>
 
         <Link
-          href={`/manga/8586`}
+          href={`/mangas/8586`}
           key={8586}
           className={styles.colorBlockItem}
         >
@@ -104,7 +104,7 @@ const ColorBlock = () => {
         </Link>
 
         <Link
-          href={`/manga/134744`}
+          href={`/mangas/134744`}
           key={134744}
           className={styles.colorBlockItem}
         >
@@ -112,7 +112,7 @@ const ColorBlock = () => {
         </Link>
 
         <Link
-          href={`/manga/122663`}
+          href={`/mangas/122663`}
           key={122663}
           className={styles.colorBlockItem}
         >
