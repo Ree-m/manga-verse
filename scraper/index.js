@@ -116,7 +116,7 @@ async function scrapeChapterImages(chapterUrl, mangaTitle, chapter) {
   return images;
 }
 
-app.get("/healthCheck", async (res, res) => {
+app.get("/healthCheck", async (req, res) => {
   try {
     res.json("OK");
   } catch (error) {
