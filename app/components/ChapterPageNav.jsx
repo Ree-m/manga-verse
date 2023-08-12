@@ -26,7 +26,7 @@ const ChapterPageNav = ({ manga, chapters, chapter, id, reverse }) => {
     console.log("chapterIndex",chapterIndex,"chapters",chapters)
   
 
-    if (chapterIndex !== -1 && chapterIndex > 0) {
+    if (chapterIndex !== -1 && chapterIndex >= 0) {
       const previousChapterNum = parseFloat(
         chapters[chapterIndex + 1].split("-").pop()
       );
