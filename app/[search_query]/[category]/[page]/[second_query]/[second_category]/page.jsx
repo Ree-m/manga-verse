@@ -1,11 +1,17 @@
 "use client";
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import Loading from "@/app/components/Loading";
 import MangaDetails from "@/app/components/MangaDetails";
 import Paginate from "@/app/components/Paginate";
+import ReactPaginate from "react-paginate";
 import styles from "app/styles/mangaDetialsPages.module.css";
+import "app/styles/paginate.css";
 import TopHeading from "@/app/components/TopHeading";
+import { useRouter } from "next/navigation";
+
+import { AiOutlineArrowRight } from "react-icons/ai";
+import { AiOutlineArrowLeft } from "react-icons/ai";
+
 
 const SecondOrderBy = ({ params }) => {
   const searchQuery = params.search_query;
@@ -16,6 +22,7 @@ const SecondOrderBy = ({ params }) => {
   const [orderedManga, setOrderedManga] = useState([]);
   const [loading, setLoading] = useState(false);
   const [pageCount, setPageCount] = useState(null);
+  const router = useRouter();
 
 
   useEffect(() => {
@@ -43,13 +50,36 @@ const SecondOrderBy = ({ params }) => {
     <div className={styles.mangaDetailsPage}>
     <TopHeading category={category} page={page}/>
       <MangaDetails mangas={orderedManga} />
+      <div className="paginationContainer"> 
 
+      <ReactPaginate
+        activeClassName={"item active"}
+        breakClassName={"item break-me"}
+        breakLabel={"..."}
+
+        onPageChange={(data)=>    router.push(`/${searchQuery}/${category}/${data.selected +1}/${searchQuery2}/${category2}`)}
+        containerClassName={"pagination"}
+        disabledClassName={"disabled-page"}
+        marginPagesDisplayed={2}
+        nextClassName={"item next"}
+        pageCount={pageCount}
+        pageClassName={"item pagination-page"}
+        pageRangeDisplayed={5}
+        previousClassName={"item previous"}
+        previousLabel={
+          <AiOutlineArrowLeft style={{ fontSize: 18, width: 150 }} />
+        }
+        nextLabel={<AiOutlineArrowRight style={{ fontSize: 18, width: 150 }} />}
+      />
+      </div>
+
+{/* 
       <Paginate
         link={`/${searchQuery}/${category}`}
         linkSecondHalf={`${searchQuery2}/${category2}`}
         pageCount={pageCount}
       />
-               
+                */}
 
     </div>
   );

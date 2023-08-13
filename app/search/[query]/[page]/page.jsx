@@ -11,7 +11,7 @@ import styles2 from "app/styles/search.module.css";
 
 
 
-
+ 
 const SearchResults = ({ params }) => {
   const query = params.query;
   const decodeQuery =decodeURIComponent(query)

@@ -9,7 +9,6 @@ import { AiOutlineDoubleRight } from "react-icons/ai";
 import TopHeading from "@/app/components/TopHeading";
 
 import styles from "app/styles/mangaDetialsPages.module.css";
-// import styles from "app/styles/topHeading.module.css"
 const OrderBy = ({ params }) => {
   const category = params.category;
   const page = params.page;
@@ -45,7 +44,7 @@ const OrderBy = ({ params }) => {
     }
     fetchOrderedManga();
   }, []);
-
+ 
   if (loading) {
     return <Loading />;
   }

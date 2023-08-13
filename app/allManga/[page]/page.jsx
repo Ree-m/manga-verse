@@ -5,11 +5,15 @@ import { useRouter } from "next/navigation";
 import Loading from "@/app/components/Loading";
 import ReactPaginate from "react-paginate";
 import MangaDetails from "@/app/components/MangaDetails";
+import TopHeading from "@/app/components/TopHeading";
+import Paginate from "@/app/components/Paginate";
+import styles from "app/styles/mangaDetialsPages.module.css";
 
 const Mangas = ({ params }) => {
   const router = useRouter();
   const [mangas, setMangas] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [pageCount, setPageCount] = useState(null);
   const page = params.page;
 
   useEffect(() => {
@@ -21,6 +25,7 @@ const Mangas = ({ params }) => {
       const data = await response.json();
 
       setMangas(data.data);
+      setPageCount( data.pagination.last_visible_page)
       setLoading(false);
       return data;
     };
@@ -35,24 +40,17 @@ const Mangas = ({ params }) => {
   }
 
   return (
-    <>
+    <div className={styles.mangaDetailsPage}>
+
+          <TopHeading category={"All"} page={page} />
+
     <MangaDetails mangas={mangas} setMangas={setMangas}/>
      
 
-      <ReactPaginate
-        pageCount={2545} // Replace 10 with the actual number of pages
-        pageRangeDisplayed={3} // Display a range of 5 pages
-        marginPagesDisplayed={0}
-        // breakLabel="..."
-        nextLabel="Next"
-        previousLabel="Previous "
-        onPageChange={(data) => {
-          router.push(`/allManga/${data.selected + 1}`);
-        }} // Handle page change event
-        containerClassName={"pagination"} // Set CSS class for container
-        activeClassName={"active"} // Set CSS class for active page
-      />
-    </>
+
+      <Paginate link={`/allManga`} pageCount={pageCount} />
+
+    </div>
   );
 };
 

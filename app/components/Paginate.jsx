@@ -7,10 +7,11 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 const Paginate = ({ link,pageCount }) => {
   const router = useRouter();
 
-   
+    
 
   const handlePageChange = (data) => {
     router.push(`${link}/${data.selected + 1}`);
+
   };
   
 
@@ -20,6 +21,7 @@ const Paginate = ({ link,pageCount }) => {
         activeClassName={"item active"}
         breakClassName={"item break-me"}
         breakLabel={"..."}
+
         onPageChange={handlePageChange}
         containerClassName={"pagination"}
         disabledClassName={"disabled-page"}

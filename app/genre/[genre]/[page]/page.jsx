@@ -8,6 +8,11 @@ import Loading from "@/app/components/Loading";
 import MangaDetails from "@/app/components/MangaDetails";
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import TopHeading from "@/app/components/TopHeading";
+import Paginate from "@/app/components/Paginate";
+import styles from "app/styles/mangaDetialsPages.module.css";
+
+import { AiOutlineArrowRight } from "react-icons/ai";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
 const GenrePage = ({ params }) => {
   const [mangas, setMangas] = useState([]);
@@ -42,34 +47,36 @@ const GenrePage = ({ params }) => {
   }
 
   return (
-    <div>
+    <div className={styles.mangaDetailsPage}>
+
       <TopHeading category={genre} page={page} />
       <MangaDetails mangas={mangas} setMangas={setMangas} />
 
+      <div className="paginationContainer"> 
       <ReactPaginate
-        nextLabel="next >"
-        onPageChange={(data) => {
-          router.push(
-            `/genre/${genre}/${data.selected + 1}?genreId=${genreId}`
-          );
-        }} // Handle page change event
-        pageRangeDisplayed={3}
+        activeClassName={"item active"}
+        breakClassName={"item break-me"}
+        breakLabel={"..."}
+
+        onPageChange={(data)=>   router.push(`/genre/${genre}/${data.selected + 1}?genreId=${genreId}`  )    }
+        containerClassName={"pagination"}
+        disabledClassName={"disabled-page"}
         marginPagesDisplayed={2}
+        nextClassName={"item next"}
         pageCount={pageCount}
-        previousLabel="< previous"
-        pageClassName="page-item"
-        pageLinkClassName="page-link"
-        previousClassName="page-item"
-        previousLinkClassName="page-link"
-        nextClassName="page-item"
-        nextLinkClassName="page-link"
-        breakLabel="..."
-        breakClassName="page-item"
-        breakLinkClassName="page-link"
-        containerClassName="pagination"
-        activeClassName="active"
-        renderOnZeroPageCount={null}
+        pageClassName={"item pagination-page"}
+        pageRangeDisplayed={5}
+        previousClassName={"item previous"}
+        previousLabel={
+          <AiOutlineArrowLeft style={{ fontSize: 18, width: 150 }} />
+        }
+        nextLabel={<AiOutlineArrowRight style={{ fontSize: 18, width: 150 }} />}
       />
+
+    </div>
+
+    
+
     </div>
   );
 };
