@@ -18,7 +18,10 @@
 .mangaDetails a h2:hover{
     color:var(--hover-yellow);
 }
+.mangaDetails a p:hover{
+  color:var(--hover-yellow);
 
+}
 .mangaDetails span{
     color: var(--link-blue);
     font-size: 0.95rem;

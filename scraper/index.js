@@ -16,6 +16,7 @@ async function scrapeMangaLink(mangaTitle) {
   const browser = await puppeteer.launch({ headless: "new" });
   const page = await browser.newPage();
   await page.goto(`https://ww5.manganelo.tv/search/${mangaTitle}`);
+  // await page.goto(`https://readmangabat.com/https://m.mangabat.com/search/manga/${mangaTitle}`)
   await page.setCacheEnabled(false);
 
   const mangaLink = await page.$eval(
@@ -146,6 +147,7 @@ app.get("/chapterImages", async (req, res) => {
   try {
     console.log("starting chapterImages");
     const chapter = req.query.chapter;
+    console.log("chapter in get /chapterImages")
 
     const mangaTitle = req.query?.title;
 
@@ -166,6 +168,7 @@ app.get("/chapterImages", async (req, res) => {
         const mangaId = mangaLink.split("-").pop();
         const chapterImages = await scrapeChapterImages(
           `https://ww5.manganelo.tv/chapter/manga-${mangaId}/${chapter}`,
+          // `https://readmangabat.com/read-${mangaId}-chap-${chapter}`,
           mangaTitle,
           chapter
         );
@@ -177,6 +180,7 @@ app.get("/chapterImages", async (req, res) => {
       const mangaId = mangaLink.split("-").pop();
       const chapterImages = await scrapeChapterImages(
         `https://ww5.manganelo.tv/chapter/manga-${mangaId}/${chapter}`,
+        // `https://readmangabat.com/read-${mangaId}-chap-${chapter}`,
         mangaTitle,
         chapter
       );
