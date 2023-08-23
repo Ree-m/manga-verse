@@ -1,4 +1,3 @@
-"use client"
 import Link from "next/link";
 import Genres from "./components/Genres";
 import CarouselComponent from "./components/CarouselComponent";
