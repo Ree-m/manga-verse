@@ -10,7 +10,6 @@ import { AiOutlineDoubleRight } from "react-icons/ai";
 import TopHeading from "@/app/components/TopHeading";
 import Paginate from "@/app/components/Paginate";
 import styles from "app/styles/mangaDetialsPages.module.css";
-import ProgressBar from "@/app/components/ProgressBar";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 
