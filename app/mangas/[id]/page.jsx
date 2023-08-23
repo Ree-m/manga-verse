@@ -61,6 +61,7 @@ const MangaPage = ({ params }) => {
 
   useEffect(() => {
     async function fetchChapters() {
+      console.log("in manga page, scraper",process.env.NEXT_PUBLIC_SCRAPER_API)
       const response = await fetch(`${process.env.NEXT_PUBLIC_SCRAPER_API}/chapters?title=${manga.title}`, 
    
       );
