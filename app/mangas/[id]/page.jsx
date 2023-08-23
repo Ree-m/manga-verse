@@ -290,7 +290,7 @@ const MangaPage = ({ params }) => {
             <div className={styles.chaptersContainer}>
               <div className={styles.chapters}>
                 <div className={styles.chaptersHeading}>
-                  <p>Chapter name</p>
+                  <p>Chapter Name</p>
                 </div>
                 {chapters &&
                   chapters.map((chapter,index) => (

@@ -9,6 +9,7 @@ require("dotenv").config({ path: "../.env.local" });
 
 connectMongo();
 
+
 app.use(cors({ origin: process.env.ALLOWED_ORIGIN }));
 app.use(bodyParser.json());
 
@@ -16,7 +17,6 @@ async function scrapeMangaLink(mangaTitle) {
   const browser = await puppeteer.launch({ headless: "new" });
   const page = await browser.newPage();
   await page.goto(`https://ww5.manganelo.tv/search/${mangaTitle}`);
-  // await page.goto(`https://readmangabat.com/https://m.mangabat.com/search/manga/${mangaTitle}`)
   await page.setCacheEnabled(false);
 
   const mangaLink = await page.$eval(
