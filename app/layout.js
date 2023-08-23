@@ -8,31 +8,38 @@ import { CommentContextProvider } from "./context/comment";
 import Genres from "./components/Genres";
 import Footer from "./components/Footer";
 import CarouselComponent from "./components/CarouselComponent";
+import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-       <head>
+      <head>
         <link rel="icon" href="/favicon.ico" />
         <title>Manga Verse</title>
-
       </head>
 
       <body className="body">
-      <SessionProvider>
-        <UserContextProvider>
+        <SessionProvider>
+          <UserContextProvider>
             <BookmarkContextProvider>
               <CommentContextProvider>
                 <Header />
-                <CarouselComponent/>
-                <main>{children}</main>
+                <CarouselComponent />
+                <main>
+                  {children}
+                  <ProgressBar
+                    height="4px"
+                    color="#3498db"
+                    options={{ showSpinner: false }}
+                    shallowRouting
+                  />
+                </main>
                 <Genres />
-                <Footer/>
+                <Footer />
               </CommentContextProvider>
             </BookmarkContextProvider>
-        </UserContextProvider>
+          </UserContextProvider>
         </SessionProvider>
-
       </body>
     </html>
   );

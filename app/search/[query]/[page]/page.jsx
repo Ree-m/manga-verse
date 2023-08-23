@@ -10,7 +10,6 @@ import styles from "app/styles/mangaDetialsPages.module.css";
 import styles2 from "app/styles/search.module.css";
 
 
-
  
 const SearchResults = ({ params }) => {
   const query = params.query;
@@ -55,7 +54,6 @@ const SearchResults = ({ params }) => {
         <p>Search Results</p>
 
       </div>
-      
       <MangaDetails mangas={results} />
       <Paginate link={`/search/${query}`} pageCount={pageCount} />
     </div>

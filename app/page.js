@@ -1,9 +1,10 @@
-
+"use client"
 import Link from "next/link";
 import Genres from "./components/Genres";
 import CarouselComponent from "./components/CarouselComponent";
 import HomePageMain from "./components/HomePageMain";
 import Random from "./components/Random";
+
 
 export default function Home() {
   
