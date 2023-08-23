@@ -59,7 +59,7 @@
 
 ## About The Project
 
-[![Manga Verse App][product-screenshot]](https://manga-verse.onrender.com)
+[![Manga Verse App][product-screenshot]](https://manga-verse-beta.vercel.app/)
 Manga Vesre is a full-stack manga viewing app that combines the power of NEXTJS, JIKAN API, Pupeteer, Express, and MongoDB. It follows a microservices architecture and incorporates next auth for authentication. With its responsive design, Manga Vesre delivers an immersive manga reading experience across devices.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -99,7 +99,7 @@ Manga Vesre is a full-stack manga viewing app that combines the power of NEXTJS,
 
 ## Live Demo
 
-[Live Demo](https://manga-verse.onrender.com)
+[Live Demo](https://manga-verse-beta.vercel.app/)
 
 ### Demo Account
 
