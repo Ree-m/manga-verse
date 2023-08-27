@@ -24,7 +24,6 @@ export default function RootLayout({ children }) {
             <BookmarkContextProvider>
               <CommentContextProvider>
                 <Header />
-                <CarouselComponent />
                 <main>
                   {children}
                   <ProgressBar

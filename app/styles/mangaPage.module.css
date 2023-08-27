@@ -108,7 +108,7 @@
   line-height: 26px;
 }
 
-.chapters a:hover {
+.chaptersList a p:hover {
   color: var(--hover-yellow);
 }
 
