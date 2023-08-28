@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Loading from "@/app/components/Loading";
+import LoadingChapter from "@/app/components/LoadingChapter";
 import ChapterImage from "@/app/components/ChapterImage";
 import ChapterPageNav from "@/app/components/ChapterPageNav";
 import styles from "app/styles/chapterPage.module.css";
@@ -69,7 +70,7 @@ const Chapter = ({ params }) => {
   }, [manga, isMangaLoading]);
 
   if (loading) {
-    return <Loading />;
+    return <LoadingChapter />;
   }
 
   return (
