@@ -1,0 +1,11 @@
+.loadingChapter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  
+}
+.loadingChapter a{
+    text-decoration: underline;
+    color: var(--orange);
+}
