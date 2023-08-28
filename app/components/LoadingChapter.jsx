@@ -4,8 +4,8 @@ function LoadingChapter() {
   return (
     <div className={styles.loadingChapter}>
         <p>
-        The bot is fetching your chapter ...<br/>
-        In the mean time, read the latest chapter of One piece <Link target="_blank" href="https://manga-verse-beta.vercel.app/mangas/13/chapter-1084">here</Link>
+        The bot is fetching your chapter ...</p>
+       <p> In the mean time, read the latest chapter of One piece <Link target="_blank" href="https://manga-verse-beta.vercel.app/mangas/13/chapter-1084">here</Link>
         </p>
 
     </div>
