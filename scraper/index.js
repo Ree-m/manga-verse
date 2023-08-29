@@ -8,15 +8,25 @@ const MangaChapters = require("./models/MangaChapters.js");
 require("dotenv").config({ path: "../.env.local" });
 
 connectMongo();
-console.log("allowed origin", process.env.ALLOWED_ORIGIN)
+console.log("allowed origin", process.env.ALLOWED_ORIGIN);
 app.use(cors({ origin: process.env.ALLOWED_ORIGIN }));
 app.use(bodyParser.json());
 
 async function scrapeMangaLink(mangaTitle) {
-  const browser = await puppeteer.launch({ headless: "new"
-});
+  const browser = await puppeteer.launch({
+    headless: "new",
+    executablePath:
+      process.env.NODE_ENV === "production"
+        ? "/usr/bin/google-chrome"
+        : undefined,
+    args:
+      process.env.NODE_ENV === "production"
+        ? ["--no-sandbox", "--disable-setuid-sandbox"]
+        : undefined,
+  });
+
   const page = await browser.newPage();
-  await page.goto(`https://ww5.manganelo.tv/search/${mangaTitle}`);
+  await page.goto(`https://ww6.manganelo.tv/search/${mangaTitle}`);
   await page.setCacheEnabled(false);
 
   const mangaLink = await page.$eval(
@@ -147,7 +157,7 @@ app.get("/chapterImages", async (req, res) => {
   try {
     console.log("starting chapterImages");
     const chapter = req.query.chapter;
-    console.log("chapter in get /chapterImages")
+    console.log("chapter in get /chapterImages");
 
     const mangaTitle = req.query?.title;
 
@@ -167,7 +177,7 @@ app.get("/chapterImages", async (req, res) => {
         const mangaLink = await scrapeMangaLink(mangaTitle);
         const mangaId = mangaLink.split("-").pop();
         const chapterImages = await scrapeChapterImages(
-          `https://ww5.manganelo.tv/chapter/manga-${mangaId}/${chapter}`,
+          `https://ww6.manganelo.tv/chapter/manga-${mangaId}/${chapter}`,
           // `https://readmangabat.com/read-${mangaId}-chap-${chapter}`,
           mangaTitle,
           chapter
@@ -179,7 +189,7 @@ app.get("/chapterImages", async (req, res) => {
       const mangaLink = await scrapeMangaLink(mangaTitle);
       const mangaId = mangaLink.split("-").pop();
       const chapterImages = await scrapeChapterImages(
-        `https://ww5.manganelo.tv/chapter/manga-${mangaId}/${chapter}`,
+        `https://ww6.manganelo.tv/chapter/manga-${mangaId}/${chapter}`,
         // `https://readmangabat.com/read-${mangaId}-chap-${chapter}`,
         mangaTitle,
         chapter
@@ -194,5 +204,8 @@ app.get("/chapterImages", async (req, res) => {
 });
 
 app.listen(process.env.PORT || 9000, () => {
-  console.log("server running");
+  console.log("server running", {
+    port: process.env.PORT,
+    env: process.env.NODE_ENV,
+  });
 });
