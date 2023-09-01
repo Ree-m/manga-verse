@@ -8,7 +8,7 @@ const MangaChapters = require("./models/MangaChapters.js");
 require("dotenv").config({ path: "../.env.local" });
 
 connectMongo();
-console.log("allowed origin", process.env.ALLOWED_ORIGIN);
+console.log("origin", process.env.ALLOWED_ORIGIN);
 app.use(cors({ origin: process.env.ALLOWED_ORIGIN }));
 app.use(bodyParser.json());
 
