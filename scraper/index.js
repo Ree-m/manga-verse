@@ -15,14 +15,14 @@ app.use(bodyParser.json());
 async function scrapeMangaLink(mangaTitle) {
   const browser = await puppeteer.launch({
     headless: "new",
-    executablePath:
-      process.env.NODE_ENV === "production"
-        ? "/usr/bin/google-chrome"
-        : undefined,
-    args:
-      process.env.NODE_ENV === "production"
-        ? ["--no-sandbox", "--disable-setuid-sandbox"]
-        : undefined,
+    // executablePath:
+    //   process.env.NODE_ENV === "production"
+    //     ? "/usr/bin/google-chrome"
+    //     : undefined,
+    // args:
+    //   process.env.NODE_ENV === "production"
+    //     ? ["--no-sandbox", "--disable-setuid-sandbox"]
+    //     : undefined,
   });
 
   const page = await browser.newPage();
