@@ -8,23 +8,12 @@ const MangaChapters = require("./models/MangaChapters.js");
 require("dotenv").config({ path: "../.env.local" });
 
 connectMongo();
-console.log("origin", process.env.ALLOWED_ORIGIN);
 app.use(cors({ origin: process.env.ALLOWED_ORIGIN }));
 app.use(bodyParser.json());
 
 async function scrapeMangaLink(mangaTitle) {
-  const browser = await puppeteer.launch({
-    headless: "new",
-    executablePath:
-      process.env.NODE_ENV === "production"
-        ? "/usr/bin/google-chrome"
-        : undefined,
-    args:
-      process.env.NODE_ENV === "production"
-        ? ["--no-sandbox", "--disable-setuid-sandbox"]
-        : undefined,
-  });
-
+  const browser = await puppeteer.launch({ headless: "new"
+});
   const page = await browser.newPage();
   await page.goto(`https://ww6.manganelo.tv/search/${mangaTitle}`);
   await page.setCacheEnabled(false);
