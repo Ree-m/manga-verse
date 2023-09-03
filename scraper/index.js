@@ -15,7 +15,7 @@ async function scrapeMangaLink(mangaTitle) {
   const browser = await puppeteer.launch({ headless: "new", 
    executablePath:
     process.env.NODE_ENV === "production"
-      ? "/usr/bin/google-chrome"
+      ? "/usr/bin/chromium-browser"
       : undefined,
   args:
     process.env.NODE_ENV === "production"
