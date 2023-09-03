@@ -8,11 +8,15 @@ const MangaChapters = require("./models/MangaChapters.js");
 require("dotenv").config({ path: "../.env.local" });
 
 connectMongo();
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 2a8a2da (removed path)
 app.use(cors({ origin: process.env.ALLOWED_ORIGIN }));
 app.use(bodyParser.json());
 
 async function scrapeMangaLink(mangaTitle) {
-  const browser = await puppeteer.launch({ headless: "new"
+  const browser = await puppeteer.launch({ headless: "new",  executablePath: '/home/remi/.cache/puppeteer/chrome/linux-116.0.5845.96/chrome',
 });
   const page = await browser.newPage();
   await page.goto(`https://ww6.manganelo.tv/search/${mangaTitle}`);
