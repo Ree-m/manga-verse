@@ -4,7 +4,7 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useUserContext } from "@/app/context/user";
 import { useRouter } from "next/navigation";
-import styles from "app/styles/auth.module.css";
+import styles from "../../styles/auth.module.css";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

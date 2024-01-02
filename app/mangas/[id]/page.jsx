@@ -14,7 +14,7 @@ import ShowLess from "@/app/components/ShowLess";
 import ColorBlock from "@/app/components/ColorBlock";
 import Genres from "@/app/components/Genres";
 import PopupComponent from "@/app/components/PopupComponent";
-import styles from "app/styles/mangaPage.module.css";
+import styles from "../../styles/mangaPage.module.css";
 
 // icons
 import { MdOutlineBookmarkAdd } from "react-icons/md";

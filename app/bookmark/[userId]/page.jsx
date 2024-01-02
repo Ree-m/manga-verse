@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
 import ReadMore from "@/app/components/ReadMore";
-import styles from "app/styles/bookmarkPage.module.css";
+import styles from "../../styles/bookmarkPage.module.css";
 import { AiOutlineDoubleRight } from "react-icons/ai";
 
 
@@ -21,7 +21,7 @@ const BookmarkPage = () => {
   useEffect(() => {
     async function fetchBookmark() {
       try {
-        if (userId) {
+        if (userId&& userId!="undefined") {
           const response = await fetch(`/api/bookmark/${userId}`);
           const data = await response.json();
           setBookmark(data);
@@ -56,7 +56,7 @@ const BookmarkPage = () => {
         </span>
         <p>Bookmarks</p>
       </div>
-      {(bookmark === []) | !bookmark ? (
+      {bookmark.length<0 || !bookmark ? (
         <p>"Bookmarks is empty"</p>
       ) : (
         bookmark &&

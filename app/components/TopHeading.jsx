@@ -1,4 +1,4 @@
-import styles from "app/styles/topHeading.module.css"
+import styles from "../styles/topHeading.module.css"
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import Link from "next/link";
 function TopHeading({category,page}) {

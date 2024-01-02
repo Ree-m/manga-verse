@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import PopupComponent from "@/app/components/PopupComponent";
-import styles from "app/styles/auth.module.css";
+import styles from "../../styles/auth.module.css";
 
 
 

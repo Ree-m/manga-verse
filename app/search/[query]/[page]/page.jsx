@@ -6,8 +6,8 @@ import Paginate from "@/app/components/Paginate";
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import { useState ,useEffect} from "react";
 import Loading from "@/app/components/Loading";
-import styles from "app/styles/mangaDetialsPages.module.css";
-import styles2 from "app/styles/search.module.css";
+import styles from "../../../styles/mangaDetialsPages.module.css";
+import styles2 from "../../../styles/search.module.css";
 
 
  

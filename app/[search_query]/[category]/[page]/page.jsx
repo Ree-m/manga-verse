@@ -8,7 +8,8 @@ import { useRouter } from "next/navigation";
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import TopHeading from "@/app/components/TopHeading";
 
-import styles from "app/styles/mangaDetialsPages.module.css";
+import styles from "../../../styles/mangaDetialsPages.module.css";
+
 const OrderBy = ({ params }) => {
   const category = params.category;
   const page = params.page;

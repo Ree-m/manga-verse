@@ -9,7 +9,7 @@ import MangaDetails from "@/app/components/MangaDetails";
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import TopHeading from "@/app/components/TopHeading";
 import Paginate from "@/app/components/Paginate";
-import styles from "app/styles/mangaDetialsPages.module.css";
+import styles from "../../../styles/mangaDetialsPages.module.css";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 

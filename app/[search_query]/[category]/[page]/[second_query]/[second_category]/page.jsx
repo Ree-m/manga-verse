@@ -2,10 +2,11 @@
 import { useState, useEffect } from "react";
 import Loading from "@/app/components/Loading";
 import MangaDetails from "@/app/components/MangaDetails";
-import Paginate from "@/app/components/Paginate";
 import ReactPaginate from "react-paginate";
-import styles from "app/styles/mangaDetialsPages.module.css";
-import "app/styles/paginate.css";
+// import styles from "/styles/mangaDetialsPages.module.css";
+import styles from "../../../../../styles/mangaDetialsPages.module.css";
+
+import "../../../../../styles/paginate.css";
 import TopHeading from "@/app/components/TopHeading";
 import { useRouter } from "next/navigation";
 

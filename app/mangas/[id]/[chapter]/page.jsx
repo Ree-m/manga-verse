@@ -7,7 +7,7 @@ import Loading from "@/app/components/Loading";
 import LoadingChapter from "@/app/components/LoadingChapter";
 import ChapterImage from "@/app/components/ChapterImage";
 import ChapterPageNav from "@/app/components/ChapterPageNav";
-import styles from "app/styles/chapterPage.module.css";
+import styles from "../../../styles/chapterPage.module.css";
 
 // fucntions
 import { fetchChapters } from "@/app/functions/fetchChapters";

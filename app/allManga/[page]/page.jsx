@@ -7,7 +7,7 @@ import ReactPaginate from "react-paginate";
 import MangaDetails from "@/app/components/MangaDetails";
 import TopHeading from "@/app/components/TopHeading";
 import Paginate from "@/app/components/Paginate";
-import styles from "app/styles/mangaDetialsPages.module.css";
+import styles from "../../styles/mangaDetialsPages.module.css";
 
 const Mangas = ({ params }) => {
   const router = useRouter();
